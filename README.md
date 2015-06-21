@@ -59,11 +59,15 @@ In GATK 3.1+ AVX instructions are employed by the HaplotypeCaller for the PairHM
 ## Error tracking and debugging ##
 All bash scripts run with `bash -e`, and will thus bail on any error, `set -o pipefail` is also used ensuring failures in piping operations also result in a script stopping.  All copy operations and runs of any binary or GATK are done with `/usr/bin/time -—verbose` preceding them, this means that GNU time will log time, memory, CPU usage and IO.  This is useful not just in profiling the performance and run time of a job, but also to log the exit code too, this output will be sent to standard error when whatever was being timed finishes.  Currently both standard error and out are directed to separate files.  GATK and BWA along with other programs and GNU time will write to standard error.  Each script logs the time/date and hostname at the start of execution along with a list of all variables used in the run to standard out when initialised to help with debugging, so separating this from GATK output helps with quickly establishing what is going on.  The final line of each script if run correctly will always be `END`.  Consequently you can check to see if all scripts of a particular stage have run correctly using:
 
-`grep -c END *.o*` in each directory, scripts that ran successfully will have a count of 1 those which failed will be 0.
+`grep -c END *.o*` 
+
+in each directory, scripts that ran successfully will have a count of 1 those which failed will be 0.
 
 Only scripts that ran fully without error will have their last line as `END` on their standard out.  Non-zero exit status can be checked for in all scripts via:
 
-`grep Exit *.e*` anything non-zero here indicates that a copy operation or GATK / BWA or other binary terminated abnormally.
+`grep Exit *.e*` 
+
+anything non-zero here indicates that a copy operation or GATK / BWA or other binary terminated abnormally.
 
 For the automated pipe-line the script `Audit_run.sh` can be run which will systematically perform the above checks for all stages and report sucess / errors e.g. for the HaplotypeCaller stage:
 
