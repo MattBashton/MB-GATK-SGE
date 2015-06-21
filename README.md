@@ -1,5 +1,4 @@
-# MB-GATK-SGE #
-## GATK / MuTect SGE scripts ##
+# GATK / MuTect SGE scripts #
 
 ## Overview ##
 I've developed two sets of scripts for running the various stages of GATK analysis workflow and somatic variant calling in MuTect these take the form of SGE scripts for cluster job submission (specifically I've tested them using [Son of Grid Engine](https://arc.liv.ac.uk/trac/SGE)).  Out of the box I've tested these scrips on both exome and high depth targeted panel sequencing, I've set various setting appropriate for exome analysis using GATK 3.4.  Comments in these scripts document where these have been changed from the standard best-practices workflow/defaults and why.  These scripts have grown up from basic shell scripts for running each stage of the GATK pipeline where possible I've tried to generalise them using a common settings file.  I've placed them here in the hope that they will be useful to others.  
