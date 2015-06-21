@@ -69,7 +69,7 @@ Only scripts that ran fully without error will have their last line as `END` on 
 
 anything non-zero here indicates that a copy operation or GATK / BWA or other binary terminated abnormally.
 
-For the automated pipe-line the script `Audit_run.sh` can be run which will systematically perform the above checks for all stages and report sucess / errors e.g. for the HaplotypeCaller stage:
+For the automated pipe-line the script `Audit_run.sh` can be run which will systematically perform the above checks for all stages and report sucess / errors *e*.*g*. for the HaplotypeCaller stage:
 
 ``` 
  * Checking 29 Haplotype Caller jobs:
