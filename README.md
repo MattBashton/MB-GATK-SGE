@@ -23,7 +23,7 @@ Just as the automated pipeline required a `master_list.txt` file as described ab
 So each stage of the manual workflow can be submitted like this, in-turn, after all jobs have finished for the previous stage. 
 
 ## Documentation ##
-In addition to this overview the header of each shell script should have some discussion of what stage of GATK *etc*. it's running and the input/output files expected/produced `GATKsettings.sh` also has many comments on the parameters and settings listed there.
+In addition to this overview the header of each shell script should have some discussion of what stage of GATK *etc*. it's running and the input/output files expected/produced, `GATKsettings.sh` also has many comments on the parameters and settings listed there.
 
 ## Dependancies ##
 The following binaries and resources are required:
