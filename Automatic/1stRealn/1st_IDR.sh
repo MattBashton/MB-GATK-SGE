@@ -1,0 +1,87 @@
+#!/bin/bash -e
+#$ -cwd -V
+#$ -pe smp 1
+#$ -l h_vmem=22G
+#$ -l h_rt=24:00:00   
+#$ -R y
+#$ -q all.q,bigmem.q
+
+# Matthew Bashton 2012-2015
+# Runs Indel Realigner, needs an input .bam file and intervals file for 
+# realignment targets, outputs a new realigned .bam file. 
+# 24hrs run time by default.
+
+# Note you may want to use lower maxReads* settings defaults are:
+# maxReadsInMemory 150,000
+# maxReadsForRealignment 20,000
+
+# Using 10,000,000 which means all regions should pass, possible memory usage 
+# issue with very high depth.  Will lead to inc runtime too, lower if need be.
+
+# Also decreased LOD threshold for setting off realignment process (cleaning) 
+# to 0.4 default is 5.0.  Smaller numbers are better when looking for indels 
+# with low allele frequency.  Lower LOD means realignment process is triggered 
+# more often, which will lead to increased run time.  If runtime critical 
+# inc LOD value.
+
+# Perviously didn't restrict realignment with -L at RTC stage since off target 
+# spots sometimes can yeild good SNPs and don't want to restrict ability to use
+# file for global calling if need be at later date.  However it's really not a 
+# good idea to call off target sites for exomes and also using -L for speed 
+# up, as will generate less targets for IDR.  Note you don't need -L here since
+# RTC will have not generated targets outside interval ranges.
+
+# maxConsensuses and maxReadsForConsensuses settings not tested yet, should help
+# with deep data - runtime could be long.  Both are x10 defaults.  Omit for 
+# defaults.
+
+# Note that --consensusDeterminationModel USE_READS is actually default so I've
+# Not set it explicitly.
+
+set -o pipefail
+hostname
+date
+
+source ../GATKsettings.sh
+
+B_NAME=`basename $G_NAME.$SGE_TASK_ID.dedup.bam .bam`
+
+echo "** Variables **"
+echo " - BASE_DIR = $BASE_DIR"
+echo " - B_NAME = $B_NAME"
+echo " - INTERVALS = $INTERVALS"
+echo " - PADDING = $PADDING"
+echo " - PWD = $PWD"
+
+echo "Copying input $BASE_DIR/MarkDuplicates/$G_NAME.$SGE_TASK_ID.dedup.* to $TMPDIR"
+/usr/bin/time --verbose cp -v $BASE_DIR/MarkDuplicates/$G_NAME.$SGE_TASK_ID.dedup.bam $TMPDIR
+/usr/bin/time --verbose cp -v $BASE_DIR/MarkDuplicates/$G_NAME.$SGE_TASK_ID.dedup.bai $TMPDIR
+
+echo "Running GATK"
+/usr/bin/time --verbose $JAVA -Xmx18g -jar $GATK \
+-T IndelRealigner \
+--maxReadsInMemory 10000000 \
+--maxReadsForRealignment 10000000 \
+--maxConsensuses 300 \
+--maxReadsForConsensuses 1200 \
+-known $BUNDLE_DIR/Mills_and_1000G_gold_standard.indels.hg19.vcf \
+-known $BUNDLE_DIR/1000G_phase1.indels.hg19.vcf \
+-I $TMPDIR/$B_NAME.bam \
+-R $BUNDLE_DIR/ucsc.hg19.fasta \
+-targetIntervals $B_NAME.RTC.intervals \
+-o $TMPDIR/$B_NAME.realigned.bam \
+-LOD 0.4 \
+--log_to_file $B_NAME.IndelRealigner.log
+
+echo "Copying output $TMPDIR/$B_NAME.realigned.* to $PWD"
+/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.realigned.bam $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.realigned.bai $PWD
+
+echo "Deleting $TMPDIR/$B_NAME.realigned.*"
+rm $TMPDIR/$B_NAME.realigned.*
+
+echo "Deleting $TMPDIR/$B_NAME.*"
+rm $TMPDIR/$B_NAME.*
+
+date
+echo "END"
