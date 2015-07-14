@@ -27,7 +27,7 @@ do
     VCF_LIST="$VCF_LIST $TMP"
 done
 
-VCF_DIR=`dirname $1`
+VCF_DIR=`dirname "$1"`
 DEST=$PWD
 
 echo "** Variables **"
