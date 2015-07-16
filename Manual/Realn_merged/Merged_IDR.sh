@@ -77,9 +77,6 @@ echo "Copying output $TMPDIR/$B_NAME.Realigned.Recalibrated_L.* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.2ndRealigned.bam $PWD
 /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.2ndRealigned.bai $PWD
 
-echo "Deleting $TMPDIR/$B_NAME.Realigned.more.*"
-rm $TMPDIR/$B_NAME.*
-
 echo "Deleting $TMPDIR/$B_NAME.*"
 rm $TMPDIR/$B_NAME.*
 
