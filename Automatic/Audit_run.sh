@@ -85,7 +85,7 @@ echo -e "  - $END jobs ran fully"
 echo -e "  - $NO_END failed to finish"
 echo -e "  - $ERRORS non-zero exit statuses reported"
 
-echo -e "\n * Checking 1 Filter VCF run:"
+echo -e "\n * Checking 2 Filter VCF jobs:"
 END=`grep -cHe 'END' Filt_Recaled_VCF/*.o* | grep -o ':1' | wc -l`
 NO_END=`grep -cHe 'END' Filt_Recaled_VCF/*.o* | grep -o ':0' | wc -l`
 ERRORS=`grep -e 'Exit status: [1-9]' Filt_Recaled_VCF/*.e* | wc -l`
