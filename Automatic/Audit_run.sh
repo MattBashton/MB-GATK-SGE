@@ -93,7 +93,7 @@ echo -e "  - $END jobs ran fully"
 echo -e "  - $NO_END failed to finish"
 echo -e "  - $ERRORS non-zero exit statuses reported"
 
-echo -e "\n * Checking 1 Split VCF run:"
+echo -e "\n * Checking 2 Split VCF jobs:"
 END=`grep -cHe 'END' Split_VCF/*.o* | grep -o ':1' | wc -l`
 NO_END=`grep -cHe 'END' Split_VCF/*.o* | grep -o ':0' | wc -l`
 ERRORS=`grep -e 'Exit status: [1-9]' Split_VCF/*.e* | wc -l`
