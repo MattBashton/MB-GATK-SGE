@@ -16,7 +16,7 @@ shift
 
 for i in $@
 do
-    echo "qsub $SCRIPT $i"
+    qsub $SCRIPT $i
 done
 
 
