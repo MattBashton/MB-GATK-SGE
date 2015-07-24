@@ -25,7 +25,7 @@ then
     cd ..
     echo " - Deleting inital bam files"
     cd SamToSortedBam
-    rm *.bam
+    rm *.ba*
     cd ..
     echo " - Deleting duplicate marked bam"
     cd MarkDuplicates
@@ -33,7 +33,7 @@ then
     cd ..
     echo " - Deleting realigned bam"
     cd 1stRealn
-    rm *.bam
+    rm *.ba*
     cd ..
     echo "All intermediate files deleted, de-duplicated, realigned and recalibrated" 
     echo ".bam in /BQSR left intact along with .vcf/g.vcf and log files" 
