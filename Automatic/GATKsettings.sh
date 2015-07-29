@@ -31,7 +31,7 @@ module add compilers/gnu/4.8.2
 
 
 ## Location of programs
-GATK="/opt/software/bsu/bin/GenomeAnalysisTK-3.4-0.jar"
+GATK="/opt/software/bsu/bin/GenomeAnalysisTK-3.4-46.jar"
 # Newer versions of Picard has a unified .jar file
 PICARD="/opt/software/bsu/bin/picard.jar"
 BWA="/opt/software/bsu/bin/bwa"
