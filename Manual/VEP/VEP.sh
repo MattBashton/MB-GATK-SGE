@@ -4,8 +4,6 @@
 #$ -l h_rt=4:00:00
 #$ -l h_vmem=40G
 #$ -R y
-
-# For testing remove later since don't want small jobs on bigmem queue
 #$ -q all.q,bigmem.q
 
 # Matthew Bashton 2015

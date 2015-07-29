@@ -41,6 +41,7 @@ MUTECT="muTect-1.1.7.jar"
 FASTQC="/opt/software/bsu/bin/fastqc"
 VCFUTILS="/opt/software/bsu/bin/vcfutils.pl"
 VCFANNOTATE="/opt/software/bsu/bin/vcf-annotate" 
+VCFTOOLS="/opt/software/bsu/bin/vcftools"
 
 ## Ensembl VEP cache location, note to improve performance this will be copied 
 # to $TMPDIR on the start of each VEP job.
