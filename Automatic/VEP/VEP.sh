@@ -63,14 +63,17 @@ echo "Running VEP on $TMPDIR/$B_NAME.vcf"
 --pubmed \
 --fields Uploaded_variation,Location,Allele,Gene,Feature,Feature_type,Consequence,cDNA_position,CDS_position,Protein_position,Amino_acids,Codons,Existing_variation,IMPACT,DISTANCE,STRAND,SYMBOL,SYMBOL_SOURCE,HGNC_ID,BIOTYPE,CANONICAL,TSL,CCDS,ENSP,SWISSPROT,TREMBL,UNIPARC,SIFT,PolyPhen,EXON,INTRON,DOMAINS,HGVSc,HGVSp,GMAF,AFR_MAF,AMR_MAF,ASN_MAF,EAS_MAF,EUR_MAF,SAS_MAF,AA_MAF,EA_MAF,CLIN_SIG,SOMATIC,PUBMED,MOTIF_NAME,MOTIF_POS,HIGH_INF_POS,MOTIF_SCORE_CHANGE \
 --html \
--o $TMPDIR/$B_NAME.VEP.txt \
+-o $TMPDIR/$B_NAME.txt \
 --dir_cache $TMPDIR/vep_cache/ \
 --buffer_size 50000 \
 --fork 10 \
 --pick
 
-echo "Copying back VEP output from $TMPDIR to $PWD"
-/usr/bin/time --verbose cp -v $TMPDIR/*VEP* $PWD
+echo "Copying back VEP *.txt output from $TMPDIR to $PWD"
+/usr/bin/time --verbose cp -v $TMPDIR/*.txt $PWD
+
+echo "Copying back VEP *.html output from $TMPDIR to $PWD"
+/usr/bin/time --verbose cp -v $TMPDIR/*.html $PWD
 
 # Cleaning up                                                                                                                                 
 echo "Removing *.txt *.html *.vcf from $TMPDIR"
