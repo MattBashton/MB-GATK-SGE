@@ -9,8 +9,6 @@
 # Runs Depth Of Coverage, needs an input .bam, file and the intervals targeted
 # 2hrs run time by default, adjust if need be.
 
-# Using ENSEMBL hg19 gene list: ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/database/ensGene.txt.gz
-
 set -o pipefail
 hostname
 date
