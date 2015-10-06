@@ -27,8 +27,7 @@ JAVA="/opt/software/java/jre1.7.0_55/bin/java -XX:-UseLargePages -Djava.io.tmpdi
 
 ## We need latest GCC libs for AVX hardware acceleration of pairHMM (FMS cluster 
 # specific)
-module add compilers/gnu/4.8.2
-
+module add compilers/gnu/4.9.3
 
 ## Location of programs
 GATK="/opt/software/bsu/bin/GenomeAnalysisTK-3.4-46.jar"
