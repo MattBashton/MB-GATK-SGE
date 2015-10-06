@@ -88,6 +88,7 @@ For the automated pipeline the script `Audit_run.sh` can be run which will syste
   - 0 failed to finish
   - 0 non-zero exit statuses reported
 ```
+
 In order to output its report this the script sources `GATKsettings.sh` and examines `master_list.txt` to obtain the global run name and number of sample in the analysis.
 
 ### What happens if a stage or individual job fails in the automated pipeline? ###
