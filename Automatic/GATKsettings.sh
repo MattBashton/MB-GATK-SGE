@@ -22,8 +22,8 @@ G_NAME="WES"
 ## System settings for launching java jobs 
 # On FMS cluster we need to use large pages have also set tmp dir to one 
 # provided by SoGE for each run
-JAVA="/opt/software/java/jre1.7.0_55/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
-#JAVA="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDI"
+#JAVA="/opt/software/java/jre1.7.0_55/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
+JAVA="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
 
 ## We need latest GCC libs for AVX hardware acceleration of pairHMM (FMS cluster 
 # specific)
