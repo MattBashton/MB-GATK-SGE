@@ -10,6 +10,8 @@
 # Runs MarkDuplicates, note that -XX:ParallelGCThreads=2 is needed to prevent
 # Picard using all the threads on a node.  Default runtime is 24hrs.
 
+# For RAD/Haloplex data don't run MarkDuplicates                         
+
 set -o pipefail
 hostname
 date

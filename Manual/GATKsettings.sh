@@ -7,9 +7,11 @@
 # different runs to have different settings rather than a global file in users
 # home dir.
 
-# Note pre-set for and tested on exomes, for less than 100M bases per RG 
+# Note pre-set for and tested on exomes, for less than 100M bases per @RG 
 # targeted don't run BQSR see: 
 # http://gatkforums.broadinstitute.org/discussion/comment/14269/#Comment_14269
+
+# Also for RAD/Haloplex data don't run MarkDuplicates
 
 ## System settings for launching java jobs 
 # On FMS cluster we need to use large pages have also set tmp dir to one 
