@@ -40,7 +40,7 @@ echo " - INTERVALS = $INTERVALS"
 echo " - PADDING = $PADDING"
 echo " - PWD = $PWD"
 
-echo "Copying input $BASE_DIR/1stRealn/$G_NAME.$SGE_TASK_ID.dedup.realigned.recalibrated.* to $TMPDIR"
+echo "Copying input $BASE_DIR/BQSR_sample_lvl/$G_NAME.$SGE_TASK_ID.dedup.realigned.recalibrated.* to $TMPDIR"
 /usr/bin/time --verbose cp -v $BASE_DIR/BQSR_sample_lvl/$G_NAME.$SGE_TASK_ID.dedup.realigned.recalibrated.bam $TMPDIR
 /usr/bin/time --verbose cp -v $BASE_DIR/BQSR_sample_lvl/$G_NAME.$SGE_TASK_ID.dedup.realigned.recalibrated.bai $TMPDIR
 
