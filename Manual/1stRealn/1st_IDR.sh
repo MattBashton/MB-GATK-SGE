@@ -30,9 +30,11 @@
 # up, as will generate less targets for IDR.  Note you don't need -L here since
 # RTC will have not generated targets outside interval ranges.
 
-# maxConsensuses and maxReadsForConsensuses settings not tested yet, should help
-# with deep data - runtime could be long.  Both are x10 defaults.  Omit for 
-# defaults.
+# maxConsensuses and maxReadsForConsensuses settings, should help with deep data                              
+# - runtime could be long.  Both are x10 defaults.  Omit for defaults.                                        
+# GATK documentation now states inc these for better results on high                                          
+# depth data.                                                                                                 
+# https://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_indels_IndelRealigner.php
 
 # Note that --consensusDeterminationModel USE_READS is actually default so I've
 # Not set it explicitly.
