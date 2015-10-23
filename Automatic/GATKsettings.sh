@@ -49,6 +49,11 @@ VCFANNOTATE="/opt/software/bsu/bin/vcf-annotate"
 VCFTOOLS="/opt/software/bsu/bin/vcftools"
 SAMTOOLS="/opt/software/bsu/bin/samtools-1.2"
 
+# Perl 5 lib settings needed for vcf-annotate to work, needs path to Vcf.pm to 
+# be in PER5LIB path.
+PERL5LIB=/opt/software/bsu/lib/perl/:$PERL5LIB; 
+export PERL5LIB
+
 ## Ensembl VEP cache location, note to improve performance this will be copied 
 # to $TMPDIR on the start of each VEP job.
 GLOBAL_VEP_CACHE="/opt/databases/ensembl-tools/ensembl-tools-79/VEP"

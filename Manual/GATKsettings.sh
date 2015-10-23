@@ -33,8 +33,14 @@ BWA="/opt/software/bsu/bin/bwa"
 MUTECT="muTect-1.1.7.jar"
 FASTQC="/opt/software/bsu/bin/fastqc"
 VCFUTILS="/opt/software/bsu/bin/vcfutils.pl"
-VCFANNOTATE="/opt/software/bsu/bin/vcf-annotate" 
+VCFANNOTATE="/opt/software/bsu/bin/vcf-annotate"
+VCFTOOLS="/opt/software/bsu/bin/vcftools" 
 SAMTOOLS="/opt/software/bsu/bin/samtools-1.2"
+
+# Perl 5 lib settings needed for vcf-annotate to work, needs path to Vcf.pm to 
+# be in PER5LIB path.                                                           
+PERL5LIB=/opt/software/bsu/lib/perl/:$PERL5LIB;
+export PERL5LIB
 
 ## Ensembl VEP cache location, note to improve performance this will be copied 
 # to $TMPDIR on the start of each VEP job.
