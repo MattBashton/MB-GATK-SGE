@@ -59,12 +59,12 @@ qsub -t 1-$N -N $G_NAME.MarkDuplicates -hold_jid_ad $G_NAME.SamToSortedBam -wd $
 tput bold
 echo " * 4 Realignment Target Creation jobs submitted"
 tput sgr0 
-qsub -t 1-$N -N $G_NAME.RTC -hold_jid_ad $G_NAME.MarkDuplicates -wd $PWD/1stRealn 1stRealn/1st_RTC.sh 
+qsub -t 1-$N -N $G_NAME.RTC -hold_jid_ad $G_NAME.MarkDuplicates -wd $PWD/1stRealn 1stRealn/RTC.sh 
 
 tput bold
 echo " * 5 Indel Realignment jobs submitted"
 tput sgr0
-qsub -t 1-$N -N $G_NAME.IDR -hold_jid_ad $G_NAME.RTC -wd $PWD/1stRealn 1stRealn/1st_IDR.sh
+qsub -t 1-$N -N $G_NAME.IDR -hold_jid_ad $G_NAME.RTC -wd $PWD/1stRealn 1stRealn/IDR.sh
 
 tput bold
 echo " * 6 Base Quality Score Recalibration - traning jobs submitted"
