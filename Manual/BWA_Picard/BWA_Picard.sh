@@ -1,17 +1,18 @@
 #!/bin/bash -e
-#$ -cwd -V 
+#$ -cwd -V
 #$ -pe smp 5
 #$ -l h_rt=24:00:00
 #$ -l h_vmem=28G
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Check time and mem usage!
 
 # Matthew Bashton 2012-2015
 # Runs BWA MEM using options passed in at command-line.
-# Another script needs to call this one which has a list of all files, @RG 
-# lines and Sample IDs.  Job time being used too to help with getting a slot, 
-# 24hrs set - alter if need be.  
+# Another script needs to call this one which has a list of all files, @RG
+# lines and Sample IDs.  Job time being used too to help with getting a slot,
+# 24hrs set - alter if need be.
 
 
 set -o pipefail

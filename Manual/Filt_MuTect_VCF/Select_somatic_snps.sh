@@ -4,13 +4,13 @@
 #$ -l h_vmem=8G
 #$ -l h_rt=1:00:00
 #$ -R y
-#$ -q all.q,bigmem.q 
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
-# Splits out the germline variants from MuTect VCF output then selects KEEP 
+# Splits out the germline variants from MuTect VCF output then selects KEEP
 # flagged variants from MuTect VCF output.  Needs input MuTect .vcf as $1
 # and sample name to extract (i.e. somatic sample) as $2.
- 
+
 set -o pipefail
 hostname
 date

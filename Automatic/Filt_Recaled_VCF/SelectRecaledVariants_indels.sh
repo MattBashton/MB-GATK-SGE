@@ -9,8 +9,8 @@
 # Matthew Bashton 2012-2015
 # Runs Select Variants on VCF to pull out sub sets with >= 0 VQSlod, >= 3 VQSlod
 # and PASS flagged variants from the VQSR stage.  VQSlod >= 0 and >= 3 should be
-# the better and even better set of variants from the recalibration stage, more 
-# positive log odds ratio here means greater likelihood of true variant under 
+# the better and even better set of variants from the recalibration stage, more
+# positive log odds ratio here means greater likelihood of true variant under
 # Gaussian mixture model used in recalibration.  The PASS set are all those that
 # passed recalibration at the desired TS filter level.
 

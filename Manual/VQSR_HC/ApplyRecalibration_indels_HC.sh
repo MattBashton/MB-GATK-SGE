@@ -4,6 +4,7 @@
 #$ -l h_vmem=12G
 #$ -l h_rt=12:00:00
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Runs Apply Recalibration, this takes the .recal file and applies it to the raw

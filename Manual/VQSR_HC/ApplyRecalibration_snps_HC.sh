@@ -4,11 +4,12 @@
 #$ -l h_vmem=12G
 #$ -l h_rt=2:00:00
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Runs Apply Recalibration, this takes the .recal file and applies it to the raw
 # vcf produced by the HC, output is a recalibrated .vcf file.
-# Using TS of 99.5 for SNPs as per GATK doc #1259 
+# Using TS of 99.5 for SNPs as per GATK doc #1259
 # https://www.broadinstitute.org/gatk/guide/article?id=1259
 
 set -o pipefail

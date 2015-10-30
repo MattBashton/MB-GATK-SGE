@@ -1,8 +1,8 @@
 B#!/bin/bash -e                                                                                                                                                   
 
-# Matthew Bashton 2012-2015 
+# Matthew Bashton 2012-2015
 
-# A script to clean up the output following successful completion of the 
+# A script to clean up the output following successful completion of the
 # automated pipeline.
 
 tput bold
@@ -14,13 +14,13 @@ echo -e ".bam files for each sample will also be left intact.\n\n"
 read -p "Are you sure you want to delete intermediate output? " -n 1 -r
 echo  ""
 
-tput sgr0 
+tput sgr0
 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     # do dangerous stuff
     echo " - Deleting sam files"
-    cd BWA_MEM 
+    cd BWA_MEM
     rm *.sam
     cd ..
     echo " - Deleting inital bam files"
@@ -35,6 +35,6 @@ then
     cd 1stRealn
     rm *.ba*
     cd ..
-    echo "All intermediate files deleted, de-duplicated, realigned and recalibrated" 
-    echo ".bam in /BQSR left intact along with .vcf/g.vcf and log files" 
+    echo "All intermediate files deleted, de-duplicated, realigned and recalibrated"
+    echo ".bam in /BQSR left intact along with .vcf/g.vcf and log files"
 fi

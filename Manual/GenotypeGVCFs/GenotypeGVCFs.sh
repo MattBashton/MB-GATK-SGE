@@ -3,9 +3,10 @@
 #$ -l h_vmem=14G
 #$ -pe smp 5
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
-# Runs GenotypeGVCFs which takes the sample level genomic VCF files and fuses 
+# Runs GenotypeGVCFs which takes the sample level genomic VCF files and fuses
 # them into a normal VCF file which can then be used for recalibration.
 
 set -o pipefail

@@ -24,7 +24,7 @@ echo " - PWD=$PWD"
 echo " - B_NAME=$B_NAME"
 
 echo "Copying input $1 to $TMPDIR/"
-/usr/bin/time --verbose cp -v $1 $TMPDIR 
+/usr/bin/time --verbose cp -v $1 $TMPDIR
 
 echo "Splitting $TMPDIR/$B_NAME.vcf by sample"
 # Get sample names

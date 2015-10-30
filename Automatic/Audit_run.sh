@@ -2,12 +2,12 @@
 
 # Matthew Bashton 2015
 
-# This script audits a run of the automated pipe-line to check all jobs ran 
+# This script audits a run of the automated pipe-line to check all jobs ran
 # correctly.
 
 source GATKsettings.sh
 
-# Set up totals 
+# Set up totals
 TOTUSRSYS=0
 TOTREAL=0
 
@@ -24,8 +24,8 @@ ERRORS=`grep -e 'Exit status: [1-9]' FastQC/*.e* | wc -l`
 USRSYS=`grep 'time (seconds)' FastQC/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
 MS=`grep 'Elapsed (wall clock)' FastQC/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
 HMS=`grep 'Elapsed (wall clock)' FastQC/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then 
-    HMS=0 
+if [ -z "$MHS" ]; then
+    HMS=0
 fi
 REAL=`echo $MS + $HMS | bc`
 TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
@@ -246,7 +246,7 @@ echo -e "  - $USRSYS user and system time (seconds)"
 echo -e "  - $REAL real world time (seconds)"
 
 
-# Rround up decimal places in variables 
+# Rround up decimal places in variables
 TOTUSRSYS=`printf "%.*f" 0 $TOTUSRSYS`
 TOTREAL=`printf "%.*f" 0 $TOTREAL`
 

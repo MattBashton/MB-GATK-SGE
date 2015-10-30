@@ -1,9 +1,10 @@
 #!/bin/bash -e
-#$ -cwd -V 
+#$ -cwd -V
 #$ -pe smp 2
 #$ -l h_rt=4:00:00
 #$ -l h_vmem=18G
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Runs Picard SortSam using input passed in at command-line.

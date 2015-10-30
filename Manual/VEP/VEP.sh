@@ -10,8 +10,8 @@
 # Runs Ensembl VEP with input from $1 this needs modules for VEP since it has a
 # lot of dependancies which are not trivial to install.
 
-# Using local cache copied from that installed to luster FS via head node as 
-# multiple jobs all writing to same files may cause issues, also cache works 
+# Using local cache copied from that installed to luster FS via head node as
+# multiple jobs all writing to same files may cause issues, also cache works
 # by streaming zcat of .gz files so rather suboptimal for cluster.
 
 module add apps/perl
@@ -33,7 +33,7 @@ echo "Copying input $1 to $TMPDIR/"
 /usr/bin/time --verbose cp -v $1 $TMPDIR
 
 echo "Creating VEP cache dirs on local scratch in $TMPDIR"
-# Note just using 79_GRCh37 this will need to change from release to release  / organism / reference 
+# Note just using 79_GRCh37 this will need to change from release to release  / organism / reference
 mkdir $TMPDIR/vep_cache
 mkdir $TMPDIR/vep_cache/homo_sapiens
 mkdir $TMPDIR/vep_cache/homo_sapiens/79_GRCh37
@@ -69,7 +69,7 @@ echo "Copying back VEP *.txt output from $TMPDIR to $PWD"
 echo "Copying back VEP *.html output from $TMPDIR to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/*.html $PWD
 
-# Cleaning up                                                                                                                                 
+# Cleaning up
 echo "Removing *.txt *.html *.vcf from $TMPDIR"
 rm $TMPDIR/*.txt
 rm $TMPDIR/*.html

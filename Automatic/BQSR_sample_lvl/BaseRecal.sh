@@ -11,10 +11,10 @@
 # file.
 # Using -L intervals from kit will ensure off target reads are not used for
 # Recalibration, 100bp padding should also be used on these.
-# Output is .grp file 
+# Output is .grp file
 
-# Note pre-set for and tested on exomes, for less than 100M bases per RG      
-# targeted don't run BQSR see:                                                
+# Note pre-set for and tested on exomes, for less than 100M bases per RG
+# targeted don't run BQSR see:
 # http://gatkforums.broadinstitute.org/discussion/comment/14269/#Comment_14269
 
 set -o pipefail

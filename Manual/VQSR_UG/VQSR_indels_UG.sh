@@ -2,8 +2,9 @@
 #$ -cwd -V
 #$ -pe smp 2
 #$ -l h_vmem=16G
-#$ -l h_rt=12:00:00 
+#$ -l h_rt=12:00:00
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 

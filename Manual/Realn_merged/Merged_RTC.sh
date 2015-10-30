@@ -4,13 +4,14 @@
 #$ -l h_vmem=28G
 #$ -l h_rt=24:00:00
 #$ -R y
+#$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015                                                 
+# Matthew Bashton 2012-2015
 # Runs Realigner Target Creator, needs an input .bam file, will generate the
 # intervals file for alignment for that region.  If you set $INTERVALS to ""
-# in ../GATKsettings.sh then -L string will be missing and all data will be 
-# used, set like this for WGS.                                              
-# 24hrs run time by default.                                                
+# in ../GATKsettings.sh then -L string will be missing and all data will be
+# used, set like this for WGS.
+# 24hrs run time by default.
 
 set -o pipefail
 hostname

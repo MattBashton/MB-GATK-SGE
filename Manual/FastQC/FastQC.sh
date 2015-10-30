@@ -1,11 +1,13 @@
 #!/bin/bash -e
-#$ -cwd -V 
+#$ -cwd -V
 #$ -pe smp 1
 #$ -l -l h_rt=02:00:00,h_vmem=2G
+#$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Runs FastQC on the supplied (at command line $1) .fastq or .fastq.gz file.
-# Note parallelisation with FastQC is a waste of time as only works with 
+# Note parallelisation with FastQC is a waste of time as only works with
 # multiple input files, and these are submited as diff SoGE jobs.
 # Default run time is two hours, adjust if need be.
 

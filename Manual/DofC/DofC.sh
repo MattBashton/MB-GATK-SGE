@@ -1,9 +1,11 @@
 #!/bin/bash -e
 #$ -cwd -V
 #$ -pe smp 1
-#$ -l h_vmem=8G 
-#$ -l h_rt=2:00:00   
+#$ -l h_vmem=8G
+#$ -l h_rt=2:00:00
 #$ -R y
+#$ -q all.q,bigmem.q
+
 
 # Matthew Bashton 2012-2015
 # Runs Depth Of Coverage, needs an input .bam, file and the intervals targeted

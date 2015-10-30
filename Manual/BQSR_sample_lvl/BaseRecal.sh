@@ -4,16 +4,17 @@
 #$ -l h_vmem=22G
 #$ -l h_rt=24:00:00
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Runs BaseRecalibrator needs an input .bam file, output is the Recal_data.grp
 # file.
 # Using -L intervals from kit will ensure off target reads are not used for
 # Recalibration, 100bp padding should also be used on these.
-# Output is .grp file 
+# Output is .grp file
 
-# Note pre-set for and tested on exomes, for less than 100M bases per RG      
-# targeted don't run BQSR see:                                                
+# Note pre-set for and tested on exomes, for less than 100M bases per RG
+# targeted don't run BQSR see:
 # http://gatkforums.broadinstitute.org/discussion/comment/14269/#Comment_14269
 
 set -o pipefail

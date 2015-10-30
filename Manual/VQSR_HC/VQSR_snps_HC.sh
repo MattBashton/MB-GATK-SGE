@@ -4,17 +4,18 @@
 #$ -l h_vmem=14G
 #$ -l h_rt=12:00:00
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 
-# Runs the Variant Recalibrator input is raw VCF from the HC and output is a 
+# Runs the Variant Recalibrator input is raw VCF from the HC and output is a
 # recal file which can be applied using Apply Recalibration.
 # Not using -an DP since this is a bad idea for exome + targeted panels.
 # maxGuassians 4 needed to get things working with targeted data, drop this for
 # exomes, unless small < 10 sample number or you have issues with too few bad
-# variants.  Also leaving out InbreedingCoeff some discussion of this being 
+# variants.  Also leaving out InbreedingCoeff some discussion of this being
 # problematic too on forums, needs at least 10 samples which are not related.
-# Settings as given in GATK doc #1259:                     
+# Settings as given in GATK doc #1259:
 # https://www.broadinstitute.org/gatk/guide/article?id=1259
 # Also you need to use dbsnp_138.hg19.excluding_sites_after_129.vcf see bottom of
 # comments section on above link.

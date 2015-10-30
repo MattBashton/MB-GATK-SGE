@@ -4,10 +4,11 @@
 #$ -pe smp 2
 #$ -l h_rt=24:00:00
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Takes a list of .bam files passed in via <path_to_files>/*.bam at command line
-# and runs Picard tools MergeSamFiles on them.  Uses threading option in Picard 
+# and runs Picard tools MergeSamFiles on them.  Uses threading option in Picard
 # which off loads IO/(de)compression to another tread ~ 20% faster.
 
 set -o pipefail

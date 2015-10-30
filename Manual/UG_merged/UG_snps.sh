@@ -2,11 +2,12 @@
 #$ -cwd -V
 #$ -pe smp 10
 #$ -l h_vmem=60G
-#$ -l h_rt=120:00:00 
+#$ -l h_rt=120:00:00
 #$ -R y
+#$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015 
-# Runs the Unified Genotyper on a merged BAM as per GATK 2.x best practices 
+# Matthew Bashton 2012-2015
+# Runs the Unified Genotyper on a merged BAM as per GATK 2.x best practices
 # -dcov from global settings file.  5 days run time by default.
 
 set -o pipefail

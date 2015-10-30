@@ -6,7 +6,7 @@
 #$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
-# Runs GenotypeGVCFs which takes the sample level genomic VCF files and fuses 
+# Runs GenotypeGVCFs which takes the sample level genomic VCF files and fuses
 # them into a normal VCF file which can then be used for recalibration.
 
 set -o pipefail
@@ -50,7 +50,7 @@ cd $TMPDIR
 --max_alternate_alleles 50 \
 $VCF_LIST \
 -o $G_NAME.HC_genotyped.vcf \
---log_to_file $DEST/$G_NAME.GenotypeGVCFs.log 
+--log_to_file $DEST/$G_NAME.GenotypeGVCFs.log
 cd $DEST
 
 echo "Copying back merged VCF and index output to $DEST"

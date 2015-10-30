@@ -2,12 +2,13 @@
 #$ -cwd -V
 #$ -pe smp 1
 #$ -l h_vmem=8G
-#$ -l h_rt=4:00:00     
+#$ -l h_rt=4:00:00
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Runs Select Variants to filter with pre set cut-offs, this script is for HC
-# data.  Note will get errors for undefined variables this is normal not all 
+# data.  Note will get errors for undefined variables this is normal not all
 # sites have all variables depending on zygosity.
 
 set -o pipefail

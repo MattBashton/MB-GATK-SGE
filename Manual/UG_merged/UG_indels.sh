@@ -4,8 +4,9 @@
 #$ -l h_vmem=42G
 #$ -l h_rt=120:00:00
 #$ -R y
+#$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015                                                
+# Matthew Bashton 2012-2015
 # Runs the Unified Genotyper on a merged BAM as per GATK 2.x best practices
 # -dcov from global settings file.  5 days run time by default.
 

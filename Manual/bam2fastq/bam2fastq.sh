@@ -1,13 +1,15 @@
 #!/bin/bash -e
-#$ -cwd -V 
+#$ -cwd -V
 #$ -pe smp 1
 #$ -l h_rt=24:00:00
 #$ -l h_vmem=6G
 #$ -R y
+#$ -q all.q,bigmem.q
+
 
 # Matthew Bashton 2012-2015
-# Converts aligned BAM to gziped FASTQ using BAM file passed in at command-line. 
-# Uses SAMtools to randomly order reads in aligned BAM file, to avoid mapping 
+# Converts aligned BAM to gziped FASTQ using BAM file passed in at command-line.
+# Uses SAMtools to randomly order reads in aligned BAM file, to avoid mapping
 # bias as discussed here:
 # http://gatkforums.broadinstitute.org/discussion/2908/howto-revert-a-bam-file-to-fastq-format
 

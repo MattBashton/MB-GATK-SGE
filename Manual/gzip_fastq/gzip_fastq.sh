@@ -1,9 +1,10 @@
 #!/bin/bash -e
-#$ -cwd -V 
+#$ -cwd -V
 #$ -pe smp 5
 #$ -l h_rt=6:00:00
 #$ -l h_vmem=1G
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Converts aligned FASTQ to gziped FASTQ using pigz

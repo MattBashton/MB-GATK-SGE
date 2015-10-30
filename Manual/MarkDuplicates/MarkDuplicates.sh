@@ -1,15 +1,16 @@
 #!/bin/bash -e
-#$ -cwd -V 
+#$ -cwd -V
 #$ -pe smp 2
 #$ -l h_rt=24:00:00
 #$ -l h_vmem=18G
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Runs MarkDuplicates, note that -XX:ParallelGCThreads=2 is needed to prevent
 # Picard using all the threads on a node.  Default runtime is 24hrs.
 
-# For RAD/Haloplex data don't run MarkDuplicates                         
+# For RAD/Haloplex data don't run MarkDuplicates
 
 set -o pipefail
 hostname

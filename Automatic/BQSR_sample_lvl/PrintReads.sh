@@ -7,8 +7,8 @@
 #$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
-# Runs PrintReads to apply BQSR needs an input .bam to recal and the 
-# Recal_data.grp file.  Using -L optionally in $INTERVALS to remove off target 
+# Runs PrintReads to apply BQSR needs an input .bam to recal and the
+# Recal_data.grp file.  Using -L optionally in $INTERVALS to remove off target
 # reads as we don't call variants on these later.
 
 set -o pipefail
@@ -40,7 +40,7 @@ $INTERVALS \
 -R $BUNDLE_DIR/ucsc.hg19.fasta \
 -BQSR $B_NAME.Recal_data.grp \
 -o $TMPDIR/$B_NAME.recalibrated.bam \
---log_to_file $B_NAME.PrintReads.log 
+--log_to_file $B_NAME.PrintReads.log
 
 echo "Copying output $TMPDIR/$B_NAME.Recalibrated.* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.recalibrated.bam $PWD

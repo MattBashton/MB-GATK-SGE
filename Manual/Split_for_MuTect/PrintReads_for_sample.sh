@@ -1,12 +1,13 @@
-#!/bin/bash -e 
+#!/bin/bash -e
 #$ -cwd -V
 #$ -pe smp 2
 #$ -l h_vmem=16G
 #$ -R y
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
-# Uses PrintReads to extract samples from a multi sample bam file, 
-# the second argument at the command-line should be the read group ID to extract 
+# Uses PrintReads to extract samples from a multi sample bam file,
+# the second argument at the command-line should be the read group ID to extract
 # and the first is the merged bam file to use as input.
 
 set -o pipefail
@@ -27,8 +28,8 @@ echo " - B_PATH_NAME = $B_PATH_NAME"
 echo " - SAMP_NAME = $SAMP_NAME"
 echo " - PWD = $PWD"
 
-echo "Copying input $B_PATH_NAME.* to $TMPDIR" 
-/usr/bin/time --verbose cp -v $B_PATH_NAME.bam $TMPDIR 
+echo "Copying input $B_PATH_NAME.* to $TMPDIR"
+/usr/bin/time --verbose cp -v $B_PATH_NAME.bam $TMPDIR
 /usr/bin/time --verbose cp -v $B_PATH_NAME.bai $TMPDIR
 
 echo "Running GATK"
@@ -39,7 +40,7 @@ echo "Running GATK"
 -I $TMPDIR/$B_NAME.bam \
 -R $BUNDLE_DIR/ucsc.hg19.fasta \
 -o $TMPDIR/$SAMP_NAME.bam \
---log_to_file $SAMP_NAME.PrintReads.log 
+--log_to_file $SAMP_NAME.PrintReads.log
 
 echo "Copying output $TMPDIR/$SAMP_NAME.ba* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$SAMP_NAME.bam $PWD

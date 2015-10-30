@@ -13,14 +13,14 @@
 #
 # SAMP_NAME is used to shorten output file names removing the various stages
 # from file name at this point if that causes issues fallback to B_NAME or
-# edit line.  Have set max alt alleles higher than default.      
+# edit line.  Have set max alt alleles higher than default.
 # In GATK 3.4 --variant_index_type LINEAR --variant_index_parameter 128000 won't
 # be needed as long as .g.vcf is used.  In GVCF mode -stand_emit_conf and
-# -stand_call_conf are both ignored and set to zero.  Also using PCR       
-# --pcr_indel_model CONSERVATIVE is use - set to NONE for WGS.             
+# -stand_call_conf are both ignored and set to zero.  Also using PCR
+# --pcr_indel_model CONSERVATIVE is use - set to NONE for WGS.
 # --maxReadsInRegionPerSample defaults to 10000 for the active region changed
 # in GATKsettings.sh $MAX_READS_IN_REGION
-   
+
 set -o pipefail
 hostname
 date
