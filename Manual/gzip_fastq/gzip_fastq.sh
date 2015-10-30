@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2015
 # Converts aligned FASTQ to gziped FASTQ using pigz
 
 set -o pipefail
