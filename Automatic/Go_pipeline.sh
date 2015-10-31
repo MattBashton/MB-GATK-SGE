@@ -1,7 +1,7 @@
 #!/bin/bash -e
-# Matthew Bashton 2012-2015 
+# Matthew Bashton 2012-2015
 
-# Runs GATK pipeline as a series of array jobs, for most stages each array job 
+# Runs GATK pipeline as a series of array jobs, for most stages each array job
 # will depend on its counterpart in the previous job array using -hold_jid_ad
 tput bold
 echo "Matt Basthon 2012-2015"
@@ -36,7 +36,7 @@ tput sgr0
 
 
 #### Preprocessing
-tput bold 
+tput bold
 echo " * FastQC Jobs submitted"
 tput sgr0
 qsub -t 1-$N -N $G_NAME.FastQC -wd $PWD/FastQC FastQC/FastQC.sh
@@ -58,8 +58,8 @@ qsub -t 1-$N -N $G_NAME.MarkDuplicates -hold_jid_ad $G_NAME.SamToSortedBam -wd $
 
 tput bold
 echo " * 4 Realignment Target Creation jobs submitted"
-tput sgr0 
-qsub -t 1-$N -N $G_NAME.RTC -hold_jid_ad $G_NAME.MarkDuplicates -wd $PWD/1stRealn 1stRealn/RTC.sh 
+tput sgr0
+qsub -t 1-$N -N $G_NAME.RTC -hold_jid_ad $G_NAME.MarkDuplicates -wd $PWD/1stRealn 1stRealn/RTC.sh
 
 tput bold
 echo " * 5 Indel Realignment jobs submitted"
@@ -77,13 +77,13 @@ tput sgr0
 qsub -t 1-$N -N $G_NAME.PrintReads -hold_jid_ad $G_NAME.BQSR -wd $PWD/BQSR_sample_lvl BQSR_sample_lvl/PrintReads.sh
 
 
-#### Calling 
+#### Calling
 tput bold
 echo " * 8 Haplotype Caller jobs submitted"
 tput sgr0
 qsub -t 1-$N -N $G_NAME.HC -hold_jid_ad $G_NAME.PrintReads -wd $PWD/HC_sample_lvl HC_sample_lvl/HC.sh
 
-#### GenotypeGVCFs gVCF joint genotyping stage, waits for all of the 
+#### GenotypeGVCFs gVCF joint genotyping stage, waits for all of the
 #### above HC jobs to finish before running
 tput bold
 echo " * 9 GenotypeGVFs submitted"
@@ -93,7 +93,7 @@ qsub -N $G_NAME.GenotypeGVCFs -hold_jid $G_NAME.HC -wd $PWD/GenotypeGVCFs Genoty
 tput bold
 echo " * 10 VQSR model building jobs submitted"
 tput sgr0
-qsub -N $G_NAME.VQSR_snps -hold_jid $G_NAME.GenotypeGVCFs -wd $PWD/VQSR_HC VQSR_HC/VQSR_snps_HC.sh 
+qsub -N $G_NAME.VQSR_snps -hold_jid $G_NAME.GenotypeGVCFs -wd $PWD/VQSR_HC VQSR_HC/VQSR_snps_HC.sh
 qsub -N $G_NAME.VQSR_indels -hold_jid $G_NAME.GenotypeGVCFs -wd $PWD/VQSR_HC VQSR_HC/VQSR_indels_HC.sh
 
 tput bold

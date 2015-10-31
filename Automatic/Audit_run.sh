@@ -266,11 +266,13 @@ function displaytime {
 DISPTOTUSRSYS=$(displaytime $TOTUSRSYS)
 DISPTOTREAL=$(displaytime $TOTREAL)
 
+tput bold
 echo -e "\n * Totals:"
-echo -e "  - $TOTUSRSYS total user and system time seconds"
+echo -e "  - $TOTUSRSYS total user and system time (seconds)"
 echo -e "  - $DISPTOTUSRSYS total user and system time"
 
 echo -e "  - $TOTREAL total additive real world time of all jobs (seconds)"
 echo -e "  - $DISPTOTREAL total additive real world time of all jobs"
+tput sgr0
 
 echo -e "\nEND\n"
