@@ -11,11 +11,11 @@ source GATKsettings.sh
 TOTUSRSYS=0
 TOTREAL=0
 
-#Determing number of samples in master list
+# Determing number of samples in master list
 N=`wc -l $MASTER_LIST | cut -d ' ' -f 1`
 N2=$(($N*2))
 
-#Define a function for auditing a run
+# Define a function for auditing a run
 function auditrun {
 
     # Get passed variables
