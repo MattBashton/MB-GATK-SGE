@@ -57,6 +57,7 @@ The following binaries and resources are required:
 * [VCFtools](https://vcftools.github.io/index.html)
 * [Ensembl Variant Effect Predictor](http://www.ensembl.org/info/docs/tools/vep/script/vep_download.html)
 * [SAMtools 1.x (required only for BAM to FASTQ conversion)](http://www.htslib.org/)
+* [pigz (required only for gziping large amounts of FASTQ)](http://zlib.net/pigz/)
 * [Cowsay](https://en.wikipedia.org/wiki/Cowsay) optional :)
 
 ## Performance optimisations ##
