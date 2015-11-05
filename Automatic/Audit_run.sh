@@ -38,7 +38,7 @@ function auditrun {
     local MS=`grep 'Elapsed (wall clock)' $DIR/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
     local HMS=`grep 'Elapsed (wall clock)' $DIR/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
 
-    # If there where no jobs that ran for over an hour Hours Mins Secs variable
+    # If there were no jobs that ran for over an hour Hours Mins Secs variable
     # $HMS will be undefined, if so set it to 0
     if [ -z "$MHS" ]; then
         HMS=0
