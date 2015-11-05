@@ -2,12 +2,12 @@
 
 # Matthew Bashton 2015
 
-# This script audits a run of the automated pipe-line to check all jobs ran
+# This script audits a run of the automated pipeline to check all jobs ran
 # correctly.
 
 source GATKsettings.sh
 
-# Set up totals
+# Set up global totals
 TOTUSRSYS=0
 TOTREAL=0
 
@@ -15,241 +15,69 @@ TOTREAL=0
 N=`wc -l $MASTER_LIST | cut -d ' ' -f 1`
 N2=$(($N*2))
 
-echo -e "\n This run $G_NAME has $N samples"
+#Define a function for auditing a run
+function auditrun {
 
-echo -e "\n * Checking $N2 FastQC jobs:"
-END=`grep -cHe 'END' FastQC/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' FastQC/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' FastQC/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' FastQC/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' FastQC/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' FastQC/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
+    # Get passed variables
+    local DIR=$1
+    local RUNNAME=$2
+    local NOJOBS=$3
 
-echo -e "\n * Checking $N BWA jobs:"
-END=`grep -cHe 'END' BWA_MEM/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' BWA_MEM/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' BWA_MEM/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' BWA_MEM/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' BWA_MEM/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' BWA_MEM/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
+    if [ $NOJOBS -eq 1 ]
+    then
+        echo -e "\n * Checking $NOJOBS "$RUNNAME" job:"
+    else
+        echo -e "\n * Checking $NOJOBS "$RUNNAME" jobs:"
+    fi
 
-echo -e "\n * Checking $N SortSam jobs:"
-END=`grep -cHe 'END' SamToSortedBam/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' SamToSortedBam/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' SamToSortedBam/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' SamToSortedBam/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' SamToSortedBam/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' SamToSortedBam/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
+    # Check jobs than ran/failed and get times
+    local END=`grep -cHe 'END' $DIR/*.o* | grep -o ':1' | wc -l`
+    local NO_END=`grep -cHe 'END' $DIR/*.o* | grep -o ':0' | wc -l`
+    local ERRORS=`grep -e 'Exit status: [1-9]' FastQC/*.e* | wc -l`
+    local USRSYS=`grep 'time (seconds)' $DIR/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
+    local MS=`grep 'Elapsed (wall clock)' $DIR/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
+    local HMS=`grep 'Elapsed (wall clock)' $DIR/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
 
-echo -e "\n * Checking $N MarkDuplicates jobs:"
-END=`grep -cHe 'END' MarkDuplicates/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' MarkDuplicates/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' MarkDuplicates/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' MarkDuplicates/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' MarkDuplicates/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' MarkDuplicates/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
+    # If there where no jobs that ran for over an hour Hours Mins Secs variable
+    # $HMS will be undefined, if so set it to 0
+    if [ -z "$MHS" ]; then
+        HMS=0
+    fi
 
-echo -e "\n * Checking $N2 Realignment jobs (both RTC and IDR) :"
-END=`grep -cHe 'END' 1stRealn/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' 1stRealn/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' 1stRealn/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' 1stRealn/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' 1stRealn/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' 1stRealn/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
+    # Add up two local seconds taken variables
+    local REAL=`echo $MS + $HMS | bc`
 
-echo -e "\n * Checking $N2 BQSR jobs (both BQSR and PrintReads):"
-END=`grep -cHe 'END' BQSR_sample_lvl/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' BQSR_sample_lvl/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' BQSR_sample_lvl/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' BQSR_sample_lvl/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' BQSR_sample_lvl/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' BQSR_sample_lvl/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
+    # Update global seconds counters
+    TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
+    TOTREAL=`echo $TOTREAL + $REAL | bc`
 
-echo -e "\n * Checking $N HaplotypeCaller jobs:"
-END=`grep -cHe 'END' HC_sample_lvl/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' HC_sample_lvl/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' HC_sample_lvl/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' HC_sample_lvl/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' HC_sample_lvl/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' HC_sample_lvl/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
+    # Echo jobs and seconds
+    echo -e "  - $END jobs ran fully"
+    echo -e "  - $NO_END failed to finish"
+    echo -e "  - $ERRORS non-zero exit statuses reported"
+    echo -e "  - $USRSYS user and system time (seconds)"
+    echo -e "  - $REAL real world time (seconds)"
+}
 
-echo -e "\n * Checking 1 GenotypeGVFs run:"
-END=`grep -cHe 'END' GenotypeGVCFs/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' GenotypeGVCFs/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' GenotypeGVCFs/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' GenotypeGVCFs/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' GenotypeGVCFs/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' GenotypeGVCFs/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
-
-echo -e "\n * Checking 4 VQSR jobs (training and apply):"
-END=`grep -cHe 'END' VQSR_HC/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' VQSR_HC/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' VQSR_HC/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' VQSR_HC/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' VQSR_HC/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' VQSR_HC/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
-
-echo -e "\n * Checking 1 Filter VCF run:"
-END=`grep -cHe 'END' Filt_Recaled_VCF/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' Filt_Recaled_VCF/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' Filt_Recaled_VCF/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' Filt_Recaled_VCF/*.e* | grep -oP '\d+\.\d+' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' Filt_Recaled_VCF/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' Filt_Recaled_VCF/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
-
-echo -e "\n * Checking 1 Split VCF run:"
-END=`grep -cHe 'END' Split_VCF/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' Split_VCF/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' Split_VCF/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' Split_VCF/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' Split_VCF/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' Split_VCF/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
-
-echo -e "\n * Checking $N2 VEP jobs:"
-END=`grep -cHe 'END' VEP/*.o* | grep -o ':1' | wc -l`
-NO_END=`grep -cHe 'END' VEP/*.o* | grep -o ':0' | wc -l`
-ERRORS=`grep -e 'Exit status: [1-9]' VEP/*.e* | wc -l`
-USRSYS=`grep 'time (seconds)' VEP/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
-MS=`grep 'Elapsed (wall clock)' VEP/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
-HMS=`grep 'Elapsed (wall clock)' VEP/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
-if [ -z "$MHS" ]; then
-    HMS=0
-fi
-REAL=`echo $MS + $HMS | bc`
-TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
-TOTREAL=`echo $TOTREAL + $REAL | bc`
-echo -e "  - $END jobs ran fully"
-echo -e "  - $NO_END failed to finish"
-echo -e "  - $ERRORS non-zero exit statuses reported"
-echo -e "  - $USRSYS user and system time (seconds)"
-echo -e "  - $REAL real world time (seconds)"
-
+# Use auditrun function on all stages of pipeline
+auditrun "FastQC" "FastQC" $N2
+auditrun "BWA_MEM" "BWA" $N
+auditrun "SamToSortedBam" "SortSam" $N
+auditrun "MarkDuplicates" "MarkDuplicates" $N
+auditrun "1stRealn" "Realignment (both RTC and IDR)" $N2
+auditrun "BQSR_sample_lvl" "BQSR (both BQSR and PrintReads)" $N2
+auditrun "HC_sample_lvl" "HaplotypeCaller" $N
+auditrun "GenotypeGVCFs" "GenotypeGVFs" 1
+auditrun "VQSR_HC" "VQSR (training and apply)" 4
+auditrun "Filt_Recaled_VCF" "Filter VCF" 1
+auditrun "Split_VCF" "Split VCF" 1
+auditrun "VEP" "VEP" $N2
 
 # Rround up decimal places in variables
 TOTUSRSYS=`printf "%.*f" 0 $TOTUSRSYS`
 TOTREAL=`printf "%.*f" 0 $TOTREAL`
 
+# Function to change second to H:M:S
 function displaytime {
   local T=$1
   local D=$((T/60/60/24))
@@ -263,16 +91,16 @@ function displaytime {
   printf '%d seconds\n' $S
 }
 
+# Call above function
 DISPTOTUSRSYS=$(displaytime $TOTUSRSYS)
 DISPTOTREAL=$(displaytime $TOTREAL)
 
-tput bold
+# Echo global totals
 echo -e "\n * Totals:"
-echo -e "  - $TOTUSRSYS total user and system time (seconds)"
+echo -e "  - $TOTUSRSYS total user and system time seconds"
 echo -e "  - $DISPTOTUSRSYS total user and system time"
 
 echo -e "  - $TOTREAL total additive real world time of all jobs (seconds)"
 echo -e "  - $DISPTOTREAL total additive real world time of all jobs"
-tput sgr0
 
 echo -e "\nEND\n"
