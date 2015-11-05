@@ -22,6 +22,8 @@ JAVA="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.t
 ## We need latest GCC libs for AVX hardware acceleration of pairHMM (FMS cluster
 #specific)
 module add compilers/gnu/4.9.3
+## Latest version of R for plots (FMS cluster specific)
+module add apps/R/3.2.2
 
 ## Location of programs
 # Extra GATK setting below fixes issues with file locking on Luster FS
