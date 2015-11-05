@@ -3,7 +3,7 @@
 # Matthew Bashton 2015
 
 # This script audits a run of the automated pipeline to check all jobs ran
-# correctly.
+# correctly.  It also sums run time of all stages.
 
 source GATKsettings.sh
 
