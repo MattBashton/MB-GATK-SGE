@@ -47,6 +47,7 @@ cd $TMPDIR
 -T GenotypeGVCFs \
 -nt 5 \
 -R $BUNDLE_DIR/ucsc.hg19.fasta \
+--dbsnp $BUNDLE_DIR/dbsnp_138.hg19.vcf \
 --max_alternate_alleles 50 \
 $VCF_LIST \
 -o $G_NAME.HC_genotyped.vcf \
