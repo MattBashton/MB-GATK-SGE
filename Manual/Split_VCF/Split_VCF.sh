@@ -45,4 +45,5 @@ done
 echo "Removing *.vcf from $TMPDIR"
 rm $TMPDIR/*.vcf
 
+date
 echo "END"

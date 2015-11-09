@@ -81,4 +81,5 @@ rm $TMPDIR/*.txt
 rm $TMPDIR/*.html
 rm $TMPDIR/*.vcf
 
+date
 echo "END"
