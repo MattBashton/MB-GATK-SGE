@@ -15,6 +15,20 @@ TOTREAL=0
 N=`wc -l $MASTER_LIST | cut -d ' ' -f 1`
 N2=$(($N*2))
 
+# Function to change second to H:M:S
+function displaytime {
+  local T=$1
+  local D=$((T/60/60/24))
+  local H=$((T/60/60%24))
+  local M=$((T/60%60))
+  local S=$((T%60))
+  [[ $D > 0 ]] && printf '%d days ' $D
+  [[ $H > 0 ]] && printf '%d hours ' $H
+  [[ $M > 0 ]] && printf '%d minutes ' $M
+  [[ $D > 0 || $H > 0 || $M > 0 ]] && printf 'and '
+  printf '%d seconds\n' $S
+}
+
 # Define a function for auditing a run
 function auditrun {
 
@@ -47,6 +61,14 @@ function auditrun {
     # Add up two local seconds taken variables
     local REAL=`echo $MS + $HMS | bc`
 
+    # Rround up decimal places in variables
+    ROUNDUSRSYS=`printf "%.*f" 0 $USRSYS`
+    ROUNDREAL=`printf "%.*f" 0 $REAL`
+
+    # Convert REAL and USRSYS to seconds
+    DISPUSRSYS=$(displaytime $ROUNDUSRSYS)
+    DISPREAL=$(displaytime $ROUNDREAL)
+
     # Update global seconds counters
     TOTUSRSYS=`echo $TOTUSRSYS + $USRSYS | bc`
     TOTREAL=`echo $TOTREAL + $REAL | bc`
@@ -56,7 +78,9 @@ function auditrun {
     echo -e "  - $NO_END failed to finish"
     echo -e "  - $ERRORS non-zero exit statuses reported"
     echo -e "  - $USRSYS user and system time (seconds)"
+    echo -e "  - $DISPUSRSYS user and system time"
     echo -e "  - $REAL real world time (seconds)"
+    echo -e "  - $DISPREAL real world time"
 }
 
 # Use auditrun function on all stages of pipeline
@@ -77,30 +101,41 @@ auditrun "VEP" "VEP" $N2
 TOTUSRSYS=`printf "%.*f" 0 $TOTUSRSYS`
 TOTREAL=`printf "%.*f" 0 $TOTREAL`
 
-# Function to change second to H:M:S
-function displaytime {
-  local T=$1
-  local D=$((T/60/60/24))
-  local H=$((T/60/60%24))
-  local M=$((T/60%60))
-  local S=$((T%60))
-  [[ $D > 0 ]] && printf '%d days ' $D
-  [[ $H > 0 ]] && printf '%d hours ' $H
-  [[ $M > 0 ]] && printf '%d minutes ' $M
-  [[ $D > 0 || $H > 0 || $M > 0 ]] && printf 'and '
-  printf '%d seconds\n' $S
-}
-
-# Call above function
+# Call to displaytime function
 DISPTOTUSRSYS=$(displaytime $TOTUSRSYS)
 DISPTOTREAL=$(displaytime $TOTREAL)
 
 # Echo global totals
-echo -e "\n * Totals:"
+echo -e "\n * CPU and job time cumulative totals:"
 echo -e "  - $TOTUSRSYS total user and system time seconds"
 echo -e "  - $DISPTOTUSRSYS total user and system time"
 
 echo -e "  - $TOTREAL total additive real world time of all jobs (seconds)"
 echo -e "  - $DISPTOTREAL total additive real world time of all jobs"
+
+# Get whole run start time
+START=`grep . start.time`
+DSTART=`date -d @$START`
+
+# Get whole run end time
+END=`grep Timestamp VEP/*.o* | grep -oP '\d+$' | sort | tail -n 1`
+DEND=`date -d @$END`
+
+# Work out diff
+DIFF=`echo $END - $START | bc`
+
+# Round up
+DIFF=`printf "%.*f" 0 $DIFF`
+
+# Convert
+DISPLAYDIFF=`displaytime $DIFF`
+
+
+
+echo -e "\n * Real world timings"
+
+echo -e " - Jobs sumbitted to queue on $DSTART"
+echo -e " - Final job finished on $DEND"
+echo -e " - $DISPLAYDIFF time taken for whole analysis of $N samples (submission to final job finish)"
 
 echo -e "\nEND\n"

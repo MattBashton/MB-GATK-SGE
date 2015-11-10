@@ -82,4 +82,9 @@ rm $TMPDIR/*.html
 rm $TMPDIR/*.vcf
 
 date
+
+# Used by Audit_run.sh for calculating run length of whole analysis 
+ENDTIME=`date '+%s'`
+echo "Timestamp $ENDTIME"
+
 echo "END"

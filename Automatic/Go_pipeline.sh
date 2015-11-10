@@ -15,6 +15,8 @@ set -o pipefail
 tput setaf 1
 hostname
 date
+# Used by Audit_run.sh for calculating run length of whole analysis
+date '+%s' > start.time
 echo ""
 tput sgr0
 
