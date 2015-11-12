@@ -130,8 +130,7 @@ DIFF=`printf "%.*f" 0 $DIFF`
 # Convert
 DISPLAYDIFF=`displaytime $DIFF`
 
-
-
+# Print out final real world timings
 echo -e "\n * Real world timings"
 
 echo -e " - Jobs sumbitted to queue on $DSTART"
