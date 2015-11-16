@@ -66,10 +66,10 @@ echo "Running GATK"
 --maxReadsForRealignment 10000000 \
 --maxConsensuses 300 \
 --maxReadsForConsensuses 1200 \
--known $BUNDLE_DIR/$MILLS_1KG_GOLD \
--known $BUNDLE_DIR/$PHASE1_INDELS \
+-known $MILLS_1KG_GOLD \
+-known $PHASE1_INDELS \
 -I $TMPDIR/$B_NAME.bam \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 -targetIntervals $B_NAME.RTC.intervals \
 -o $TMPDIR/$B_NAME.realigned.bam \
 -LOD 0.4 \

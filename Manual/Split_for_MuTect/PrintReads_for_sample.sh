@@ -38,7 +38,7 @@ echo "Running GATK"
 -nct 2 \
 --sample_name $SAMP_NAME \
 -I $TMPDIR/$B_NAME.bam \
--R $BUNDLE_DIR/$REF\
+-R $REF\
 -o $TMPDIR/$SAMP_NAME.bam \
 --log_to_file $SAMP_NAME.PrintReads.log
 

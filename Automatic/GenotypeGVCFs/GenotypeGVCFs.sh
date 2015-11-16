@@ -46,8 +46,8 @@ cd $TMPDIR
 /usr/bin/time --verbose $JAVA -Xmx10g -jar $GATK \
 -T GenotypeGVCFs \
 -nt 5 \
--R $BUNDLE_DIR/$REF \
---dbsnp $BUNDLE_DIR/$DBSNP \
+-R $REF \
+--dbsnp $DBSNP \
 --max_alternate_alleles 50 \
 $VCF_LIST \
 -o $G_NAME.HC_genotyped.vcf \

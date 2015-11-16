@@ -40,7 +40,7 @@ echo "Running GATK"
 $INTERVALS \
 --interval_padding $PADDING \
 -I $TMPDIR/$B_NAME.bam \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 -BQSR $B_NAME.Recal_data.grp \
 -o $TMPDIR/$B_NAME.Recalibrated.bam \
 --log_to_file $B_NAME.PrintReads.log

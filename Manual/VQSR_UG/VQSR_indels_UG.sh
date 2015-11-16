@@ -48,12 +48,12 @@ echo "Running GATK"
 -T VariantRecalibrator \
 -nt 2 \
 -input $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 -recalFile $B_NAME.VR_UG_indels.recal \
 -tranchesFile $B_NAME.VR_UG_indels.tranches \
 -rscriptFile $B_NAME.VR_UG_indels.R \
--resource:mills,known=false,training=true,truth=true,prior=12.0 $BUNDLE_DIR/$MILLS_1KG_GOLD \
--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $BUNDLE_DIR/$DBSNP129 \
+-resource:mills,known=false,training=true,truth=true,prior=12.0 $MILLS_1KG_GOLD \
+-resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $DBSNP129 \
 --maxGaussians 4 \
 -an QD \
 -an FS \

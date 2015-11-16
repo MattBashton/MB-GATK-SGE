@@ -84,14 +84,14 @@ PCR="CONSERVATIVE"
 BUNDLE_DIR="/opt/databases/GATK_bundle/2.8/b37"
 
 # Set up which datasets to use from the bundle
-REF="human_g1k_v37_decoy.fasta"
-MILLS_1KG_GOLD="Mills_and_1000G_gold_standard.indels.b37.vcf"
-PHASE1_INDELS="1000G_phase1.indels.b37.vcf"
-PHASE1_SNPS="1000G_phase1.snps.high_confidence.b37.vcf"
-DBSNP="dbsnp_138.b37.vcf"
-DBSNP129="dbsnp_138.b37.excluding_sites_after_129.vcf"
-OMNI="1000G_omni2.5.b37.vcf "
-HAPMAP="hapmap_3.3.b37.vcf"
+REF="$BUNDLE_DIR/human_g1k_v37_decoy.fasta"
+MILLS_1KG_GOLD="$BUNDLE_DIR/Mills_and_1000G_gold_standard.indels.b37.vcf"
+PHASE1_INDELS="$BUNDLE_DIR/1000G_phase1.indels.b37.vcf"
+PHASE1_SNPS="$BUNDLE_DIR/1000G_phase1.snps.high_confidence.b37.vcf"
+DBSNP="$BUNDLE_DIR/dbsnp_138.b37.vcf"
+DBSNP129="$BUNDLE_DIR/dbsnp_138.b37.excluding_sites_after_129.vcf"
+OMNI="$BUNDLE_DIR/1000G_omni2.5.b37.vcf "
+HAPMAP="$BUNDLE_DIR/hapmap_3.3.b37.vcf"
 
 ## COSMIC location
 # Currently in same dir as the working/current since tend to change

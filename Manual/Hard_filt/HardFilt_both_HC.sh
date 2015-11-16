@@ -37,7 +37,7 @@ echo "1) SNP extraction from VCF"
 -T SelectVariants \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 --out $TMPDIR/$B_NAME.HC_snps.vcf \
 -selectType SNP \
 --log_to_file $B_NAME.HC_SelectVariants_snps.log
@@ -48,7 +48,7 @@ echo "2) Applying filter to raw SNP call set"
 -T VariantFiltration \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.HC_snps.vcf \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 --out $TMPDIR/$B_NAME.HC_filtered_snps.vcf \
 --filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0" \
 --filterName "GATK_BP_snp_filter" \
@@ -60,7 +60,7 @@ echo "3) Extracting PASSing SNPs"
 -T SelectVariants \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.HC_filtered_snps.vcf \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 --out $TMPDIR/$B_NAME.HC_filtered_snps.PASS.vcf \
 -select "vc.isNotFiltered()" \
 --log_to_file $B_NAME.SelectRecaledVariants.HC_filtered_snps.PASS.log
@@ -71,7 +71,7 @@ echo "4) Indel extraction from VCF"
 -T SelectVariants \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 --out $TMPDIR/$B_NAME.HC_indels.vcf \
 -selectType INDEL \
 --log_to_file $B_NAME.HC_SelectVariants_indels.log
@@ -82,7 +82,7 @@ echo "5) Applying filter to raw indel call set"
 -T VariantFiltration \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.HC_indels.vcf \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 --out $TMPDIR/$B_NAME.HC_filtered_indels.vcf \
 --filterExpression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" \
 --filterName "GATK_BP_indel_filter" \
@@ -94,7 +94,7 @@ echo "6) Extracting PASSing indels"
 -T SelectVariants \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.HC_filtered_indels.vcf \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 --out $TMPDIR/$B_NAME.HC_filtered_indels.PASS.vcf \
 -select "vc.isNotFiltered()" \
 --log_to_file $B_NAME.SelectRecaledVariants.HC_filtered_indels.PASS.log

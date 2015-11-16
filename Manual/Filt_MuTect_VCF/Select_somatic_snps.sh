@@ -38,7 +38,7 @@ echo "Running GATK outputing PASSing variants"
 -T SelectVariants \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 --out $TMPDIR/$B_NAME.PASS.vcf \
 -select "vc.isNotFiltered()" \
 -selectType SNP \

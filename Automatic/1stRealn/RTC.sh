@@ -38,10 +38,10 @@ echo "Running GATK"
 -nt 5 \
 $INTERVALS \
 --interval_padding $PADDING \
--known $BUNDLE_DIR/$MILLS_1KG_GOLD \
--known $BUNDLE_DIR/$PHASE1_INDELS \
+-known $MILLS_1KG_GOLD \
+-known $PHASE1_INDELS \
 -I $TMPDIR/$B_NAME.bam \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 -o $TMPDIR/$B_NAME.RTC.intervals \
 --log_to_file $B_NAME.RTC.log
 

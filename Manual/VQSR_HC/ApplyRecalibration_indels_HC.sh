@@ -37,7 +37,7 @@ echo "Running GATK"
 -T ApplyRecalibration \
 -nt 2 \
 -input $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 -recalFile $B_NAME.VR_HC_indels.recal \
 -tranchesFile $B_NAME.VR_HC_indels.tranches \
 -o $TMPDIR/$B_NAME.vrecal.indels.vcf \

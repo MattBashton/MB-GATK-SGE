@@ -46,10 +46,10 @@ echo "Running GATK"
 $INTERVALS \
 --interval_padding $PADDING \
 -I $TMPDIR/$B_NAME.bam \
--knownSites $BUNDLE_DIR/$DBSNP \
--knownSites $BUNDLE_DIR/$MILLS_1KG_GOLD \
--knownSites $BUNDLE_DIR/$PHASE1_INDELS \
--R $BUNDLE_DIR/$REF \
+-knownSites $DBSNP \
+-knownSites $MILLS_1KG_GOLD \
+-knownSites $PHASE1_INDELS \
+-R $REF \
 -o $TMPDIR/$B_NAME.Recal_data.grp \
 --log_to_file $B_NAME.BaseRecal.log
 

@@ -37,7 +37,7 @@ echo "Running GATK"
 -T DepthOfCoverage \
 -L $INTERVALS \
 -I $TMPDIR/$B_NAME.bam \
--R $BUNDLE_DIR/$REF \
+-R $REF \
 -o $TMPDIR/$B_NAME.DofC \
 --log_to_file $B_NAME.DofC.log
 
