@@ -67,8 +67,19 @@ PCR="CONSERVATIVE"
 ## GATK bundel dir
 # I find it better to use a string shortcut for the bundel dir rather than a
 # separate string for each file in the dir as this way you can see more clearly
-# what files are being used in the analysis
-BUNDLE_DIR="/opt/databases/GATK_bundle/2.8/hg19"
+# what files are being used in the analysis.  Have now switched to b37 decoy
+# which avoids issues with repeated regions.
+BUNDLE_DIR="/opt/databases/GATK_bundle/2.8/b37"
+
+# Set up which datasets to use from the bundle
+REF="human_g1k_v37_decoy.fasta"
+MILLS_1KG_GOLD="Mills_and_1000G_gold_standard.indels.b37.vcf"
+PHASE1_INDELS="1000G_phase1.indels.b37.vcf"
+PHASE1_SNPS="1000G_phase1.snps.high_confidence.b37.vcf"
+DBSNP="dbsnp_138.b37.vcf"
+DBSNP129="dbsnp_138.b37.excluding_sites_after_129.vcf"
+OMNI="1000G_omni2.5.b37.vcf "
+HAPMAP="hapmap_3.3.b37.vcf"
 
 ## COSMIC location
 # Currently in same dir as MuTect run

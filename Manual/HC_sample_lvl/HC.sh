@@ -55,8 +55,8 @@ echo "Running GATK"
 $INTERVALS \
 --interval_padding $PADDING \
 -I $TMPDIR/$B_NAME.bam \
---dbsnp $BUNDLE_DIR/dbsnp_138.hg19.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+--dbsnp $BUNDLE_DIR/$DBSNP \
+-R $BUNDLE_DIR/$REF \
 --max_alternate_alleles 50 \
 -o $TMPDIR/$SAMP_NAME.HC.g.vcf \
 --log_to_file $SAMP_NAME.HC.log

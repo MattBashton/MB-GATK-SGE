@@ -17,8 +17,6 @@ date
 
 source ../GATKsettings.sh
 
-REF="$BUNDLE_DIR/ucsc.hg19.fasta"
-
 LINE=`awk "NR==$SGE_TASK_ID" $MASTER_LIST`
 set $LINE
 SAMP_ID=$1

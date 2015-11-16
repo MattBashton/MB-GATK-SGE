@@ -44,8 +44,9 @@ echo "Copying VEP cache: $GLOBAL_VEP_CACHE to $TMPDIR/vep_cache"
 echo "Setting VEP cache location to $TMPDIR/vep_cache"
 VEP_CACHEDIR="$TMPDIR/vep_cache"
 
-echo "Converting $B_NAME.vcf to ensembl chr ids using sed"
-sed -i.bak s/chr//g $TMPDIR/$B_NAME.vcf
+# Not needed for b37
+#echo "Converting $B_NAME.vcf to ensembl chr ids using sed"
+#sed -i.bak s/chr//g $TMPDIR/$B_NAME.vcf
 
 echo "Running VEP on $TMPDIR/$B_NAME.vcf"
 /usr/bin/time --verbose variant_effect_predictor.pl \

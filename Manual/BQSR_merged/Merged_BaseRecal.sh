@@ -46,10 +46,10 @@ echo "Running GATK"
 $INTERVALS \
 --interval_padding $PADDING \
 -I $TMPDIR/$B_NAME.bam \
--knownSites $BUNDLE_DIR/dbsnp_138.hg19.vcf \
--knownSites $BUNDLE_DIR/Mills_and_1000G_gold_standard.indels.hg19.vcf \
--knownSites $BUNDLE_DIR/1000G_phase1.indels.hg19.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-knownSites $BUNDLE_DIR/$DBSNP \
+-knownSites $BUNDLE_DIR/$MILLS_1KG_GOLD \
+-knownSites $BUNDLE_DIR/$PHASE1_INDELS \
+-R $BUNDLE_DIR/$REF \
 -o $TMPDIR/$B_NAME.Recal_data.grp \
 --log_to_file $B_NAME.BaseRecal.log
 

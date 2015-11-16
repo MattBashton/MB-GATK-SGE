@@ -8,14 +8,14 @@
 
 # Matthew Bashton 2012-2015
 
-# Runs the Variant Recalibrator input is raw VCF from the HC and output is a 
+# Runs the Variant Recalibrator input is raw VCF from the HC and output is a
 # recal file which can be applied using Apply Recalibration.
 # Not using -an DP since this is a bad idea for exome + targeted panels.
 # maxGuassians 4 needed to get things working with targeted data, drop this for
 # exomes, unless small < 10 sample number or you have issues with too few bad
-# variants.  Also leaving out InbreedingCoeff some discussion of this being 
+# variants.  Also leaving out InbreedingCoeff some discussion of this being
 # problematic too on forums, needs at least 10 samples which are not related.
-# Settings as given in GATK doc #1259:                     
+# Settings as given in GATK doc #1259:
 # https://www.broadinstitute.org/gatk/guide/article?id=1259
 # Also you need to use dbsnp_138.hg19.excluding_sites_after_129.vcf see bottom of
 # comments section on above link.
@@ -45,14 +45,14 @@ echo "Running GATK"
 -T VariantRecalibrator \
 -nt 2 \
 -input $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 -recalFile $B_NAME.VR_HC_snps.recal \
 -tranchesFile $B_NAME.VR_HC_snps.tranches \
 -rscriptFile $B_NAME.VR_HC_snps.R \
--resource:hapmap,known=false,training=true,truth=true,prior=15.0 $BUNDLE_DIR/hapmap_3.3.hg19.vcf \
--resource:omni,known=false,training=true,truth=true,prior=12.0 $BUNDLE_DIR/1000G_omni2.5.hg19.vcf \
--resource:1000G,known=false,training=true,truth=false,prior=10.0 $BUNDLE_DIR/1000G_phase1.snps.high_confidence.hg19.vcf \
--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $BUNDLE_DIR/dbsnp_138.hg19.excluding_sites_after_129.vcf \
+-resource:hapmap,known=false,training=true,truth=true,prior=15.0 $BUNDLE_DIR/$HAPMAP \
+-resource:omni,known=false,training=true,truth=true,prior=12.0 $BUNDLE_DIR/$OMNI \
+-resource:1000G,known=false,training=true,truth=false,prior=10.0 $BUNDLE_DIR/$PHASE1_SNPS \
+-resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $BUNDLE_DIR/$DBSNP129 \
 -an QD \
 -an FS \
 -an SOR \

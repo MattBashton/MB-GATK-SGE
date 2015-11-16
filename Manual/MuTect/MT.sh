@@ -22,9 +22,6 @@ source ../GATKsettings.sh
 NORMAL=$1
 TUMOR=$2
 
-REF=$BUNDLE_DIR/ucsc.hg19.fasta
-DBSNP=$BUNDLE_DIR/dbsnp_138.hg19.vcf
-COSMIC="$COSMIC"
 MUTECT="$PWD/$MUTECT"
 
 B_NAME_N=`basename "$NORMAL" .bam`

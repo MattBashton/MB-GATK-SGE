@@ -16,8 +16,9 @@ list=(`ls -1 $1/*.vcf`)
 for i in ${list[@]}
 do
     echo "*** Working on $i  ***"
-    echo " - Converting $i to ensembl chr ids using sed"
-    sed -i.bak s/chr//g $i
+    # Not needed for b37
+    #echo " - Converting $i to ensembl chr ids using sed"
+    #sed -i.bak s/chr//g $i
     SAMP_NAME=`basename $i .vcf`
     echo " - Basename is $SAMP_NAME"
     echo " - Running VEP on $i"

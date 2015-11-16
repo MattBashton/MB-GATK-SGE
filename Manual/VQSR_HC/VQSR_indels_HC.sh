@@ -48,12 +48,12 @@ echo "Running GATK"
 -T VariantRecalibrator \
 -nt 2 \
 -input $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 -recalFile $B_NAME.VR_HC_indels.recal \
 -tranchesFile $B_NAME.VR_HC_indels.tranches \
 -rscriptFile $B_NAME.VR_HC_indels.R \
--resource:mills,known=false,training=true,truth=true,prior=12.0 $BUNDLE_DIR/Mills_and_1000G_gold_standard.indels.hg19.vcf \
--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $BUNDLE_DIR/dbsnp_138.hg19.excluding_sites_after_129.vcf \
+-resource:mills,known=false,training=true,truth=true,prior=12.0 $BUNDLE_DIR/$MILLS_1KG_GOLD \
+-resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $BUNDLE_DIR/$DBSNP129 \
 --maxGaussians 4 \
 -an QD \
 -an FS \

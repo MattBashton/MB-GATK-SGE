@@ -42,10 +42,10 @@ echo "Running GATK"
 -nt 5 \
 $INTERVALS \
 --interval_padding $PADDING \
--known $BUNDLE_DIR/Mills_and_1000G_gold_standard.indels.hg19.vcf \
--known $BUNDLE_DIR/1000G_phase1.indels.hg19.vcf \
+-known $BUNDLE_DIR/$MILLS_1KG_GOLD \
+-known $BUNDLE_DIR/$PHASE1_INDELS \
 -I $TMPDIR/$B_NAME.bam \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 -o $TMPDIR/$B_NAME.RTC.intervals \
 --log_to_file $B_NAME.RTC.log
 

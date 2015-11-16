@@ -9,7 +9,7 @@
 # Matthew Bashton 2012-2015
 # Runs Apply Recalibration, this takes the .recal file and applies it to the raw
 # vcf produced by the HC, output is a recalibrated .vcf file.
-# Using TS of 99.5 for SNPs as per GATK doc #1259 
+# Using TS of 99.5 for SNPs as per GATK doc #1259
 # https://www.broadinstitute.org/gatk/guide/article?id=1259
 
 set -o pipefail
@@ -34,7 +34,7 @@ echo "Running GATK"
 -T ApplyRecalibration \
 -nt 2 \
 -input $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 -recalFile $B_NAME.VR_HC_snps.recal \
 -tranchesFile $B_NAME.VR_HC_snps.tranches \
 -o $TMPDIR/$B_NAME.vrecal.snps.vcf \

@@ -21,7 +21,6 @@ date
 
 source ../GATKsettings.sh
 
-REF="$BUNDLE_DIR/ucsc.hg19.fasta"
 SAMP_ID=$1
 RG=$2
 FILE1=$3
@@ -31,7 +30,8 @@ B_NAME_F1=`basename $FILE1`
 B_NAME_F2=`basename $FILE2`
 
 echo "** Variables **"
-echo " - BASE_DIE = $BASE_DIR"
+echo " - BASE_DIR = $BASE_DIR"
+echo " - REF = $REF"
 echo " - SAMP_ID = $SAMP_ID"
 echo " - RG = $RG"
 echo " - FILE1 = $FILE1"

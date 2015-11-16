@@ -36,7 +36,7 @@ echo "Running GATK VQSLOD >= 0.00"
 -T SelectVariants \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 --out $TMPDIR/$G_NAME.snps.VQSlod_gr_eq_zero.vcf \
 -select "VQSLOD >= 0.00" \
 -selectType SNP \
@@ -47,7 +47,7 @@ echo "Running GATK VQSLOD >= 3.00"
 -T SelectVariants \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 --out $TMPDIR/$G_NAME.snps.VQSlod_gr_eq_three.vcf \
 -select "VQSLOD >= 3.00" \
 -selectType SNP \
@@ -58,7 +58,7 @@ echo "Running GATK outputing PASSing variants"
 -T SelectVariants \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 --out $TMPDIR/$G_NAME.snps.PASS.vcf \
 -select "vc.isNotFiltered()" \
 -selectType SNP \

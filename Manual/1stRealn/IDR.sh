@@ -4,7 +4,7 @@
 #$ -l h_vmem=22G
 #$ -l h_rt=24:00:00
 #$ -R y
-#$ -q all.q,bigmem.q 
+#$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Runs Indel Realigner, needs an input .bam file and intervals file for
@@ -67,10 +67,10 @@ echo "Running GATK"
 --maxReadsForRealignment 10000000 \
 --maxConsensuses 300 \
 --maxReadsForConsensuses 1200 \
--known $BUNDLE_DIR/Mills_and_1000G_gold_standard.indels.hg19.vcf \
--known $BUNDLE_DIR/1000G_phase1.indels.hg19.vcf \
+-known $BUNDLE_DIR/$MILLS_1KG_GOLD \
+-known $BUNDLE_DIR/$PHASE1_INDELS \
 -I $TMPDIR/$B_NAME.bam \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 -targetIntervals $B_NAME.RTC.intervals \
 -o $TMPDIR/$B_NAME.realigned.bam \
 -LOD 0.4 \

@@ -38,7 +38,7 @@ echo "Applying filter to raw indel call set"
 -T VariantFiltration \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 --out $TMPDIR/$B_NAME.UG_filtered_indels.vcf \
 --filterExpression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" \
 --filterName "GATK_BP_indel_filter" \
@@ -49,7 +49,7 @@ echo "Extracting PASSing variants"
 -T SelectVariants \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.UG_filtered_indels.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 --out $TMPDIR/$B_NAME.UG_filtered_indels.PASS.vcf \
 -select "vc.isNotFiltered()" \
 --log_to_file $B_NAME.SelectRecaledVariants.UG_filtered_indels.PASS.log

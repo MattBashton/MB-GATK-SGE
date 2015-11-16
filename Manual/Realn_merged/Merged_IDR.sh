@@ -67,10 +67,10 @@ echo "Running GATK"
 --maxReadsForRealignment 10000000 \
 --maxConsensuses 300 \
 --maxReadsForConsensuses 1200 \
--known $BUNDLE_DIR/Mills_and_1000G_gold_standard.indels.hg19.vcf \
--known $BUNDLE_DIR/1000G_phase1.indels.hg19.vcf \
+-known $BUNDLE_DIR/$MILLS_1KG_GOLD\
+-known $BUNDLE_DIR/$PHASE1_INDELS \
 -I $TMPDIR/$B_NAME.bam \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 -targetIntervals $B_NAME.RTC.intervals \
 -o $TMPDIR/$B_NAME.2ndRealigned.bam \
 -LOD 0.4 \

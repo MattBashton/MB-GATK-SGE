@@ -8,17 +8,17 @@
 
 # Matthew Bashton 2012-2015
 
-# Runs the Variant Recalibrator input is raw VCF from the HC and output is a     
-# recal file which can be applied using Apply Recalibration.                     
-# Not using -an DP since this is a bad idea for exome + targeted panels.         
-# maxGuassians 4 needed to get things working with targeted data, drop this for  
-# exomes, unless small < 10 sample number or you have issues with too few bad    
-# variants.  Also leaving out InbreedingCoeff some discussion of this being      
-# problematic too on forums, needs at least 10 samples which are not related.    
-# Settings as given in GATK doc #1259:                                           
-# https://www.broadinstitute.org/gatk/guide/article?id=1259                      
+# Runs the Variant Recalibrator input is raw VCF from the HC and output is a
+# recal file which can be applied using Apply Recalibration.
+# Not using -an DP since this is a bad idea for exome + targeted panels.
+# maxGuassians 4 needed to get things working with targeted data, drop this for
+# exomes, unless small < 10 sample number or you have issues with too few bad
+# variants.  Also leaving out InbreedingCoeff some discussion of this being
+# problematic too on forums, needs at least 10 samples which are not related.
+# Settings as given in GATK doc #1259:
+# https://www.broadinstitute.org/gatk/guide/article?id=1259
 # Also you need to use dbsnp_138.hg19.excluding_sites_after_129.vcf see bottom of
-# comments section on above link. 
+# comments section on above link.
 
 set -o pipefail
 hostname
@@ -45,12 +45,12 @@ echo "Running GATK"
 -T VariantRecalibrator \
 -nt 2 \
 -input $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 -recalFile $B_NAME.VR_HC_indels.recal \
 -tranchesFile $B_NAME.VR_HC_indels.tranches \
 -rscriptFile $B_NAME.VR_HC_indels.R \
--resource:mills,known=false,training=true,truth=true,prior=12.0 $BUNDLE_DIR/Mills_and_1000G_gold_standard.indels.hg19.vcf \
--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $BUNDLE_DIR/dbsnp_138.hg19.excluding_sites_after_129.vcf \
+-resource:mills,known=false,training=true,truth=true,prior=12.0 $BUNDLE_DIR/$MILLS_1KG_GOLD \
+-resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $BUNDLE_DIR/$DBSNP129 \
 --maxGaussians 4 \
 -an QD \
 -an FS \

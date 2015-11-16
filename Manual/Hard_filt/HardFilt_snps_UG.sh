@@ -38,7 +38,7 @@ echo "Applying filter to raw SNP call set"
 -T VariantFiltration \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 --out $TMPDIR/$B_NAME.UG_filtered_snps.vcf \
 --filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || HaplotypeScore > 13.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0" \
 --filterName "GATK_BP_snp_filter" \
@@ -49,7 +49,7 @@ echo "Extracting PASSing variants"
 -T SelectVariants \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.UG_filtered_snps.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 --out $TMPDIR/$B_NAME.UG_filtered_snps.PASS.vcf \
 -select "vc.isNotFiltered()" \
 --log_to_file $B_NAME.SelectRecaledVariants.UG_filtered_snps.PASS.log

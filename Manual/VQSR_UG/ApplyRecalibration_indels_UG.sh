@@ -37,7 +37,7 @@ echo "Running GATK"
 -T ApplyRecalibration \
 -nt 2 \
 -input $TMPDIR/$B_NAME.vcf \
--R $BUNDLE_DIR/ucsc.hg19.fasta \
+-R $BUNDLE_DIR/$REF \
 -recalFile $B_NAME.VR_UG_indels.recal \
 -tranchesFile $B_NAME.VR_UG_indels.tranches \
 -o $TMPDIR/$B_NAME.vrecal.indels.vcf \
