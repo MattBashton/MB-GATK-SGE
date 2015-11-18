@@ -13,6 +13,9 @@
 
 # Also for RAD/Haloplex data don't run MarkDuplicates
 
+## Base dir - should auto set to where this script resides
+BASE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
 ## System settings for launching java jobs
 # On FMS cluster we need to use large pages have also set tmp dir to one
 # provided by SoGE for each run

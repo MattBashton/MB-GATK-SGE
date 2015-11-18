@@ -19,6 +19,7 @@ FASTQ=$1
 B_NAME=`basename $FASTQ`
 
 echo "** Variables **"
+echo " - BASE_DIR = $BASE_DIR"
 echo " - PWD = $PWD"
 echo " - FASTQ = $FASTQ"
 echo " - B_NAME = $B_NAME"

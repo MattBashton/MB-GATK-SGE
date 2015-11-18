@@ -23,6 +23,7 @@ BAM=$1
 B_NAME=`basename $BAM`
 
 echo "** Variables **"
+echo " - BASE_DIR = $BASE_DIR"
 echo " - PWD = $PWD"
 echo " - BAM = $BAM"
 echo " - B_NAME = $B_NAME"

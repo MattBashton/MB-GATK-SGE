@@ -32,6 +32,7 @@ B_PATH_NAME_N=$D_NAME/$B_NAME_N
 B_PATH_NAME_T=$D_NAME/$B_NAME_T
 
 echo "** Variables **"
+echo " - BASE_DIR = $BASE_DIR"
 echo " - REF = $REF"
 echo " - dbSNP = $DBSNP"
 echo " - COSMIC = $COSMIC"
