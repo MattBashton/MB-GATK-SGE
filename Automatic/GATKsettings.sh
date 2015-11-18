@@ -109,4 +109,6 @@ DCOV=30000
 ## --maxReadsInRegionPerSample
 # Defines the down sampling level for the maximum reads per sample used in the
 # active region for the HC.  Default is 10000 have set this up to 30000.
-MAX_READS_IN_REGION=30000
+# Looks like this is not functional at present:
+# http://gatkforums.broadinstitute.org/discussion/6234/downsample-to-coverage-in-haplotypercaller
+# MAX_READS_IN_REGION=30000

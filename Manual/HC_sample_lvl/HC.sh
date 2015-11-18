@@ -48,7 +48,7 @@ echo "Copying input $B_PATH_NAME.* to $TMPDIR"
 echo "Running GATK"
 /usr/bin/time --verbose $JAVA -Xmx16g -jar $GATK \
 -T HaplotypeCaller \
---maxReadsInRegionPerSample $MAX_READS_IN_REGION \
+#--maxReadsInRegionPerSample $MAX_READS_IN_REGION \
 --pcr_indel_model $PCR \
 -nct 1 \
 --emitRefConfidence GVCF \

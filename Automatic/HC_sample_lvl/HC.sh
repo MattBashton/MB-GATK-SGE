@@ -47,7 +47,7 @@ echo "Copying input $BASE_DIR/BQSR_sample_lvl/$G_NAME.$SGE_TASK_ID.dedup.realign
 echo "Running GATK"
 /usr/bin/time --verbose $JAVA -Xmx16g -jar $GATK \
 -T HaplotypeCaller \
---maxReadsInRegionPerSample $MAX_READS_IN_REGION \
+#--maxReadsInRegionPerSample $MAX_READS_IN_REGION \
 --pcr_indel_model $PCR \
 -nct 1 \
 --emitRefConfidence GVCF \
