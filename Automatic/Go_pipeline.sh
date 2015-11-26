@@ -5,7 +5,7 @@
 # will depend on its counterpart in the previous job array using -hold_jid_ad
 tput bold
 echo "Matt Basthon 2012-2015"
-echo "Running GATK pipline"
+echo "Running GATK exome pipline"
 echo ""
 tput sgr0
 
@@ -30,7 +30,7 @@ echo " - G_NAME = $G_NAME"
 echo " - MASTER_LIST = $MASTER_LIST"
 echo " - PWD = $PWD"
 
-#Determing number of samples in master list
+# Determine number of samples in master list
 N=`wc -l $MASTER_LIST | cut -d ' ' -f 1`
 echo " - No of samples = $N"
 echo ""
