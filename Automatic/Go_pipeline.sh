@@ -30,8 +30,7 @@ echo " - PWD = $PWD"
 
 # Determine number of samples in master list
 N=`wc -l $MASTER_LIST | cut -d ' ' -f 1`
-echo " - No of samples = $N"
-echo ""
+echo -e " - No of samples = $N\n"
 tput sgr0
 
 
