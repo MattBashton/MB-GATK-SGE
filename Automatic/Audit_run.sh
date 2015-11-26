@@ -88,6 +88,7 @@ auditrun "FastQC" "FastQC" $N2
 auditrun "BWA_MEM" "BWA" $N
 auditrun "SamToSortedBam" "SortSam" $N
 auditrun "MarkDuplicates" "MarkDuplicates" $N
+auditrun "DofC" "Depth of Coverage" $N
 auditrun "1stRealn" "Realignment (both RTC and IDR)" $N2
 auditrun "BQSR_sample_lvl" "BQSR (both BQSR and PrintReads)" $N2
 auditrun "HC_sample_lvl" "HaplotypeCaller" $N
