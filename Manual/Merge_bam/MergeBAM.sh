@@ -59,7 +59,7 @@ echo "Copying back merged BAM and index output to $DEST"
 /usr/bin/time --verbose cp -v $TMPDIR/Dedup.Realigned.Merged.bam $DEST
 /usr/bin/time --verbose cp -v $TMPDIR/Dedup.Realigned.Merged.bai $DEST
 
-echo "Removing * from $TMPDIR"
+echo "Removing *.ba* from $TMPDIR"
 rm $TMPDIR/*.ba*
 
 date
