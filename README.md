@@ -56,7 +56,7 @@ The following binaries and resources are required:
 * [vcfutils.pl](https://github.com/lh3/samtools/blob/master/bcftools/vcfutils.pl)
 * [VCFtools](https://vcftools.github.io/index.html)
 * [Ensembl Variant Effect Predictor](http://www.ensembl.org/info/docs/tools/vep/script/vep_download.html)
-* [SAMtools 1.x (required only for BAM to FASTQ conversion)](http://www.htslib.org/)
+* [SAMtools 1.x](http://www.htslib.org/)
 * [pigz (required only for gziping large amounts of FASTQ)](http://zlib.net/pigz/)
 * [Cowsay](https://en.wikipedia.org/wiki/Cowsay) optional :)
 
@@ -89,7 +89,7 @@ Only scripts that ran fully without error will have their last line as `END` on 
 
 anything non-zero here indicates that a copy operation or GATK / BWA or other binary terminated abnormally.
 
-For the automated pipeline the script `Audit_run.sh` can be run which will systematically perform the above checks for all stages and report sucess / errors *e*.*g*. for the HaplotypeCaller stage:
+For the automated pipeline the script `Audit_run.sh` can be run which will systematically perform the above checks for all stages and report success / errors *e*.*g*. for the HaplotypeCaller stage:
 
 ```
  * Checking 29 Haplotype Caller jobs:
@@ -100,8 +100,13 @@ For the automated pipeline the script `Audit_run.sh` can be run which will syste
 
 In order to output its report this the script sources `GATKsettings.sh` and examines `master_list.txt` to obtain the global run name and number of sample in the analysis.
 
+The `Audit_run.sh` script also reports system and real world run time for each stage and the whole automated pipeline in total.
+
 ### What happens if a stage or individual job fails in the automated pipeline? ###
 Presently SGE will blindly run the next stage of the job array dependency chain.  However, this not as bad as it seems since `bash -e` is employed at the start of each script, should the main binary for a preceding job fail, the final copy operation from `$TMPDIR` will never run.  Consequently upon starting the next stage of the automated pipeline will fail to find it's input file immediately and terminate.  Should this happen, the failing job and downstream jobs can be re-run using array job notation, this is set at `-t 1-$N` by default, simply change this to `-t n`, where `n `is the array job(s) that failed, commas can by used to specify additional elements of the array job.  I plan to improve this behaviour in future updates.
+
+## Overall run stats ##
+Stats from various stages of the analysis: alignment stats, read duplication rates, depth of coverage, called SNP and indel counts can be generated after the run has finished using the `Run_stats.sh` script.
 
 ## Post run clean up ##
 Following a successful run temporary `.sam` and `.bam` files produced by intermediate stages can be removed by running the `CleanUpRun.sh` script, all `.g.vcf` / `.vcf` and log files will be left in tact along with the final preprocessed `.bam` file which has been de-duplicated, realigned and re-calibrated.  I don't automatically run this at the end of the run, since the use of intermediate files may be desirable for some workflows and debugging.

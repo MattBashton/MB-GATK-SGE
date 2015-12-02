@@ -6,7 +6,6 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-
 # Matthew Bashton 2012-2015
 # Runs Depth Of Coverage, needs an input .bam, file and the intervals targeted
 # 6hrs run time by default, adjust if need be.
@@ -17,9 +16,7 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $1 .bam`
-D_NAME=`dirname $1`
-B_PATH_NAME=$D_NAME/$B_NAME
+B_NAME=`basename $G_NAME.$SGE_TASK_ID.dedup.bam .bam`
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
@@ -28,14 +25,15 @@ echo " - B_PATH_NAME = $B_PATH_NAME"
 echo " - INTERVALS = $INTERVALS"
 echo " - PWD = $PWD"
 
-echo "Copying input $B_PATH_NAME.* to $TMPDIR"
-/usr/bin/time --verbose cp -v $B_PATH_NAME.bam $TMPDIR
-/usr/bin/time --verbose cp -v $B_PATH_NAME.bai $TMPDIR
+echo "Copying input $BASE_DIR/MarkDuplicates/$G_NAME.$SGE_TASK_ID.dedup.* to $TMPDIR"
+/usr/bin/time --verbose cp -v $BASE_DIR/MarkDuplicates/$G_NAME.$SGE_TASK_ID.dedup.bam $TMPDIR
+/usr/bin/time --verbose cp -v $BASE_DIR/MarkDuplicates/$G_NAME.$SGE_TASK_ID.dedup.bai $TMPDIR
 
 echo "Running GATK"
 /usr/bin/time --verbose $JAVA -Xmx4g -jar $GATK \
 -T DepthOfCoverage \
--L $INTERVALS \
+$INTERVALS \
+--interval_padding $PADDING \
 -I $TMPDIR/$B_NAME.bam \
 -R $REF \
 -o $TMPDIR/$B_NAME.DofC \

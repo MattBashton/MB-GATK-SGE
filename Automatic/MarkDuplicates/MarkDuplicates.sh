@@ -18,11 +18,13 @@ date
 
 source ../GATKsettings.sh
 
+SAMP_ID=`awk "NR==$SGE_TASK_ID" ../master_list.txt | perl -ne '/SM:(\S+)\\\t/; print "$1\n"'`
 B_NAME=`basename $G_NAME.$SGE_TASK_ID.bam .bam`
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
 echo " - B_NAME = $B_NAME"
+echo " - SAMP_ID = $SAMP_ID"
 echo " - PWD = $PWD"
 
 echo "Copying input $BASE_DIR/SamToSortedBam/$G_NAME.$SGE_TASK_ID.ba* to $TMPDIR"
@@ -38,6 +40,10 @@ METRICS_FILE=$B_NAME.MD.metrics.txt \
 CREATE_INDEX=true \
 VALIDATION_STRINGENCY=LENIENT \
 MAX_RECORDS_IN_RAM=4000000
+
+echo "Running SAMtools flagstat to gather alignment stats on $SAMP_ID in file $TMPDIR/$B_NAME.dedup.bam"
+echo "$SAMP_ID" > $PWD/$B_NAME.dedup.flagstat.txt
+/usr/bin/time --verbose $SAMTOOLS flagstat $TMPDIR/$B_NAME.dedup.bam >>$PWD/$B_NAME.dedup.flagstat.txt
 
 echo "Copying $TMPDIR/$B_NAME.dedup.ba* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.dedup.bam $PWD
