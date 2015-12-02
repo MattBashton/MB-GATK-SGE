@@ -124,7 +124,7 @@ tput sgr0
 qsub -t 1-$N -N $G_NAME.VEP_snps -hold_jid $G_NAME.Split_VCF_snps -wd $PWD/VEP $PWD/VEP/VEP.sh snps
 qsub -t 1-$N -N $G_NAME.VEP_indels -hold_jid $G_NAME.Split_VCF_indels -wd $PWD/VEP $PWD/VEP/VEP.sh indels
 
-echo -e "\n"
+echo ""
 tput setaf 2
 # Cowsay is optional!
 #cowsay "All jobs submitted"
