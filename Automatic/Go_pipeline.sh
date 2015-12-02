@@ -5,7 +5,7 @@
 # will depend on its counterpart in the previous job array using -hold_jid_ad
 tput bold
 echo "Matt Basthon 2012-2015"
-echo -e "Running GATK exome pipeline\n\n"
+echo -e "Running GATK exome pipeline\n"
 tput sgr0
 
 set -o pipefail
@@ -124,9 +124,9 @@ tput sgr0
 qsub -t 1-$N -N $G_NAME.VEP_snps -hold_jid $G_NAME.Split_VCF_snps -wd $PWD/VEP $PWD/VEP/VEP.sh snps
 qsub -t 1-$N -N $G_NAME.VEP_indels -hold_jid $G_NAME.Split_VCF_indels -wd $PWD/VEP $PWD/VEP/VEP.sh indels
 
-echo -e "\n\n"
+echo -e "\n"
 tput setaf 2
 # Cowsay is optional!
 #cowsay "All jobs submitted"
-echo -e "\nAll jobs submitted\n\n"
+echo -e "All jobs submitted\n\n"
 tput sgr0
