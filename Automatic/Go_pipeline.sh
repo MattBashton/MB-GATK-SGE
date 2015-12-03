@@ -71,12 +71,12 @@ tput sgr0
 qsub -t 1-$N -N $G_NAME.IDR -hold_jid_ad $G_NAME.RTC -wd $PWD/1stRealn 1stRealn/IDR.sh
 
 tput bold
-echo " * 8 Base Quality Score Recalibration - traning jobs submitted"
+echo " * 8 Base Quality Score Recalibration - training jobs submitted"
 tput sgr0
 qsub -t 1-$N -N $G_NAME.BQSR -hold_jid_ad $G_NAME.IDR -wd $PWD/BQSR_sample_lvl BQSR_sample_lvl/BaseRecal.sh
 
 tput bold
-echo " * 9 Base Quality Score Recalibration - training jobs submitted"
+echo " * 9 Base Quality Score Recalibration - PrintReads jobs submitted"
 tput sgr0
 qsub -t 1-$N -N $G_NAME.PrintReads -hold_jid_ad $G_NAME.BQSR -wd $PWD/BQSR_sample_lvl BQSR_sample_lvl/PrintReads.sh
 
