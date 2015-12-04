@@ -19,7 +19,8 @@
 # -stand_call_conf are both ignored and set to zero.  Also using PCR
 # --pcr_indel_model CONSERVATIVE is use - set to NONE for WGS.
 # --maxReadsInRegionPerSample defaults to 10000 for the active region changed
-# in GATKsettings.sh $MAX_READS_IN_REGION
+# in GATKsettings.sh $MAX_READS_IN_REGION - Note now disabled!
+# See GATKsettings.sh for notes on this.
 
 set -o pipefail
 hostname
@@ -47,7 +48,6 @@ echo "Copying input $BASE_DIR/BQSR_sample_lvl/$G_NAME.$SGE_TASK_ID.dedup.realign
 echo "Running GATK"
 /usr/bin/time --verbose $JAVA -Xmx16g -jar $GATK \
 -T HaplotypeCaller \
-#--maxReadsInRegionPerSample $MAX_READS_IN_REGION \
 --pcr_indel_model $PCR \
 -nct 1 \
 --emitRefConfidence GVCF \
