@@ -94,8 +94,8 @@ auditrun "BQSR_sample_lvl" "BQSR (both BQSR and PrintReads)" $N2
 auditrun "HC_sample_lvl" "HaplotypeCaller" $N
 auditrun "GenotypeGVCFs" "GenotypeGVFs" 1
 auditrun "VQSR_HC" "VQSR (training and apply)" 4
-auditrun "Filt_Recaled_VCF" "Filter VCF" 1
-auditrun "Split_VCF" "Split VCF" 1
+auditrun "Filt_Recaled_VCF" "Filter VCF" 2
+auditrun "Split_VCF" "Split VCF" 2
 auditrun "VEP" "VEP" $N2
 
 # Rround up decimal places in variables
