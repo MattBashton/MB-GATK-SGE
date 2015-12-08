@@ -21,7 +21,6 @@ B_NAME=`basename $G_NAME.$SGE_TASK_ID.dedup.bam .bam`
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
 echo " - B_NAME = $B_NAME"
-echo " - B_PATH_NAME = $B_PATH_NAME"
 echo " - INTERVALS = $INTERVALS"
 echo " - PWD = $PWD"
 
