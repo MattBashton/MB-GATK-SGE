@@ -57,7 +57,7 @@ echo "Running GATK VQSLOD >= 3.00"
 --log_to_file $B_NAME.SelectRecaledVariants.VQSlod_gr_eq_three.log
 
 echo "Running GATK outputing PASSing variants"
-/usr/bin/time --verbose $JAVA -Xmx4g $GATK \
+/usr/bin/time --verbose $JAVA -Xmx4g -jar $GATK \
 -T SelectVariants \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.vcf \
