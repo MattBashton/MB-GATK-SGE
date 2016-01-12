@@ -26,9 +26,6 @@ date
 
 source ../GATKsettings.sh
 
-echo "Setting max open file descriptors"
-ulimit -n 60000
-
 B_NAME=`basename $1 .vcf`
 D_NAME=`dirname $1`
 B_PATH_NAME=$D_NAME/$B_NAME

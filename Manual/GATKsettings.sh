@@ -46,6 +46,7 @@ VCFUTILS="/opt/software/bsu/bin/vcfutils.pl"
 VCFANNOTATE="/opt/software/bsu/bin/vcf-annotate"
 VCFTOOLS="/opt/software/bsu/bin/vcftools"
 SAMTOOLS="/opt/software/bsu/bin/samtools-1.2"
+OLDSAMTOOLS="/opt/software/bsu/bin/samtools_0.1.18"
 
 # Perl 5 lib settings needed for vcf-annotate to work, needs path to Vcf.pm to
 # be in PER5LIB path.
