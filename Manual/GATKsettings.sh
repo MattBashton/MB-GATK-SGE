@@ -86,7 +86,7 @@ PHASE1_INDELS="$BUNDLE_DIR/1000G_phase1.indels.b37.vcf"
 PHASE1_SNPS="$BUNDLE_DIR/1000G_phase1.snps.high_confidence.b37.vcf"
 DBSNP="$BUNDLE_DIR/dbsnp_138.b37.vcf"
 DBSNP129="$BUNDLE_DIR/dbsnp_138.b37.excluding_sites_after_129.vcf"
-OMNI="$BUNDLE_DIR/1000G_omni2.5.b37.vcf "
+OMNI="$BUNDLE_DIR/1000G_omni2.5.b37.vcf"
 HAPMAP="$BUNDLE_DIR/hapmap_3.3.b37.vcf"
 
 ## COSMIC location
