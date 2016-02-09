@@ -84,7 +84,7 @@ function auditrun {
 }
 
 # Use auditrun function on all stages of pipeline
-auditrun "FastQC" "FastQC" $N2
+auditrun "FastQC" "FastQC" $N
 auditrun "BWA_MEM" "BWA" $N
 auditrun "SamToSortedBam" "SortSam" $N
 auditrun "MarkDuplicates" "MarkDuplicates" $N
