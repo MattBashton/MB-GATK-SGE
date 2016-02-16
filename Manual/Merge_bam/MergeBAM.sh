@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 #$ -cwd -V
 #$ -l h_vmem=6G
 #$ -pe smp 2
@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016                                                                                                                                                                                                        
 # Takes a list of .bam files passed in via <path_to_files>/*.bam at command line
 # and runs Picard tools MergeSamFiles on them.  Uses threading option in Picard
 # which off loads IO/(de)compression to another tread ~ 20% faster.
@@ -23,8 +23,8 @@ source ../GATKsettings.sh
 BAMS="$*"
 for x in $BAMS
 do
-    SAMP_NAME=`basename $x`
-    TMP=`echo "$SAMP_NAME" | perl -ne '/^(\S+)$/; print "INPUT=$1"'`
+    B_NAME=`basename $x`
+    TMP=`echo "$B_NAME" | perl -ne '/^(\S+)$/; print "INPUT=$1"'`
     BAM_LIST="$BAM_LIST $TMP"
 done
 
@@ -39,8 +39,13 @@ echo " - BAM_LIST = $BAM_LIST"
 echo " - DEST = $DEST"
 
 echo "Copying input *.bam and *.bai to $TMPDIR"
-/usr/bin/time --verbose cp -v $BAM_DIR/*.bam $TMPDIR
-/usr/bin/time --verbose cp -v $BAM_DIR/*.bai $TMPDIR
+for x in $BAMS
+do
+    B_NAME=`basename $x .bam`
+    echo "Copying $BAM_DIR/$B_NAME.bam to $TMPDIR"
+    /usr/bin/time --verbose cp -v $BAM_DIR/$B_NAME.bam $TMPDIR
+    /usr/bin/time --verbose cp -v $BAM_DIR/$B_NAME.bai $TMPDIR
+done
 
 echo "Running Picard to merge BAM list"
 cd $TMPDIR
