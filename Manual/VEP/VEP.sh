@@ -33,7 +33,7 @@ echo "Copying input $1 to $TMPDIR/"
 /usr/bin/time --verbose cp -v $1 $TMPDIR
 
 echo "Creating VEP cache dirs on local scratch in $TMPDIR"
-# Note just using 79_GRCh37 this will need to change from release to release  / organism / reference
+# Note just using 79_GRCh37 this will need to change from release to release / organism / reference
 mkdir $TMPDIR/vep_cache
 mkdir $TMPDIR/vep_cache/homo_sapiens
 mkdir $TMPDIR/vep_cache/homo_sapiens/79_GRCh37

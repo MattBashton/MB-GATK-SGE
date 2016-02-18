@@ -1,7 +1,7 @@
 #!/bin/bash -e
 #$ -cwd -V
 #$ -pe smp 10
-#$ -l h_rt=4:00:00
+#$ -l h_rt=6:00:00
 #$ -l h_vmem=40G
 #$ -R y
 #$ -q all.q,bigmem.q
@@ -16,7 +16,7 @@
 
 module add apps/perl
 module add apps/samtools
-module add apps/VEP
+module add apps/VEP/v79
 
 set -o pipefail
 hostname
@@ -39,7 +39,7 @@ echo "Copying input $1 to $TMPDIR/"
 /usr/bin/time --verbose cp -v $VCF $TMPDIR
 
 echo "Creating VEP cache dirs on local scratch in $TMPDIR"
-# Note just using 79_GRCh37 this will need to change from release to release  / organism / reference
+# Note just using 79_GRCh37 this will need to change from release to release / organism / reference
 mkdir $TMPDIR/vep_cache
 mkdir $TMPDIR/vep_cache/homo_sapiens
 mkdir $TMPDIR/vep_cache/homo_sapiens/79_GRCh37
