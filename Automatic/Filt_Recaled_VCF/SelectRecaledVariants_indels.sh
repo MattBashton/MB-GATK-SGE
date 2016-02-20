@@ -60,7 +60,7 @@ echo "Running GATK outputing PASSing variants"
 --variant $TMPDIR/$B_NAME.vcf \
 -R $REF \
 --out $TMPDIR/$G_NAME.indels.PASS.vcf \
--select "vc.isNotFiltered()" \
+--excludeFiltered \
 -selectType INDEL \
 --log_to_file $G_NAME.indels.SelectRecaledVariants.PASS.log
 

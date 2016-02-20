@@ -63,7 +63,7 @@ echo "Running GATK outputing PASSing variants"
 --variant $TMPDIR/$B_NAME.vcf \
 -R $REF \
 --out $TMPDIR/$B_NAME.PASS.vcf \
--select "vc.isNotFiltered()" \
+--excludeFiltered \
 -selectType SNP \
 --log_to_file $B_NAME.SelectRecaledVariants.PASS.log
 
