@@ -9,8 +9,9 @@
 # Matthew Bashton 2012-2015
 # Runs Apply Recalibration, this takes the .recal file and applies it to the raw
 # vcf produced by the HC, output is a recalibrated .vcf file.
-# Using TS of 99.0 for indels as per GATK doc #1259
+# Using TS of 99.0 for indels as per GATK doc #1259 and #2805
 # https://www.broadinstitute.org/gatk/guide/article?id=1259
+# https://www.broadinstitute.org/gatk/guide/article?id=2805
 
 set -o pipefail
 hostname

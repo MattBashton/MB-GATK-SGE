@@ -15,7 +15,8 @@
 # exomes, unless small < 10 sample number or you have issues with too few bad
 # variants.  Also leaving out InbreedingCoeff some discussion of this being
 # problematic too on forums, needs at least 10 samples which are not related.
-# Settings as given in GATK doc #1259:
+# Settings as given in GATK doc #1259 and #2805:
+# https://www.broadinstitute.org/gatk/guide/article?id=2805
 # https://www.broadinstitute.org/gatk/guide/article?id=1259
 # Also you need to use dbsnp_138.hg19.excluding_sites_after_129.vcf see bottom of
 # comments section on above link.
