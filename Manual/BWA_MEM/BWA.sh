@@ -1,7 +1,7 @@
 #!/bin/bash -e
 #$ -cwd -V
 #$ -pe smp 5
-#$ -l h_rt=24:00:00
+#$ -l h_rt=48:00:00
 #$ -l h_vmem=8G
 #$ -R y
 #$ -q all.q,bigmem.q

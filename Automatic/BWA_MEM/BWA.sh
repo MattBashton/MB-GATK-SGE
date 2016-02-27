@@ -1,14 +1,14 @@
 #!/bin/bash -e
 #$ -cwd -V
 #$ -pe smp 5
-#$ -l h_rt=16:00:00
+#$ -l h_rt=48:00:00
 #$ -l h_vmem=8G
 #$ -R y
 #$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Runs BWA MEM using options obtained from $MASTER_LIST
-# Job time being used too to help with getting a slot, 4hrs set - alter if need be.
+# Job time being used too to help with getting a slot, 48hrs set - alter if need be.
 
 set -o pipefail
 hostname
