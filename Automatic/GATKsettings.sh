@@ -25,7 +25,7 @@ MASTER_LIST="$BASE_DIR/master_list.txt"
 # different runs in qstat
 G_NAME="WES"
 
-# Ensure file creation is private to prevent temp files and other data being                                                                                                                                 
+# Ensure file creation is private to prevent temp files and other data being
 # accessed by others
 umask 077
 
