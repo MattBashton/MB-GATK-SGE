@@ -138,4 +138,5 @@ echo -e " - Jobs sumbitted to queue on $DSTART"
 echo -e " - Final job finished on $DEND"
 echo -e " - $DISPLAYDIFF time taken for whole analysis of $N samples (submission to final job finish)"
 
+# Finish up run
 echo -e "\nEND\n"
