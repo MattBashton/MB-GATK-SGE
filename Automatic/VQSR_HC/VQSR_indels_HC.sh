@@ -27,9 +27,6 @@ date
 
 source ../GATKsettings.sh
 
-#echo "Setting max open file descriptors"
-#ulimit -n 60000
-
 B_NAME=`basename $G_NAME.HC_genotyped.vcf .vcf`
 
 echo "** Variables **"
