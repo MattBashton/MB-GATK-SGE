@@ -7,7 +7,7 @@
 #$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
-# Runs muTect using options passed in at command-line.
+# Runs MuTect using options passed in at command-line.
 # Needs the location of the tumor and normal file.
 # Another script needs to call this one which has a list of all pairs of files.
 # Note optional VCF output is multi sample VCF - this can be split later with
