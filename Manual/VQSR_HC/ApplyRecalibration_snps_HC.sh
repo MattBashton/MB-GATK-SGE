@@ -9,7 +9,7 @@
 # Matthew Bashton 2012-2015
 # Runs Apply Recalibration, this takes the .recal file and applies it to the raw
 # vcf produced by the HC, output is a recalibrated .vcf file.
-# Using TS of 99.5 for SNPs as per GATK doc #1259, note that #2805 uses 99.0
+# Using TS of 99.0 for SNPs as per GATK doc #2805, note that #1259 uses 99.5
 # https://www.broadinstitute.org/gatk/guide/article?id=2805
 # https://www.broadinstitute.org/gatk/guide/article?id=1259
 
@@ -44,7 +44,7 @@ echo "Running GATK"
 -tranchesFile $B_NAME.VR_HC_snps.tranches \
 -o $TMPDIR/$B_NAME.vrecal.snps.vcf \
 -mode SNP \
---ts_filter_level 99.5 \
+--ts_filter_level 99.0 \
 --log_to_file $B_NAME.AR_HC_snps.log
 
 echo "Copying back output $TMPDIR/$B_NAME.vcf* to $PWD"
