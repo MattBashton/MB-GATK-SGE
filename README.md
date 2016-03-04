@@ -33,6 +33,15 @@ Note that the `\t` present in the second column (which will define the read grou
 
 Finally for exome or targeted sequencing you'll need to edit the `INTERVALS` variable in `GATKsettings.sh` to point to the `.bed` file of your kit or targeted regions of the genome.
 
+### Optional MuTect2 automated workflow ###
+MuTect2 is now bundled into GATK 3.5 and the automated pipe-line now allows for somatic variant calling of specific tumour / normal pairs of GATK pre-processed bam files and for annotation of somatic variation with Ensembl VEP.  By default these steps are commented out in `Go_pipline.sh` but can be enabled be uncommenting those lines.  Specifically the length of MuTect2 related job arrays needs to be determined so uncomment lines 36-38.  Additionally array jobs 10Mu, 14Mu and 16Mu should also be uncommented so MuTect2, filtration of somatic variation, and Ensembl VEP can be run.  All of these stages requires a `MuTect2_pairs.txt` file to be placed in the same dir as  `master_list.txt`.  This is a tab-delimited flat file which encodes per-line numeric id for each pair, normal sample name and tumour sample name; these should correspond the sample names used in the `SM` field of the read group `@RG` column in `master_list.txt`.  This enables the script which runs MuTect2 to automatically workout which files from the down stream pre-processing stages are needed for each tumour / normal pair.  The format of the file should look like this:
+
+```
+1       Sample_01_normal       Sample_01_tumor
+2       Sample_02_normal       Sample_02_tumor
+3       Sample_03_normal       Sample_03_tumor
+```
+
 ### Manual workflow specific config and instructions ###
 Just as the automated pipeline required a `master_list.txt` file as described above, this file needs to be present in the BWA_MEM directory for a manual run of the BWA alignment stage.  You'll also need to edit `GATKsettings.sh` as above to include the location of your exome/targeted regions `.bed` file.  For the manual workflow in order to set-off stages which run per sample a generic `qsub` submission script wrapper `gsub.sh` is provided, this will submit each sample to SGE for stages which don't unify output or depend on a single input file.  This script submits a qsub job on the specified shell script for each file passed to it via the shell in a dir via `../*.ext` *e*.*g*. to submit a batch of MarkDuplicates.sh jobs use:
 
@@ -122,7 +131,7 @@ My aim with this series of scripts / pipeline was to create a light weight syste
 Contrary to the belief held by certain coding pedants backticks are [not deprecated](http://unix.stackexchange.com/questions/126927/have-backticks-i-e-cmd-in-sh-shells-been-deprecated) and are part of the POSIX standard, personally since I was first exposed to shell scripting in the 90s I actually prefer backticks, their good enough for the markdown I'm using in this document so there good enough for use in my code, I don't nest backticks so don't have any issues with nesting.  I also think that backticks are cleaner visually than the dollar parens `$()` paradigm particularly if you're new to shell scripting.  For this reason I'm also employing the use of the external `basename` and `dirname` mainly for clarity in showing how I assign values to variables as the combination of `$()` and bash string manipulation operations are the perfect storm of Perl-like "explosion in a punctuation factory" code which is hard to read.
 
 ## Roadmap ##
-Ultimately I plan to re-implement this whole workflow in Queue, time permitting.  MuTect 2.x is on the horizon, so I've resisted implementing version 1.x into in to the automated pipeline owing to its dependance on the UG like downstream sample preparation and the need for a unified realignment of samples.  When MuTect 2.x is released there will be an option in the automated pipeline to specify which pairs of samples should be sent down the path for joint tumour/normal calling as MuTect 2.x will use the current g.vcf HC sample preparation workflow.
+Ultimately I plan to re-implement this whole workflow in Queue, time permitting.
 
 For whole genome analysis speedups can be gained easily in the HaplotypeCaller stage by parallelising per chromosome this can be done without the need for Queue - implementation of this is on the to do list.  However, if run-time is still an issue, Queue may have to be used to scatter gather various stages of analysis including realignment and the HaplotypeCaller.
 
