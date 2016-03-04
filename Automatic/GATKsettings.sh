@@ -20,6 +20,13 @@ BASE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # sample: ID, @RG line, R1.fastq, R2.fastq (assumption is reads are paired)
 MASTER_LIST="$BASE_DIR/master_list.txt"
 
+## MuTect2 pair list, used to pair up samples in automated MuTect2 runs,
+# which takes the tab-delimited format: ID, normal, tumour.  Where normal and
+# tumour are the same as in the SM field of the read group for the corresponding
+# bam file.  Note at present this system will not work with multiple bams
+# per sample.
+MUTECT2_LIST="$BASE_DIR/MuTect2_pairs.txt"
+
 ## Global job name
 # This gets appended to the job name for each stage so you can track multiple
 # different runs in qstat.  Change this for each run so they don't clash.
@@ -49,7 +56,7 @@ PICARD="/opt/software/bsu/bin/picard.jar"
 BWA="/opt/software/bsu/bin/bwa"
 # Since more than one version of muTect always place the one I'm using in same
 # dir as analysis
-MUTECT="muTect-1.1.7.jar"
+MUTECT1="muTect-1.1.7.jar"
 FASTQC="/opt/software/bsu/bin/fastqc"
 VCFUTILS="/opt/software/bsu/bin/vcfutils.pl"
 VCFANNOTATE="/opt/software/bsu/bin/vcf-annotate"

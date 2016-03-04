@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs MuTect using options passed in at command-line.
 # Needs the location of the tumor and normal file.
 # Another script needs to call this one which has a list of all pairs of files.
@@ -22,8 +22,6 @@ source ../GATKsettings.sh
 NORMAL=$1
 TUMOR=$2
 
-MUTECT="$PWD/$MUTECT"
-
 B_NAME_N=`basename "$NORMAL" .bam`
 B_NAME_T=`basename "$TUMOR" .bam`
 D_NAME=`dirname $1`
@@ -36,7 +34,6 @@ echo " - BASE_DIR = $BASE_DIR"
 echo " - REF = $REF"
 echo " - dbSNP = $DBSNP"
 echo " - COSMIC = $COSMIC"
-echo " - MuTect = $MUTECT"
 echo " - PWD = $PWD"
 echo " - NORMAL = $NORMAL"
 echo " - TUMOR = $TUMOR"
@@ -55,20 +52,18 @@ echo "Copying input $FILE2 to $TMPDIR/"
 /usr/bin/time --verbose cp -v $B_PATH_NAME_T.bam $TMPDIR
 /usr/bin/time --verbose cp -v $B_PATH_NAME_T.bai $TMPDIR
 
-echo "Running MuTect on normal:$B_NAME_N.bam vs tumor:$B_NAME_T.bam"
-/usr/bin/time --verbose $JAVA -Xmx16g -jar $MUTECT1 \
--dcov $DCOV \
---analysis_type MuTect \
+echo "Running MuTect2 on normal:$B_NAME_N.bam vs tumor:$B_NAME_T.bam"
+/usr/bin/time --verbose $JAVA -Xmx16g -jar $GATK \
+-T MuTect2 \
+-nct 1 \
 $INTERVALS \
 --interval_padding $PADDING \
---reference_sequence $REF \
+-R $REF \
 --cosmic $COSMIC \
 --dbsnp $DBSNP \
 --input_file:normal $TMPDIR/$B_NAME_N.bam \
 --input_file:tumor $TMPDIR/$B_NAME_T.bam \
---out $TMPDIR/$B_NAME_N.vs.$B_NAME_T.out \
---coverage_file $TMPDIR/$B_NAME_N.vs.$B_NAME_T.wig \
--vcf $TMPDIR/$B_NAME_N.vs.$B_NAME_T.vcf \
+--out $TMPDIR/$B_NAME_N.vs.$B_NAME_T.vcf \
 --log_to_file $TMPDIR/$B_NAME_N.vs.$B_NAME_T.log
 
 echo "Copying $TMPDIR/$B_NAME_N.vs.$B_NAME_T.* to $PWD"

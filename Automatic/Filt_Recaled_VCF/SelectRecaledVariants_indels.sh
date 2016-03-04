@@ -27,7 +27,7 @@ echo " - BASE_DIR = $BASE_DIR"
 echo " - B_NAME = $B_NAME"
 echo " - PWD = $PWD"
 
-echo "Copying input $BASE_DIR/VQSR_HC/$G_NAME.HC_genotyped.vrecal.indels.vcf.idx to $TMPDIR"
+echo "Copying input $BASE_DIR/VQSR_HC/$G_NAME.HC_genotyped.vrecal.indels.vcf* to $TMPDIR"
 /usr/bin/time --verbose cp -v $BASE_DIR/VQSR_HC/$G_NAME.HC_genotyped.vrecal.indels.vcf $TMPDIR
 /usr/bin/time --verbose cp -v $BASE_DIR/VQSR_HC/$G_NAME.HC_genotyped.vrecal.indels.vcf.idx $TMPDIR
 

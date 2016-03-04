@@ -64,7 +64,7 @@ echo "Running GATK outputing PASSing variants"
 -selectType SNP \
 --log_to_file $G_NAME.snps.SelectRecaledVariants.PASS.log
 
-echo "Copying back output $TMPDIR/$B_NAME.* to $PWD"
+echo "Copying back output $TMPDIR/$G_NAME.* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.snps.*.vcf $PWD
 /usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.snps.*.vcf.idx $PWD
 

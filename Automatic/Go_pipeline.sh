@@ -33,6 +33,9 @@ N=`wc -l $MASTER_LIST | cut -d ' ' -f 1`
 echo -e " - No of samples = $N\n"
 tput sgr0
 
+# Optional (uncomment for MuTect2)
+# Determine number of pairs in MuTect2 list
+# MU_N=`wc -l $MUTECT2_LIST | cut -d ' ' -f 1`
 
 #### Preprocessing
 tput bold
@@ -87,6 +90,12 @@ echo " * 10 Haplotype Caller jobs submitted"
 tput sgr0
 qsub -t 1-$N -N $G_NAME.HC -hold_jid_ad $G_NAME.PrintReads -wd $PWD/HC_sample_lvl HC_sample_lvl/HC.sh
 
+#### Optional MuTect2 pairs (uncomment to run)
+#tput bold
+#echo " * 10Mu MuTect2 jobs submitted"
+#tput sgr0
+#qsub -t 1-$MU_N -N $G_NAME.MT2 -hold_jid $G_NAME.PrintReads -wd $PWD/MuTect2 MuTect2/MT2.sh
+
 #### GenotypeGVCFs gVCF joint genotyping stage, waits for all of the
 #### above HC jobs to finish before running
 tput bold
@@ -112,6 +121,12 @@ tput sgr0
 qsub -N $G_NAME.SelectRecaledVariants_snps -hold_jid $G_NAME.ApplyRecal_snps -wd $PWD/Filt_Recaled_VCF Filt_Recaled_VCF/SelectRecaledVariants_snps.sh
 qsub -N $G_NAME.SelectRecaledVariants_indels -hold_jid $G_NAME.ApplyRecal_indels -wd $PWD/Filt_Recaled_VCF Filt_Recaled_VCF/SelectRecaledVariants_indels.sh
 
+#### Optional MuTect2 (uncomment to run)
+#tput bold
+#echo " * 14Mu Filter MuTect2 VCF"
+#tput sgr0
+#qsub -t 1-$MU_N -N $G_NAME.Filt_MT2 -hold_jid_ad $G_NAME.MT2 -wd $PWD/Filt_MT2 Filt_MT2/Filt_MT2_VCF.sh
+
 tput bold
 echo " * 15 Split VCF jobs submitted"
 tput sgr0
@@ -123,6 +138,12 @@ echo " * 16 Ensembl VEP jobs submitted"
 tput sgr0
 qsub -t 1-$N -N $G_NAME.VEP_snps -hold_jid $G_NAME.Split_VCF_snps -wd $PWD/VEP $PWD/VEP/VEP.sh snps
 qsub -t 1-$N -N $G_NAME.VEP_indels -hold_jid $G_NAME.Split_VCF_indels -wd $PWD/VEP $PWD/VEP/VEP.sh indels
+
+#### Optional MuTect2 (uncomment to run)
+#tput bold
+#echo " * 16Mu Ensembl VEP jobs submitted for MuTect output"
+#tput sgr0
+#qsub -t 1-$MU_N -N $G_NAME.VEP_MT2 -hold_jid_ad $G_NAME.Filt_MT2 -wd $PWD/VEP_MT2 $PWD/VEP_MT2/VEP_MT2.sh
 
 echo ""
 tput setaf 2
