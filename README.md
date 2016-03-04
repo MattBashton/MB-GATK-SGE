@@ -33,8 +33,8 @@ Note that the `\t` present in the second column (which will define the read grou
 
 Finally for exome or targeted sequencing you'll need to edit the `INTERVALS` variable in `GATKsettings.sh` to point to the `.bed` file of your kit or targeted regions of the genome.
 
-### Optional MuTect2 automated workflow ###
-MuTect2 is now bundled into GATK 3.5 and the automated pipe-line now allows for somatic variant calling of specific tumour / normal pairs of GATK pre-processed bam files and for annotation of somatic variation with Ensembl VEP.  By default these steps are commented out in `Go_pipline.sh` but can be enabled be uncommenting those lines.  Specifically the length of MuTect2 related job arrays needs to be determined so uncomment lines 36-38.  Additionally array jobs 10Mu, 14Mu and 16Mu should also be uncommented so MuTect2, filtration of somatic variation, and Ensembl VEP can be run.  All of these stages requires a `MuTect2_pairs.txt` file to be placed in the same dir as  `master_list.txt`.  This is a tab-delimited flat file which encodes per-line numeric id for each pair, normal sample name and tumour sample name; these should correspond the sample names used in the `SM` field of the read group `@RG` column in `master_list.txt`.  This enables the script which runs MuTect2 to automatically workout which files from the down stream pre-processing stages are needed for each tumour / normal pair.  The format of the file should look like this:
+### Optional MuTect2 somatic variant calling automated workflow ###
+[MuTect2](https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_cancer_m2_MuTect2.php) is now bundled into GATK 3.5 and the automated pipe-line now allows for somatic variant calling of specific tumour / normal pairs of GATK pre-processed bam files and for annotation of somatic variation with Ensembl VEP.  By default these steps are commented out in `Go_pipline.sh` but can be enabled by uncommenting those lines.  Specifically the length of MuTect2 related job arrays needs to be determined so uncomment lines 36-38, additionally array jobs 10Mu, 14Mu and 16Mu should also be uncommented so MuTect2, filtration of somatic variation, and Ensembl VEP can be run.  All of these stages requires a `MuTect2_pairs.txt` file to be placed in the same dir as  `master_list.txt`.  This is a tab-delimited flat file which encodes a per-line numeric id for each pair, normal sample name and tumour sample name - these should correspond to the sample names used in the `SM` field of the read group `@RG` column in `master_list.txt`.  This enables the script which runs MuTect2 to automatically workout which files from the down stream pre-processing stages are needed for each tumour / normal pair.  The format of the file should look like this:
 
 ```
 1       Sample_01_normal       Sample_01_tumor
@@ -56,7 +56,7 @@ In addition to this overview the header of each shell script should have some di
 The following binaries and resources are required:
 
 * [GATK 3.5](https://www.broadinstitute.org/gatk/download/)
-* [MuTect 1.7](https://www.broadinstitute.org/gatk/download/)
+* [MuTect 1.7](https://www.broadinstitute.org/gatk/download/) (optional as MuTect2 included with GATK 3.5)
 * [GATK Resource Bundle 2.8](https://www.broadinstitute.org/gatk/download/)
 * [Picard tools](http://broadinstitute.github.io/picard/)
 * [Son of Grid Engine](https://arc.liv.ac.uk/trac/SGE)
@@ -133,7 +133,7 @@ Contrary to the belief held by certain coding pedants backticks are [not depreca
 ## Roadmap ##
 Ultimately I plan to re-implement this whole workflow in Queue, time permitting.
 
-For whole genome analysis speedups can be gained easily in the HaplotypeCaller stage by parallelising per chromosome this can be done without the need for Queue - implementation of this is on the to do list.  However, if run-time is still an issue, Queue may have to be used to scatter gather various stages of analysis including realignment and the HaplotypeCaller.
+For whole genome analysis speedups can be gained easily in the HaplotypeCaller stage by parallelising per chromosome this can be done without the need for Queue - implementation of this is under way.  However, if run-time is still an issue, Queue may have to be used to scatter gather various stages of analysis including realignment and the HaplotypeCaller.
 
 ## What this is not ##
 This set of scripts, and comments in said scripts, are in no way a replacement for reading the excellent and extensive [GATK documentation](https://www.broadinstitute.org/gatk/guide/), understanding how it works, and choosing appropriate parameters for your experiment.  Choices I've made here reflect my usage case with exoms and my interpretation of the GATK documentation / past and present best practices workflow documentation, your usage case and opinions may differ.  Nor as yet is this a robust error tolerant pipeline, you will need to check things ran correctly (`Audit_run.sh` is provided for the automated pipeline).  This system is not "foolproof and incapable of error" you still need some bioinformatics skills.
