@@ -47,7 +47,7 @@ function auditrun {
     # Check jobs than ran/failed and get times
     local END=`grep -cHe 'END' $DIR/*.o* | grep -o ':1' | wc -l`
     local NO_END=`grep -cHe 'END' $DIR/*.o* | grep -o ':0' | wc -l`
-    local ERRORS=`grep -e 'Exit status: [1-9]' FastQC/*.e* | wc -l`
+    local ERRORS=`grep -e 'Exit status: [1-9]' $DIR/*.e* | wc -l`
     local USRSYS=`grep 'time (seconds)' $DIR/*.e* | grep -oP '\d+\.\d+$' | paste -s -d+ | bc`
     local MS=`grep 'Elapsed (wall clock)' $DIR/*.e* | perl -lne ' if (/(\d+):(\d+)\.(\d+)/) {$ms=$1*60; $tot=$ms+$2; print "$tot"."."."$3";}' | paste -s -d+ | bc`
     local HMS=`grep 'Elapsed (wall clock)' $DIR/*.e* | perl -lne ' if (/(\d+):(\d+):(\d+)/) {$hs=$1*60*60; $ms=$2*60; print $hs+$ms+$3}' | paste -s -d+ | bc`
