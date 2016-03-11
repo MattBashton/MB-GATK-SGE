@@ -40,8 +40,8 @@ echo " - INPUT = $INPUT"
 echo " - PWD = $PWD"
 
 echo "Copying input $BASE_DIR/Filt_MT2/$INPUT* to $TMPDIR/"
-/usr/bin/time --verbose cp -v $BASE_DIR/Filt_MT2/$INPUT.vcf $TMPDIR
-/usr/bin/time --verbose cp -v $BASE_DIR/Filt_MT2/$INPUT.vcf.idx $TMPDIR
+/usr/bin/time --verbose cp -v $BASE_DIR/Filt_MT2_VCF/$INPUT.vcf $TMPDIR
+/usr/bin/time --verbose cp -v $BASE_DIR/Filt_MT2_VCF/$INPUT.vcf.idx $TMPDIR
 
 echo "Creating VEP cache dirs on local scratch in $TMPDIR"
 # Note just using 83_GRCh37 this will need to change from release to release  / organism / reference

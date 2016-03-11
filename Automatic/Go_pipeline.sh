@@ -125,7 +125,7 @@ qsub -N $G_NAME.SelectRecaledVariants_indels -hold_jid $G_NAME.ApplyRecal_indels
 #tput bold
 #echo " * 14Mu Filter MuTect2 VCF"
 #tput sgr0
-#qsub -t 1-$MU_N -N $G_NAME.Filt_MT2 -hold_jid_ad $G_NAME.MT2 -wd $PWD/Filt_MT2 Filt_MT2/Filt_MT2_VCF.sh
+#qsub -t 1-$MU_N -N $G_NAME.Filt_MT2 -hold_jid_ad $G_NAME.MT2 -wd $PWD/Filt_MT2_VCF Filt_MT2_VCF/Filt_MT2_VCF.sh
 
 tput bold
 echo " * 15 Split VCF jobs submitted"
