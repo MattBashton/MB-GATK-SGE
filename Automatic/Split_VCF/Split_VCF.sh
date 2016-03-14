@@ -33,7 +33,7 @@ list=(`$VCFUTILS listsam $TMPDIR/$B_NAME.vcf`)
 # Loop over array of names
 for i in ${list[@]}
 do
-    echo "Extracting sample $i from $VCF with and annotating INFO/TYPE with vcf-annotate"
+    echo "Extracting sample $i from $VCF with vcfutils and annotating INFO/TYPE with vcf-annotate"
     /usr/bin/time --verbose $VCFUTILS subsam $TMPDIR/$B_NAME.vcf $i | $VCFANNOTATE --fill-type > $TMPDIR/$B_NAME.$i.vcf
     echo "Filtering out alleles which are not present in sample $i for use in VEP"
     /usr/bin/time --verbose $VCFTOOLS --non-ref-ac-any 1 --vcf $TMPDIR/$B_NAME.$i.vcf --stdout --recode | $VCFANNOTATE --fill-type > $TMPDIR/$B_NAME.$i.VEP.vcf

@@ -39,7 +39,7 @@ echo "Running GATK VQSLOD >= 0.00"
 -R $REF \
 --out $TMPDIR/$G_NAME.indels.VQSlod_gr_eq_zero.vcf \
 -select "VQSLOD >= 0.00" \
--selectType INDEL \
+-selectType INDEL -selectType MIXED -selectType SYMBOLIC \
 --log_to_file $G_NAME.indels.SelectRecaledVariants.VQSlod_gr_eq_zero.log
 
 echo "Running GATK VQSLOD >= 3.00"
@@ -50,7 +50,7 @@ echo "Running GATK VQSLOD >= 3.00"
 -R $REF \
 --out $TMPDIR/$G_NAME.indels.VQSlod_gr_eq_three.vcf \
 -select "VQSLOD >= 3.00" \
--selectType INDEL \
+-selectType INDEL -selectType MIXED -selectType SYMBOLIC \
 --log_to_file $G_NAME.indels.SelectRecaledVariants.VQSlod_gr_eq_three.log
 
 echo "Running GATK outputing PASSing variants"
@@ -61,7 +61,7 @@ echo "Running GATK outputing PASSing variants"
 -R $REF \
 --out $TMPDIR/$G_NAME.indels.PASS.vcf \
 --excludeFiltered \
--selectType INDEL \
+-selectType INDEL -selectType MIXED -selectType SYMBOLIC \
 --log_to_file $G_NAME.indels.SelectRecaledVariants.PASS.log
 
 echo "Copying back output $TMPDIR/$G_NAME.* to $PWD"

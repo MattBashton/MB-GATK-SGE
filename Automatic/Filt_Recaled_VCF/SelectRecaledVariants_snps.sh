@@ -39,7 +39,7 @@ echo "Running GATK VQSLOD >= 0.00"
 -R $REF \
 --out $TMPDIR/$G_NAME.snps.VQSlod_gr_eq_zero.vcf \
 -select "VQSLOD >= 0.00" \
--selectType SNP \
+-selectType SNP -selectType MNP \
 --log_to_file $G_NAME.snps.SelectRecaledVariants.VQSlod_gr_eq_zero.log
 
 echo "Running GATK VQSLOD >= 3.00"
@@ -50,7 +50,7 @@ echo "Running GATK VQSLOD >= 3.00"
 -R $REF \
 --out $TMPDIR/$G_NAME.snps.VQSlod_gr_eq_three.vcf \
 -select "VQSLOD >= 3.00" \
--selectType SNP \
+-selectType SNP -selectType MNP \
 --log_to_file $G_NAME.snps.SelectRecaledVariants.VQSlod_gr_eq_three.log
 
 echo "Running GATK outputing PASSing variants"
@@ -61,7 +61,7 @@ echo "Running GATK outputing PASSing variants"
 -R $REF \
 --out $TMPDIR/$G_NAME.snps.PASS.vcf \
 --excludeFiltered \
--selectType SNP \
+-selectType SNP -selectType MNP \
 --log_to_file $G_NAME.snps.SelectRecaledVariants.PASS.log
 
 echo "Copying back output $TMPDIR/$G_NAME.* to $PWD"
