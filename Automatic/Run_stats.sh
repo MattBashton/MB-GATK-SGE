@@ -1,10 +1,10 @@
-#!/bin/bash -e 
+#!/bin/bash -e
 
-# Matthew Bashton 2015 
+# Matthew Bashton 2015
 # Generate run stats for a GATK run
 
 echo -e "\n### GATK run Stats ###\n"
- 
+
 date
 
 echo -e "\n\n - SAMtools flagstat info:\n"

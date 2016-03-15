@@ -35,7 +35,7 @@
 # - runtime could be long.  Both are x10 defaults.  Omit for defaults.
 # GATK documentation now states inc these for better results on high
 # depth data.
-# https://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_indels_IndelRealigner.php
+# https://www.broadinstitute.org/gatk/guide/tooldocs/org_broadinstitute_gatk_tools_walkers_indels_IndelRealigner.php
 
 # Note that --consensusDeterminationModel USE_READS is actually default so I've
 # Not set it explicitly.  See:
