@@ -40,6 +40,8 @@
 # Note that --consensusDeterminationModel USE_READS is actually default so I've
 # Not set it explicitly.  See:
 # http://gatkforums.broadinstitute.org/gatk/discussion/comment/20385#Comment_20385
+# Advice on USE_READS and LOD:
+# http://gatkforums.broadinstitute.org/gatk/discussion/38/local-realignment-around-indels
 
 set -o pipefail
 hostname
