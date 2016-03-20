@@ -1,7 +1,7 @@
 #!/bin/bash -e
 #$ -cwd -V
 #$ -pe smp 1
-#$ -l -l h_rt=02:00:00,h_vmem=2G
+#$ -l -l h_rt=12:00:00,h_vmem=2G
 #$ -R y
 #$ -q all.q,bigmem.q
 
