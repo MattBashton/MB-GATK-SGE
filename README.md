@@ -56,7 +56,7 @@ In addition to this overview the header of each shell script should have some di
 The following binaries and resources are required:
 
 * [GATK 3.5](https://www.broadinstitute.org/gatk/download/)
-* [MuTect 1.7](https://www.broadinstitute.org/gatk/download/) (optional as MuTect2 included with GATK 3.5)
+* [MuTect 1.7](https://www.broadinstitute.org/gatk/download/) (optional as MuTect 2 included with GATK 3.5)
 * [GATK Resource Bundle 2.8](https://www.broadinstitute.org/gatk/download/)
 * [Picard tools](http://broadinstitute.github.io/picard/)
 * [Son of Grid Engine](https://arc.liv.ac.uk/trac/SGE)
