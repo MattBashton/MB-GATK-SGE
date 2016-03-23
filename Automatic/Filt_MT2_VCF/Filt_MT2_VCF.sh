@@ -24,7 +24,7 @@ NORMAL=$2
 TUMOUR=$3
 
 # Make input name for this run
-INPUT=$NORMAL.vs.$TUMOUR.vcf
+INPUT=$NORMAL.vs.$TUMOUR
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
