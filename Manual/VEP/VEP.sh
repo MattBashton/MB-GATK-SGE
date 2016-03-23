@@ -1,8 +1,8 @@
 #!/bin/bash -e
 #$ -cwd -V
 #$ -pe smp 10
-#$ -l h_rt=6:00:00
-#$ -l h_vmem=40G
+#$ -l h_rt=12:00:00
+#$ -l h_vmem=50G
 #$ -R y
 #$ -q all.q,bigmem.q
 
