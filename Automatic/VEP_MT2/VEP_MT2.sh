@@ -97,4 +97,4 @@ date
 # ENDTIME=`date '+%s'`
 # echo "Timestamp $ENDTIME"
 
-# echo "END"
+echo "END"
