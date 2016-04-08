@@ -33,7 +33,6 @@ ID_T=`grep -P "SM:\K$TUMOUR" $MASTER_LIST | awk '{print $1}'`
 N_FILE="$G_NAME.$ID_N.dedup.realigned.recalibrated"
 T_FILE="$G_NAME.$ID_T.dedup.realigned.recalibrated"
 
-
 #Input file path
 INPUT_DIR="../BQSR_sample_lvl"
 
