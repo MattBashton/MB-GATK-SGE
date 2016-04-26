@@ -84,7 +84,7 @@ PADDING=100
 
 # PCR indel model used by HC, this should be set to NONE for WGS and either
 # AGGRESSIVE (less FP, loss of some TP) or CONSERVATIVE (more FP, more TP) for
-# exomes
+# exomes, a new HOSTILE setting is now available (even less FP, loss of more TP).
 PCR="CONSERVATIVE"
 
 ## GATK bundel dir
