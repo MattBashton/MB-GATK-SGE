@@ -26,6 +26,7 @@ echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
 echo " - G_NAME = $G_NAME"
 echo " - MASTER_LIST = $MASTER_LIST"
+echo " - MUTECT2_LIST = $MUTECT2_LIST"
 echo " - PWD = $PWD"
 
 # Determine number of samples in master list
