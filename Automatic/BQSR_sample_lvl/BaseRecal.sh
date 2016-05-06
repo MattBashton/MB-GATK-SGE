@@ -18,7 +18,6 @@
 # http://gatkforums.broadinstitute.org/discussion/comment/14269/#Comment_14269
 
 set -o pipefail
-
 hostname
 date
 
