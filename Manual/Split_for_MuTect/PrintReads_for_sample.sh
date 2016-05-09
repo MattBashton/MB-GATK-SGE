@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #$ -cwd -V
-#$ -pe smp 2
+#$ -pe smp 1
 #$ -l h_vmem=16G
 #$ -R y
 #$ -q all.q,bigmem.q
@@ -32,13 +32,13 @@ echo "Copying input $B_PATH_NAME.* to $TMPDIR"
 /usr/bin/time --verbose cp -v $B_PATH_NAME.bam $TMPDIR
 /usr/bin/time --verbose cp -v $B_PATH_NAME.bai $TMPDIR
 
-echo "Running GATK"
+echo "Running GATK PrintReads and outputing reads from: $SAMP_NAME"
 /usr/bin/time --verbose $JAVA -Xmx12g -jar $GATK \
 -T PrintReads \
 -nct 2 \
 --sample_name $SAMP_NAME \
 -I $TMPDIR/$B_NAME.bam \
--R $REF\
+-R $REF \
 -o $TMPDIR/$SAMP_NAME.bam \
 --log_to_file $SAMP_NAME.PrintReads.log
 
