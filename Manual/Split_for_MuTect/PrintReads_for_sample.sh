@@ -35,7 +35,7 @@ echo "Copying input $B_PATH_NAME.* to $TMPDIR"
 echo "Running GATK PrintReads and outputing reads from: $SAMP_NAME"
 /usr/bin/time --verbose $JAVA -Xmx12g -jar $GATK \
 -T PrintReads \
--nct 2 \
+-nct 1 \
 --sample_name $SAMP_NAME \
 -I $TMPDIR/$B_NAME.bam \
 -R $REF \
