@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 #$ -cwd -V
 #$ -l h_vmem=14G
 #$ -pe smp 5

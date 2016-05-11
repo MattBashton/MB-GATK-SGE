@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 #$ -cwd -V
 #$ -pe smp 1
 #$ -l h_vmem=8G
@@ -8,7 +8,7 @@
 
 # Matthew Bashton 2012-2016
 # Runs Select Variants on VCF to pull out somatic PASSing variants produced by
-# MuTect 1 or 2.
+# MuTect 1.
 
 set -o pipefail
 hostname

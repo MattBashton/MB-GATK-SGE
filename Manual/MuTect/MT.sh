@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 #$ -cwd -V
 #$ -pe smp 2
 #$ -l h_rt=24:00:00

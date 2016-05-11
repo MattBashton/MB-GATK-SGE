@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 
 # Matthew Bashton 2015
 # Runs VEP with a whole dir of vcf input from $1 given as ../dir/*.vcf $2 is output dir which is created

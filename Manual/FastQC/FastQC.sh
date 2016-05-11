@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 #$ -cwd -V
 #$ -pe smp 1
 #$ -l -l h_rt=12:00:00,h_vmem=2G

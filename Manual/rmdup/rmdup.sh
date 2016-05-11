@@ -1,12 +1,12 @@
-#!/bin/bash -e
-#$ -cwd -V 
+#!/bin/bash -eu
+#$ -cwd -V
 #$ -pe smp 1
 #$ -l h_rt=24:00:00
 #$ -l h_vmem=6G
 #$ -R y
 
 # Matthew Bashton 2015
-# Uses SAMtools to remove PCR duplicates from a BAM file, not part of GATK 
+# Uses SAMtools to remove PCR duplicates from a BAM file, not part of GATK
 # pipeline but useful for external tools.
 
 set -o pipefail

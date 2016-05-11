@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 #$ -cwd -V
 #$ -l h_vmem=6G
 #$ -pe smp 2
@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2016                                                                                                                                                                                                        
+# Matthew Bashton 2012-2016
 # Takes a list of .bam files passed in via <path_to_files>/*.bam at command line
 # and runs Picard tools MergeSamFiles on them.  Uses threading option in Picard
 # which off loads IO/(de)compression to another tread ~ 20% faster.
