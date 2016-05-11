@@ -1,5 +1,5 @@
 #!/bin/bash -e
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 
 # Runs GATK pipeline as a series of array jobs, for most stages each array job
 # will depend on its counterpart in the previous job array using -hold_jid_ad
@@ -73,6 +73,13 @@ tput bold
 echo " * 7 Indel Realignment jobs submitted"
 tput sgr0
 qsub -t 1-$N -N $G_NAME.IDR -hold_jid_ad $G_NAME.RTC -wd $PWD/1stRealn 1stRealn/IDR.sh
+
+### Optional MuTect1 pipeline via sourcing Go_MuTect1_pipeline.sh
+### (this whole sub pipe line) will hold on all IDR jobs above before running.
+#tput bold
+#echo " * Mutect1 Pipeline starting"
+#tput sgr0
+#source Go_MuTect1_pipeline.sh
 
 tput bold
 echo " * 8 Base Quality Score Recalibration - training jobs submitted"

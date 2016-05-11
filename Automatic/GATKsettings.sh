@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 
 # A script of common GATK settings file, this file gets sourced by the various
 # scripts in the subdirs up a level from this base dir.  This allows for
@@ -20,12 +20,12 @@ BASE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # sample: ID, @RG line, R1.fastq, R2.fastq (assumption is reads are paired)
 MASTER_LIST="$BASE_DIR/master_list.txt"
 
-## MuTect2 pair list, used to pair up samples in automated MuTect2 runs,
+## MuTect pair list, used to pair up samples in automated MuTect runs,
 # which takes the tab-delimited format: ID, normal, tumour.  Where normal and
 # tumour are the same as in the SM field of the read group for the corresponding
 # bam file.  Note at present this system will not work with multiple bams
 # per sample.
-MUTECT2_LIST="$BASE_DIR/MuTect2_pairs.txt"
+MUTECT_LIST="$BASE_DIR/MuTect_pairs.txt"
 
 ## Global job name
 # This gets appended to the job name for each stage so you can track multiple
@@ -56,7 +56,7 @@ PICARD="/opt/software/bsu/bin/picard.jar"
 BWA="/opt/software/bsu/bin/bwa"
 # Since more than one version of muTect always place the one I'm using in same
 # dir as analysis
-MUTECT1="muTect-1.1.7.jar"
+MUTECT1="mutect-1.1.7.jar"
 FASTQC="/opt/software/bsu/bin/fastqc"
 VCFUTILS="/opt/software/bsu/bin/vcfutils.pl"
 VCFANNOTATE="/opt/software/bsu/bin/vcf-annotate"
