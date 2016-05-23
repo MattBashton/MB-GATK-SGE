@@ -31,9 +31,9 @@ echo " - BASE_DIR = $BASE_DIR"
 echo " - INPUT = $INPUT"
 echo " - PWD = $PWD"
 
-echo "Copying input $BASE_DIR/MuTect2/$INPUT* to $TMPDIR"
-/usr/bin/time --verbose cp -v $BASE_DIR/MuTect2/$INPUT.vcf $TMPDIR
-/usr/bin/time --verbose cp -v $BASE_DIR/MuTect2/$INPUT.vcf.idx $TMPDIR
+echo "Copying input $BASE_DIR/MuTect1/$INPUT* to $TMPDIR"
+/usr/bin/time --verbose cp -v $BASE_DIR/MuTect1/$INPUT.vcf $TMPDIR
+/usr/bin/time --verbose cp -v $BASE_DIR/MuTect1/$INPUT.vcf.idx $TMPDIR
 
 echo "Running GATK outputing PASSing variants"
 /usr/bin/time --verbose $JAVA -Xmx4g -jar $GATK \

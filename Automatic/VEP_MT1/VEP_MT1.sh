@@ -58,7 +58,7 @@ VEP_CACHEDIR="$TMPDIR/vep_cache"
 #echo "Converting $INPUT.vcf to ensembl chr ids using sed"
 #sed -i.bak s/chr//g $TMPDIR/$INPUT.vcf
 
-echo "Running VEP on $TMPDIR/$B_NAME.vcf"
+echo "Running VEP on $TMPDIR/$INPUT.vcf"
 /usr/bin/time --verbose variant_effect_predictor.pl \
 -i $TMPDIR/$INPUT.vcf \
 --no_progress \
