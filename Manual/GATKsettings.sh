@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 
 # A script of common GATK settings file, this file gets sourced by the various
 # scripts in the subdirs up a level from this base dir.  This allows for
@@ -23,18 +23,24 @@ umask 077
 ## System settings for launching java jobs
 # On FMS cluster we need to use large pages have also set tmp dir to one
 # provided by SoGE for each run
+
+# Add in module for Java 1.8 (FMS cluster specific)
+module add apps/java/jre-1.8.0_25
+
 #JAVA="/opt/software/java/jre1.7.0_55/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
-JAVA="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
+#JAVA="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
+JAVA="/opt/software/java/jdk1.8.0_25/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
+
 
 ## We need latest GCC libs for AVX hardware acceleration of pairHMM (FMS cluster
 #specific)
 module add compilers/gnu/4.9.3
 ## Latest version of R for plots (FMS cluster specific)
-module add apps/R/3.2.2
+module add apps/R/3.2.3
 
 ## Location of programs
 # Extra GATK setting below fixes issues with file locking on Luster FS
-GATK="/opt/software/bsu/bin/GenomeAnalysisTK-3.5.jar --disable_auto_index_creation_and_locking_when_reading_rods"
+GATK="/opt/software/bsu/bin/GenomeAnalysisTK-3.6.jar --disable_auto_index_creation_and_locking_when_reading_rods"
 # Newer versions of Picard has a unified .jar file
 PICARD="/opt/software/bsu/bin/picard.jar"
 BWA="/opt/software/bsu/bin/bwa"
@@ -45,7 +51,7 @@ FASTQC="/opt/software/bsu/bin/fastqc"
 VCFUTILS="/opt/software/bsu/bin/vcfutils.pl"
 VCFANNOTATE="/opt/software/bsu/bin/vcf-annotate"
 VCFTOOLS="/opt/software/bsu/bin/vcftools"
-SAMTOOLS="/opt/software/bsu/bin/samtools-1.2"
+SAMTOOLS="/opt/software/bsu/bin/samtools"
 OLDSAMTOOLS="/opt/software/bsu/bin/samtools_0.1.18"
 
 # Perl 5 lib settings needed for vcf-annotate to work, needs path to Vcf.pm to
