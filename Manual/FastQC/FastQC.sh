@@ -24,14 +24,14 @@ echo " - BASE_DIR = $BASE_DIR"
 echo " - B_NAME = $B_NAME"
 echo " - PWD = $PWD"
 
-echo "Copying input $1 to $TMPDIR/$B_NAME"
-/usr/bin/time --verbose cp -v $1 $TMPDIR/$B_NAME
+echo "Copying input $1 to $TMPDIR/"
+/usr/bin/time --verbose cp -v $1 $TMPDIR
 
 echo "Running FastQC on $1"
-/usr/bin/time --verbose $FASTQC -t 1 --noextract -q -o $PWD -d $TMPDIR
+/usr/bin/time --verbose $FASTQC -t 1 $TMPDIR/$B_NAME --noextract -q -o $PWD -d $TMPDIR
 
 echo "Deleting $TMPDIR/$B_NAME"
-rm $TMPDIR/$B_NAME/*.gz
+rm $TMPDIR/$B_NAME
 
 date
 echo "END"

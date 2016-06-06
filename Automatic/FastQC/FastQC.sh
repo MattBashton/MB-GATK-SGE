@@ -40,15 +40,15 @@ echo " - B_NAME_F1 = $B_NAME_F1"
 echo " - B_NAME_F2 = $B_NAME_F2"
 echo " - PWD = $PWD"
 
-echo "Copying input $FILE1 and $FILE2 to $TMPDIR/$B_NAME"
-/usr/bin/time --verbose cp -v $FILE1 $TMPDIR/$B_NAME
-/usr/bin/time --verbose cp -v $FILE2 $TMPDIR/$B_NAME
+echo "Copying input $FILE1 and $FILE2 to $TMPDIR/"
+/usr/bin/time --verbose cp -v $FILE1 $TMPDIR/
+/usr/bin/time --verbose cp -v $FILE2 $TMPDIR/
 
 echo "Running FastQC on $FILE1 and $FILE2"
 /usr/bin/time --verbose $FASTQC -t 2 $FILE1 $FILE2 --noextract -q -o $PWD -d $TMPDIR
 
-echo "Deleting $TMPDIR/$B_NAME"
-rm $TMPDIR/$B_NAME/*.gz
+echo "Deleting $TMPDIR/*.gz"
+rm $TMPDIR/*.gz
 
 date
 echo "END"
