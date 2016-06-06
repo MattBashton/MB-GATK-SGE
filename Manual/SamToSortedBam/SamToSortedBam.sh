@@ -37,7 +37,7 @@ VALIDATION_STRINGENCY=LENIENT \
 MAX_RECORDS_IN_RAM=4000000 \
 SORT_ORDER=coordinate
 
-echo "Copying $TMPDIR/$SAMP_ID.ba* to $PWD"
+echo "Copying $TMPDIR/$B_NAME.ba* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.bam $PWD
 /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.bai $PWD
 
