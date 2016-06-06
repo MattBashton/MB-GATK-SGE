@@ -1,13 +1,13 @@
 #!/bin/bash -eu
 #$ -cwd -V
-#$ -pe smp 2
-#$ -l h_rt=48:00:00
+#$ -pe smp 1
+#$ -l h_rt=24:00:00
 #$ -l h_vmem=20G
 #$ -R y
 #$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
-# Runs MarkDuplicates, note that -XX:ParallelGCThreads=2 is needed to prevent
+# Runs MarkDuplicates, note that -XX:ParallelGCThreads=1 is needed to prevent
 # Picard using all the threads on a node.  Default runtime is 24hrs.
 
 # For RAD/Haloplex data don't run MarkDuplicates
@@ -33,7 +33,7 @@ echo "Copying input $B_PATH_NAME.ba* to $TMPDIR/"
 /usr/bin/time --verbose cp -v $B_PATH_NAME.bai $TMPDIR
 
 echo "Running MarkDuplicates for $B_NAME.bam will also generate .bai on the fly"
-/usr/bin/time --verbose $JAVA -Xmx16g -XX:ParallelGCThreads=2 -jar $PICARD MarkDuplicates \
+/usr/bin/time --verbose $JAVA -Xmx16g -XX:ParallelGCThreads=1 -jar $PICARD MarkDuplicates \
 INPUT=$TMPDIR/$B_NAME.bam \
 OUTPUT=$TMPDIR/$B_NAME.dedup.bam \
 TMP_DIR=$TMPDIR \
