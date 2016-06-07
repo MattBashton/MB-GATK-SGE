@@ -13,7 +13,6 @@
 # https://www.broadinstitute.org/gatk/guide/article?id=2805
 # https://www.broadinstitute.org/gatk/guide/article?id=1259
 
-
 set -o pipefail
 hostname
 date

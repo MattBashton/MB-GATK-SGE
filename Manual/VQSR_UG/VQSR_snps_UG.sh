@@ -20,6 +20,8 @@
 # Also you need to use dbsnp_138.hg19.excluding_sites_after_129.vcf see bottom of
 # comments section on above link.
 
+# As of GATK 3.6 4 attempts are now made to build a model
+
 set -o pipefail
 hostname
 date
@@ -65,6 +67,7 @@ echo "Running GATK"
 -an HaplotypeScore \
 -mode SNP \
 -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
+--max_attempts 4 \
 --log_to_file $B_NAME.VR_UG_snps.log
 
 echo "Deleting $TMPDIR/$B_NAME.*"
