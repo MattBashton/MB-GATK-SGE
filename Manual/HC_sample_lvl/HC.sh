@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 #$ -cwd -V
 #$ -pe smp 1
-#$ -l h_vmem=20G
+#$ -l h_vmem=24G
 #$ -l h_rt=120:00:0
 #$ -R y
 #$ -q all.q,bigmem.q
@@ -46,7 +46,7 @@ echo "Copying input $B_PATH_NAME.* to $TMPDIR"
 /usr/bin/time --verbose cp -v $B_PATH_NAME.bai $TMPDIR
 
 echo "Running GATK"
-/usr/bin/time --verbose $JAVA -Xmx16g -jar $GATK \
+/usr/bin/time --verbose $JAVA -Xmx18g -jar $GATK \
 -T HaplotypeCaller \
 #--maxReadsInRegionPerSample $MAX_READS_IN_REGION \
 --pcr_indel_model $PCR \
