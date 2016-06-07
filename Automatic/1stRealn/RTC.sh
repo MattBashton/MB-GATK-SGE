@@ -48,7 +48,7 @@ $INTERVALS \
 echo "Copying $TMPDIR/$B_NAME.RTC.intervals to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.RTC.intervals $PWD
 
-echo "Deleting $TMPDIR/$SUBSTR.*"
+echo "Deleting $TMPDIR/$B_NAME.*"
 rm $TMPDIR/$B_NAME.*
 
 date
