@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 #$ -cwd -V
 #$ -pe smp 5
-#$ -l h_vmem=20G
+#$ -l h_vmem=24G
 #$ -l h_rt=24:00:00
 #$ -R y
 #$ -q all.q,bigmem.q
@@ -45,7 +45,7 @@ echo "Copying normal input $INPUT_DIR/$OUTPUT.merged.realigned.ba* to $TMPDIR/"
 /usr/bin/time --verbose cp -v $INPUT_DIR/$OUTPUT.merged.realigned.bai $TMPDIR
 
 echo "Running GATK"
-/usr/bin/time --verbose $JAVA -Xmx16g -jar $GATK \
+/usr/bin/time --verbose $JAVA -Xmx18g -jar $GATK \
 -T PrintReads \
 -nct 5 \
 $INTERVALS \

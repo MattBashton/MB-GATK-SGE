@@ -30,6 +30,8 @@ module add apps/java/jre-1.8.0_25
 #JAVA="/opt/software/java/jre1.7.0_55/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
 #JAVA="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
 JAVA="/opt/software/java/jdk1.8.0_25/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
+# MuTect1 needs Java 7
+JAVA7="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
 
 
 ## We need latest GCC libs for AVX hardware acceleration of pairHMM (FMS cluster

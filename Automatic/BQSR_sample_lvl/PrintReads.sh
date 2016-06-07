@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 #$ -cwd -V
 #$ -pe smp 5
-#$ -l h_vmem=20G
+#$ -l h_vmem=24G
 #$ -l h_rt=24:00:00
 #$ -R y
 #$ -q all.q,bigmem.q
@@ -31,7 +31,7 @@ echo "Copying input $BASE_DIR/1stRealn/$G_NAME.$SGE_TASK_ID.dedup.realigned.* to
 /usr/bin/time --verbose cp -v $BASE_DIR/1stRealn/$G_NAME.$SGE_TASK_ID.dedup.realigned.bai $TMPDIR
 
 echo "Running GATK"
-/usr/bin/time --verbose $JAVA -Xmx16g -jar $GATK \
+/usr/bin/time --verbose $JAVA -Xmx18g -jar $GATK \
 -T PrintReads \
 -nct 5 \
 $INTERVALS \

@@ -19,6 +19,10 @@ date
 
 source ../GATKsettings.sh
 
+# Get right version of Java (FMS cluster specific)
+module unload apps/java/jre-1.8.0_25
+module add apps/java/jre-1.7.0_75
+
 NORMAL=$1
 TUMOR=$2
 
@@ -56,7 +60,7 @@ echo "Copying input $FILE2 to $TMPDIR/"
 /usr/bin/time --verbose cp -v $B_PATH_NAME_T.bai $TMPDIR
 
 echo "Running MuTect on normal:$B_NAME_N.bam vs tumor:$B_NAME_T.bam"
-/usr/bin/time --verbose $JAVA -Xmx16g -jar $MUTECT1 \
+/usr/bin/time --verbose $JAVA7 -Xmx16g -jar $MUTECT1 \
 -dcov $DCOV \
 --analysis_type MuTect \
 $INTERVALS \

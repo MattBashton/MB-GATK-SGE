@@ -15,6 +15,10 @@ date
 
 source ../GATKsettings.sh
 
+# Get right version of Java (FMS cluster specific)
+module unload apps/java/jre-1.8.0_25
+module add apps/java/jre-1.7.0_75
+
 # Get info for pair using task id from array job
 LINE=`awk "NR==$SGE_TASK_ID" $MUTECT_LIST`
 set $LINE
@@ -46,7 +50,7 @@ echo "Copying tumour input $INPUT_DIR/$TUMOUR.ba* to $TMPDIR/"
 /usr/bin/time --verbose cp -v $INPUT_DIR/$TUMOUR.bai $TMPDIR
 
 echo "Running MuTect 1 on normal:$NORMAL vs tumor:$TUMOUR"
-/usr/bin/time --verbose $JAVA -Xmx16g -jar $MUTECT1 \
+/usr/bin/time --verbose $JAVA7 -Xmx16g -jar $MUTECT1 \
 -dcov $DCOV \
 --analysis_type MuTect \
 $INTERVALS \
