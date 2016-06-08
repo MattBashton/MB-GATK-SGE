@@ -1,4 +1,4 @@
-# GATK3.x/MuTect1&2 SGE based analysis pipeline #
+# GATK3.x / MuTect1&2 SGE based analysis pipeline #
 
 ## Updates ##
 
