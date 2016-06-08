@@ -1,5 +1,23 @@
 # GATK / MuTect SGE scripts #
 
+## Updates ##
+
+#####June 2016#####
+
+* Moved to and tested with GATK 3.6 and Java 1.8 (JVM/SoGE required memory increase in some instances).
+* Automated somatic calling with both MuTect1 and MuTect2.  MuTect1 has an additional joint indel realignment and BQSR stage.
+* By default VQSR will be retired up to 4 times if it fails using a different random seed, this may help with targeted panels (New GATK 3.6 feature).
+* Indel realignment stage will say as needed for MuTect1 calls additionally appears to rescue a few hundred indels per run of exomes so still benifitial.
+* Unbound variable protection now in place, prevents scripts from running if variables are not defined.
+
+#####May 2016#####
+
+* Moved to VEP version 83, ExAC allelic frequencies now reported in VEP output.
+
+#####March 2016#####
+
+* Automated somatic variant calling with MuTect2 and downstream annotation of variants with Ensembl VEP.
+
 ## Overview ##
 I've developed two sets of scripts for running the various stages of the GATK analysis workflow and somatic variant calling in MuTect these take the form of SGE scripts for cluster job submission scripts (specifically I've tested them using [Son of Grid Engine](https://arc.liv.ac.uk/trac/SGE)).  Out of the box I've tested these scrips on both exome and high depth targeted panel sequencing, I've set various setting appropriate for exome analysis using GATK 3.6 and MuTect1/2.  Comments in these scripts document where these have been changed from the standard best-practices workflow/defaults and why.  These scripts have evolved from shell scripts for running each stage of the GATK pipeline, where possible I've tried to generalise them using a common settings file.
 
