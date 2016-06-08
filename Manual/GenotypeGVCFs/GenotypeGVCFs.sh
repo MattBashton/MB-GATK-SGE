@@ -18,6 +18,9 @@ source ../GATKsettings.sh
 # gVFC passed at command line via *.g.vcf
 # Need to strip out leading file path and insert GATK input arg for each file
 
+# Set so bound
+VCF_LIST=""
+
 VCFS="$@"
 for x in $VCFS
 do

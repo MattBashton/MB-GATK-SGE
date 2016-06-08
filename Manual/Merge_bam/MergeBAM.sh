@@ -20,6 +20,9 @@ source ../GATKsettings.sh
 # .bam passed at command line via *.bam
 # Need to strip out leading file path and insert Picard input arg for each file
 
+# Set so bound
+BAM_LIST=""
+
 BAMS="$*"
 for x in $BAMS
 do
