@@ -7,7 +7,7 @@
 * Moved to and tested with GATK 3.6 and Java 1.8 (JVM/SoGE required memory increase in some instances).
 * Automated somatic calling with both MuTect1 and MuTect2.  MuTect1 has an additional joint indel realignment and BQSR stage.
 * By default VQSR will be retired up to 4 times if it fails using a different random seed, this may help with targeted panels (New GATK 3.6 feature).
-* Indel realignment stage will say as needed for MuTect1 calls additionally appears to rescue a few hundred indels per run of exomes so still benifitial.
+* Indel realignment stage will stay as needed for MuTect1 calls additionally appears to rescue a few hundred indels per run of exomes so still benifitial.
 * Unbound variable protection now in place, prevents scripts from running if variables are not defined.
 
 #####May 2016#####
