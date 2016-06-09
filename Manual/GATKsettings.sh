@@ -98,8 +98,9 @@ OMNI="$BUNDLE_DIR/1000G_omni2.5.b37.vcf"
 HAPMAP="$BUNDLE_DIR/hapmap_3.3.b37.vcf"
 
 ## COSMIC location
-# Currently in same dir as MuTect run
-COSMIC="Cosmic72.vcf"
+# Currently in same dir as the working/current since tend to change
+# on each run for up to date version
+COSMIC="$BASE_DIR/Cosmic_b37_v76.vcf"
 
 ## Global dcov setting
 # The depth of coverage setting used in downsampling the number of reads per
