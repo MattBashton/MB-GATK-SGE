@@ -71,9 +71,9 @@ CREATE_INDEX=true \
 VALIDATION_STRINGENCY=LENIENT
 cd $DEST
 
-echo "Copying $TMPDIR/$OUTPUT.* to $PWD"
-/usr/bin/time --verbose cp $TMPDIR/$OUTPUT.bam $PWD
-/usr/bin/time --verbose cp $TMPDIR/$OUTPUT.bai $PWD
+echo "Copying $TMPDIR/$OUTPUT.dedup.realigned.merged.* to $PWD"
+/usr/bin/time --verbose cp $TMPDIR/$OUTPUT.dedup.realigned.merged.bam $PWD
+/usr/bin/time --verbose cp $TMPDIR/$OUTPUT.dedup.realigned.merged.bai $PWD
 
 echo "Deleting $TMPDIR/$N_FILE.*"
 rm $TMPDIR/$N_FILE.*

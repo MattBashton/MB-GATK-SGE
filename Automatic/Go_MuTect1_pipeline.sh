@@ -67,7 +67,7 @@ qsub -t 1-$MU_N -N $G_NAME.MT1_PrintReads -hold_jid_ad $G_NAME.MT1_BQSR -wd $PWD
 tput bold
 echo " * Mu1 6 Split merged bams jobs submitted"
 tput sgr0
-qsub -t 1-$MU_N -N $G_NAME.MT1_split_bam -hold_jid_ad $G_NAME.MT1_BQSR -wd $PWD/MuTect1_split_bam MuTect1_split_bam/MT1_split_bam.sh
+qsub -t 1-$MU_N -N $G_NAME.MT1_split_bam -hold_jid_ad $G_NAME.MT1_PrintReads -wd $PWD/MuTect1_split_bam MuTect1_split_bam/MT1_split_bam.sh
 
 tput bold
 echo " * Mu1 7 Run MuTect1"
