@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 #$ -cwd -V
 #$ -pe smp 1
-#$ -l h_vmem=16G
+#$ -l h_vmem=18G
 #$ -l h_rt=24:00:00
 #$ -R y
 #$ -q all.q,bigmem.q
@@ -42,7 +42,7 @@ echo "Copying normal input $INPUT_DIR/$INPUT.merged.realigned.recalibrated.ba* t
 /usr/bin/time --verbose cp -v $INPUT_DIR/$INPUT.merged.realigned.recalibrated.bai $TMPDIR
 
 echo "Running GATK PrintReads and outputing reads from normal sample: $NORMAL"
-/usr/bin/time --verbose $JAVA -Xmx12g -jar $GATK \
+/usr/bin/time --verbose $JAVA -Xmx14g -jar $GATK \
 -T PrintReads \
 -nct 2 \
 --sample_name $NORMAL \
