@@ -35,7 +35,7 @@ echo " - VCF = $VCF"
 echo " - B_NAME = $B_NAME"
 echo " - PWD = $PWD"
 
-echo "Copying input $1 to $TMPDIR/"
+echo "Copying input $VCF to $TMPDIR/"
 /usr/bin/time --verbose cp -v $VCF $TMPDIR
 
 echo "Creating VEP cache dirs on local scratch in $TMPDIR"
