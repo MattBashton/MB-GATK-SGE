@@ -9,6 +9,7 @@
 * By default VQSR will be retired up to 4 times if it fails using a different random seed, this may help with targeted panels (New GATK 3.6 feature).
 * Indel realignment stage will stay as needed for MuTect1 calls, additionally appears to rescue a few hundred indels per run of exomes so still beneficial.
 * Unbound variable protection now in place, prevents scripts from running if variables are not defined.
+* Added optional Hard Filtration post GenotypeGVCFs, this is useful for targeted panels where conventional VQSR would fail.  Uncomment sections in `Go_pipeline.sh` to run.
 
 #####May 2016#####
 
@@ -64,6 +65,9 @@ Finally for exome or targeted sequencing you'll need to edit the `INTERVALS` var
 
 ### Optional MuTect1 somatic variant calling automated workflow ###
 The classic MuTect1 workflow using jointly realigned and recalibrated bam can also now be run by the automated pipe-line, simply uncomment the `source Go_MuTect1_pipeline.sh` optional job in `Go_pipeline.sh` this will run the `Go_MuTect1_pipeline.sh` which will intern submit another 8 job arrays to the SGE queue; the end product being VEP output for somatic SNPs.  As with the above workflow `MuTect_pairs.txt` will be used to enumerate which bam files need to be merged via `master_list.txt` and run each stage of the MuTect1 workflow.
+
+### Optional Hard Filtration post GenotypeGVCFs ###
+For smaller projects such as targeted panels there is often not enough bad variants for VQSR to train on, in this case it's useful to fall back on Hard Filters.  Optional stages: 13HF, 15HF and 16HF will allow for the Hard Filtering, Splitting per sample of the filtered VCF file, and the running of VEP on the output.  These stages can be run by uncommenting the relevant sections from `Go_pipeline.sh`.
 
 ### Manual workflow specific config and instructions ###
 Just as the automated pipeline required a `master_list.txt` file as described above, this file needs to be present in the BWA_MEM directory for a manual run of the BWA alignment stage.  You'll also need to edit `GATKsettings.sh` as above to include the location of your exome/targeted regions `.bed` file.  For the manual workflow in order to set-off stages which run per sample a generic `qsub` submission script wrapper `gsub.sh` is provided, this will submit each sample to SGE for stages which don't unify output or depend on a single input file.  This script submits a qsub job on the specified shell script for each file passed to it via the shell in a dir via `../*.ext` *e*.*g*. to submit a batch of MarkDuplicates.sh jobs use:

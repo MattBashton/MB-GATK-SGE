@@ -123,6 +123,13 @@ tput sgr0
 qsub -N $G_NAME.ApplyRecal_snps -hold_jid $G_NAME.VQSR_snps -wd $PWD/VQSR_HC VQSR_HC/ApplyRecalibration_snps_HC.sh
 qsub -N $G_NAME.ApplyRecal_indels -hold_jid $G_NAME.VQSR_indels -wd $PWD/VQSR_HC VQSR_HC/ApplyRecalibration_indels_HC.sh
 
+#### Optional apply hard filters to call set (useful in targeted panels where
+#### VQSR will fail owing to low number of bad variants) (uncomment to run)
+#tput bold
+#echo " * 13HF Apply Hard Filter jobs submitted"
+#tput sgr0
+#qsub -N $G_NAME.Hard_Filt -hold_jid $G_NAME.GenotypeGVCFs -wd $PWD/Hard_Filt_VCF Hard_Filt_VCF/Hard_Filt_both.sh
+
 tput bold
 echo " * 14 Filter VCF jobs submitted"
 tput sgr0
@@ -141,6 +148,13 @@ tput sgr0
 qsub -N $G_NAME.Split_VCF_snps -hold_jid $G_NAME.SelectRecaledVariants_snps -wd $PWD/Split_VCF Split_VCF/Split_VCF.sh $BASE_DIR/Filt_Recaled_VCF/$G_NAME.snps.PASS.vcf
 qsub -N $G_NAME.Split_VCF_indels -hold_jid $G_NAME.SelectRecaledVariants_indels -wd $PWD/Split_VCF Split_VCF/Split_VCF.sh $BASE_DIR/Filt_Recaled_VCF/$G_NAME.indels.PASS.vcf
 
+#### Optional hard filtering (uncomment to run)
+#tput bold
+#echo " * 15HF Split VCF jobs submitted"
+#tput sgr0
+#qsub -N $G_NAME.Split_VCF_HF_snps -hold_jid $G_NAME.Hard_Filt -wd $PWD/Split_VCF_Hard_Filt Split_VCF_Hard_Filt/Split_VCF.sh $BASE_DIR/Hard_Filt_VCF/$G_NAME.Hard_filtered_snps.PASS.vcf
+#qsub -N $G_NAME.Split_VCF_HF_indels -hold_jid $G_NAME.Hard_Filt -wd $PWD/Split_VCF_Hard_Filt Split_VCF_Hard_Filt/Split_VCF.sh $BASE_DIR/Hard_Filt_VCF/$G_NAME.Hard_filtered_indels.PASS.vcf
+
 tput bold
 echo " * 16 Ensembl VEP jobs submitted"
 tput sgr0
@@ -152,6 +166,13 @@ qsub -t 1-$N -N $G_NAME.VEP_indels -hold_jid $G_NAME.Split_VCF_indels -wd $PWD/V
 #echo " * 16Mu Ensembl VEP jobs submitted for MuTect output"
 #tput sgr0
 #qsub -t 1-$MU_N -N $G_NAME.VEP_MT2 -hold_jid_ad $G_NAME.Filt_MT2 -wd $PWD/VEP_MT2 $PWD/VEP_MT2/VEP_MT2.sh
+
+#### Optional hard filtering (uncomment to run)
+#tput bold
+#echo " * 16HF Ensembl VEP jobs submitted"
+#tput sgr0
+#qsub -t 1-$N -N $G_NAME.VEP_HF_snps -hold_jid $G_NAME.Split_VCF_HF_snps -wd $PWD/VEP_Hard_Filt $PWD/VEP_Hard_Filt/VEP.sh snps
+#qsub -t 1-$N -N $G_NAME.VEP_HF_indels -hold_jid $G_NAME.Split_VCF_HF_indels -wd $PWD/VEP_Hard_Filt $PWD/VEP_Hard_Filt/VEP.sh indels
 
 echo ""
 tput setaf 2

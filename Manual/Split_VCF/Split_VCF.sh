@@ -7,7 +7,8 @@
 #$ -q all.q,bigmem.q
 
 # Matthew Bashton 2015
-# Runs vcfutils.pl to split a multi sample .vcf file in to all samples, one .vcf file produced for each sample
+# Runs vcfutils.pl to split a multi sample .vcf file in to all samples, one .vcf
+# file produced for each sample.
 
 set -o pipefail
 hostname
