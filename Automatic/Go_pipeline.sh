@@ -26,7 +26,7 @@ echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
 echo " - G_NAME = $G_NAME"
 echo " - MASTER_LIST = $MASTER_LIST"
-echo " - MUTECT2_LIST = $MUTECT2_LIST"
+echo " - MUTECT_LIST = $MUTECT_LIST"
 echo " - PWD = $PWD"
 
 # Determine number of samples in master list
@@ -36,7 +36,7 @@ tput sgr0
 
 # Optional (uncomment for MuTect2)
 # Determine number of pairs in MuTect2 list
-# MU_N=`wc -l $MUTECT2_LIST | cut -d ' ' -f 1`
+# MU_N=`wc -l $MUTECT_LIST | cut -d ' ' -f 1`
 
 #### Preprocessing
 tput bold
