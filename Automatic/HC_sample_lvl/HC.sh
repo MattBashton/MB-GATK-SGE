@@ -33,7 +33,6 @@ B_NAME=`basename $G_NAME.$SGE_TASK_ID.dedup.realigned.recalibrated.bam .bam`
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
 echo " - B_NAME = $B_NAME"
-echo " - SAMP_NAME = $SAMP_NAME"
 echo " - INTERVALS = $INTERVALS"
 echo " - PADDING = $PADDING"
 echo " - PWD = $PWD"

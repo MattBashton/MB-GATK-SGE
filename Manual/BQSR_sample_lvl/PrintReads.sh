@@ -45,9 +45,9 @@ $INTERVALS \
 -o $TMPDIR/$B_NAME.Recalibrated.bam \
 --log_to_file $B_NAME.PrintReads.log
 
-echo "Copying output $TMPDIR/$B_NAME.Recalibrated.* to $PWD"
-/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.Recalibrated.bam $PWD
-/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.Recalibrated.bai $PWD
+echo "Copying output $TMPDIR/$B_NAME.recalibrated.* to $PWD"
+/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.recalibrated.bam $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.recalibrated.bai $PWD
 
 echo "Deleting $TMPDIR/$B_NAME.*"
 rm $TMPDIR/$B_NAME.*
