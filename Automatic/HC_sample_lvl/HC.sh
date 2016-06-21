@@ -29,8 +29,6 @@ date
 source ../GATKsettings.sh
 
 B_NAME=`basename $G_NAME.$SGE_TASK_ID.dedup.realigned.recalibrated.bam .bam`
-#SAMP_NAME=`echo $B_NAME | cut -d'.' -f2`
-SAMP_NAME=$SGE_TASK_ID
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
@@ -56,12 +54,12 @@ $INTERVALS \
 --dbsnp $DBSNP \
 -R $REF \
 --max_alternate_alleles 50 \
--o $TMPDIR/$G_NAME.$SAMP_NAME.HC.g.vcf \
---log_to_file $G_NAME.$SAMP_NAME.HC.log
+-o $TMPDIR/$G_NAME.$SGE_TASK_ID.HC.g.vcf \
+--log_to_file $G_NAME.$SGE_TASK_ID.HC.log
 
-echo "Copying output TMPDIR/$G_NAME.$SAMP_NAME.HC.g.vcf* to $PWD"
-/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.$SAMP_NAME.HC.g.vcf $PWD
-/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.$SAMP_NAME.HC.g.vcf.idx $PWD
+echo "Copying output TMPDIR/$G_NAME.$SGE_TASK_ID.HC.g.vcf* to $PWD"
+/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.$SGE_TASK_ID.HC.g.vcf $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.$SGE_TASK_ID.HC.g.vcf.idx $PWD
 
 echo "Deleting $TMPDIR/$B_NAME.*"
 rm $TMPDIR/$B_NAME.*
