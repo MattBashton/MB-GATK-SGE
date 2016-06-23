@@ -69,6 +69,7 @@ VCFUTILS="/opt/software/bsu/bin/vcfutils.pl"
 VCFANNOTATE="/opt/software/bsu/bin/vcf-annotate"
 VCFTOOLS="/opt/software/bsu/bin/vcftools"
 SAMTOOLS="/opt/software/bsu/bin/samtools"
+BAMQC="/opt/software/bsu/bin/bamqc"
 
 # Perl 5 lib settings needed for vcf-annotate to work, needs path to Vcf.pm to
 # be in PER5LIB path.
@@ -110,6 +111,9 @@ DBSNP="$BUNDLE_DIR/dbsnp_138.b37.vcf"
 DBSNP129="$BUNDLE_DIR/dbsnp_138.b37.excluding_sites_after_129.vcf"
 OMNI="$BUNDLE_DIR/1000G_omni2.5.b37.vcf "
 HAPMAP="$BUNDLE_DIR/hapmap_3.3.b37.vcf"
+
+## BamQC genomes location
+BAMQC_GENOMES="/opt/databases/genomes/BamQC_files/genomes"
 
 ## COSMIC location
 # Currently in same dir as the working/current since tend to change

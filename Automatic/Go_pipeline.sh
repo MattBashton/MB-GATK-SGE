@@ -64,6 +64,12 @@ echo " * 5 Depth of Coverage jobs submitted"
 tput sgr0
 qsub -t 1-$N -N $G_NAME.DofC -hold_jid_ad $G_NAME.MarkDuplicates -wd $PWD/DofC DofC/DofC.sh
 
+### Optional BamQC (uncomment to run)
+#tput bold
+#echo " * 5 BamQC BamQC jobs submitted"
+#tput sgr0
+#qsub -t 1-$N -N $G_NAME.BamQC -hold_jid_ad $G_NAME.MarkDuplicates -wd $PWD/BamQC BamQC/BamQC.sh
+
 tput bold
 echo " * 6 Realignment Target Creation jobs submitted"
 tput sgr0

@@ -89,6 +89,7 @@ The following binaries and resources are required:
 * [Son of Grid Engine](https://arc.liv.ac.uk/trac/SGE)
 * [Burrows-Wheeler Aligner](http://bio-bwa.sourceforge.net/)
 * [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+* [BamQC](https://github.com/s-andrews/BamQC) 
 * [vcfutils.pl](https://github.com/lh3/samtools/blob/master/bcftools/vcfutils.pl)
 * [VCFtools](https://vcftools.github.io/index.html)
 * [Ensembl Variant Effect Predictor](http://www.ensembl.org/info/docs/tools/vep/script/vep_download.html)
