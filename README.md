@@ -10,6 +10,7 @@
 * Indel realignment stage will stay as needed for MuTect1 calls, additionally appears to rescue a few hundred indels per run of exomes so still beneficial.
 * Unbound variable protection now in place, prevents scripts from running if variables are not defined.
 * Added optional Hard Filtration post GenotypeGVCFs, this is useful for targeted panels where conventional VQSR would fail.  Uncomment sections in `Go_pipeline.sh` to run.
+* Added option to run BamQC.
 
 #####May 2016#####
 
