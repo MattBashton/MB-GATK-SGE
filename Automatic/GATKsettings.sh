@@ -44,7 +44,7 @@ umask 077
 module add apps/java/jre-1.8.0_92
 
 #JAVA="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
-JAVA="/opt/software/java/jdk1.8.0_92/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR""
+JAVA="/opt/software/java/jdk1.8.0_92/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
 # MuTect1 needs Java 7
 JAVA7="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
 
