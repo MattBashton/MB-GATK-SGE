@@ -9,7 +9,7 @@ date
 
 echo -e "\n\n - SAMtools flagstat info:\n"
 cd MarkDuplicates
-awk 'BEGIN {print "Run ID\tTotal Reads\tDuplicate Reads \tMapped Reads\tPercent mapped\tMate Pairs\tProperly Paired \tPercent Properly Paired"}; FNR == 1 {printf $1"\t"}; FNR == 2 {printf "%11s", $1"\t"}; FNR == 5 {printf "%13s", $1"\t\t"}; FNR == 6 {printf "%11s", $1"\t"} FNR == 6 {printf "%14s", $5"\t"}; FNR == 8 {printf "%10s", $1"\t"}; FNR == 10 {printf "%14s", $1"\t\t"}; FNR == 10 {printf "%14s", $6"\n"}' *.flagstat.txt
+awk 'BEGIN {print "Run ID\t\tTotal Reads\tDuplicate Reads \tMapped Reads\tPercent mapped\tMate Pairs\tProperly Paired \tPercent Properly Paired"}; FNR == 1 {printf $1"\t"}; FNR == 2 {printf "%11s", $1"\t"}; FNR == 5 {printf "%13s", $1"\t\t"}; FNR == 6 {printf "%11s", $1"\t"} FNR == 6 {printf "%14s", $5"\t"}; FNR == 8 {printf "%10s", $1"\t"}; FNR == 10 {printf "%14s", $1"\t\t"}; FNR == 10 {printf "%14s", $6"\n"}' *.flagstat.txt
 
 echo -e "\n\n - MarkDuplicates, duplication rates:\n"
 awk 'FNR == 8 {printf $1": "}; FNR == 8 {printf "%.2f%%\n", $9*100}' *.metrics.txt | sort -u
