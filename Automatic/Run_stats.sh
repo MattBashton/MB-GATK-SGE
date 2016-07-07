@@ -12,7 +12,7 @@ cd MarkDuplicates
 awk 'BEGIN {print "Run ID\tTotal Reads\tDuplicate Reads \tMapped Reads\tPercent mapped\tMate Pairs\tProperly Paired \tPercent Properly Paired"}; FNR == 1 {printf $1"\t"}; FNR == 2 {printf "%11s", $1"\t"}; FNR == 5 {printf "%13s", $1"\t\t"}; FNR == 6 {printf "%11s", $1"\t"} FNR == 6 {printf "%14s", $5"\t"}; FNR == 8 {printf "%10s", $1"\t"}; FNR == 10 {printf "%14s", $1"\t\t"}; FNR == 10 {printf "%14s", $6"\n"}' *.flagstat.txt
 
 echo -e "\n\n - MarkDuplicates, duplication rates:\n"
-awk 'FNR == 8 {printf $1": "}; FNR == 8 {printf "%.2f%%\n", $8*100}' *.metrics.txt | sort -u
+awk 'FNR == 8 {printf $1": "}; FNR == 8 {printf "%.2f%%\n", $9*100}' *.metrics.txt | sort -u
 cd ..
 
 echo -e "\n\n - Depth of Coverage:\n"
@@ -27,8 +27,9 @@ function count_snps {
 }
 
 echo -e "\n\n - SNP counts\n"
+# if output in Split_VCF_Hard_Filt then change line below
 cd Split_VCF
-for VCF in *.snps.*.vcf
+for VCF in *snps.*.vcf
 do
     count_snps $VCF
 done
@@ -40,7 +41,7 @@ function count_indels {
 }
 
 echo -e "\n\n - Indel counts\n"
-for VCF in *.indels.*.vcf
+for VCF in *indels.*.vcf
 do
   count_indels $VCF
 done
