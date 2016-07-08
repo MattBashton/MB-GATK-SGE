@@ -46,7 +46,7 @@ echo "Applying filter to raw indel call set"
 --variant $TMPDIR/$B_NAME.vcf \
 -R $REF \
 --out $TMPDIR/$B_NAME.UG_filtered_indels.vcf \
---filterExpression "QD < 2.0" --filterName "QD"
+--filterExpression "QD < 2.0" --filterName "QD" \
 --filterExpression "ReadPosRankSum < -20.0" --filterName "ReadPosRankSum" \
 --filterExpression "FS > 200.0" --filterName "FS" \
 --filterExpression "SOR > 10.0" --filterName "SOR" \
