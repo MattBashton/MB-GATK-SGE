@@ -40,7 +40,7 @@ echo "Applying filter to raw SNP call set"
 --variant $TMPDIR/$B_NAME.vcf \
 -R $REF \
 --out $TMPDIR/$B_NAME.UG_filtered_snps.vcf \
---filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || HaplotypeScore > 13.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0" \
+--filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || HaplotypeScore > 13.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0 || SOR > 4.0" \
 --filterName "GATK_BP_snp_filter" \
 --log_to_file $B_NAME.UG_VariantFiltration_snps.vcf.log
 

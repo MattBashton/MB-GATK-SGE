@@ -10,7 +10,8 @@
 # Applies hard filters from GATK best practices
 # https://www.broadinstitute.org/gatk/guide/article?id=2806 to call set, this
 # is useful when VQSR has failed owing to not enough bad variation as is often
-# the case with targeted panels.
+# the case with targeted panels. Updated with SOR filters from:
+# https://www.broadinstitute.org/gatk/guide/article?id=3225
 
 set -o pipefail
 hostname
@@ -48,7 +49,7 @@ echo "2) Applying filter to raw SNP call set"
 --variant $TMPDIR/$G_NAME.Hard_snps.vcf \
 -R $REF \
 --out $TMPDIR/$G_NAME.Hard_filtered_snps.vcf \
---filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0" \
+--filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0 || SOR > 4" \
 --filterName "GATK_BP_snp_filter" \
 --log_to_file $G_NAME.Hard_VariantFiltration_snps.vcf.log
 
@@ -82,7 +83,7 @@ echo "5) Applying filter to raw indel call set"
 --variant $TMPDIR/$G_NAME.Hard_indels.vcf \
 -R $REF \
 --out $TMPDIR/$G_NAME.Hard_filtered_indels.vcf \
---filterExpression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" \
+--filterExpression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0 || SOR > 10.0" \
 --filterName "GATK_BP_indel_filter" \
 --log_to_file $G_NAME.Hard_VariantFiltration_indel.vcf.log
 

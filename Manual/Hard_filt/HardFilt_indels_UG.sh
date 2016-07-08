@@ -9,7 +9,8 @@
 # Matthew Bashton 2012-2015
 # Runs Select Variants to filter with pre set cut-offs, this script is for UG
 # indel data.  Note will get errors for undefined variables this is normal not
-# all sites have all variables depending on zygosity.
+# all sites have all variables depending on zygosity.  Updated with SOR filters from:
+# https://www.broadinstitute.org/gatk/guide/article?id=3225
 
 set -o pipefail
 hostname
@@ -40,7 +41,7 @@ echo "Applying filter to raw indel call set"
 --variant $TMPDIR/$B_NAME.vcf \
 -R $REF \
 --out $TMPDIR/$B_NAME.UG_filtered_indels.vcf \
---filterExpression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" \
+--filterExpression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0 || SOR > 10.0" \
 --filterName "GATK_BP_indel_filter" \
 --log_to_file $B_NAME.UG_VariantFiltration_indels.vcf.log
 
