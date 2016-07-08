@@ -9,7 +9,13 @@
 # Matthew Bashton 2012-2015
 # Runs Select Variants to filter with pre set cut-offs, this script is for UG
 # SNP data.  Note will get errors for undefined variables this is normal not all
-# sites have all variables depending on zygosity.
+# sites have all variables depending on zygosity.  Updated with SOR filters from:
+# https://www.broadinstitute.org/gatk/guide/article?id=3225
+
+# Modified to prevent missing values from PASSing variants by splitting each
+# filter so that they can individually fail rather than a single failing
+# subexpression in JEXL causing a pass.  See:
+# http://gatkforums.broadinstitute.org/gatk/discussion/2334/undefined-variable-variantfiltration
 
 set -o pipefail
 hostname
@@ -40,8 +46,13 @@ echo "Applying filter to raw SNP call set"
 --variant $TMPDIR/$B_NAME.vcf \
 -R $REF \
 --out $TMPDIR/$B_NAME.UG_filtered_snps.vcf \
---filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || HaplotypeScore > 13.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0 || SOR > 4.0" \
---filterName "GATK_BP_snp_filter" \
+--filterExpression "QD < 2.0"  --filterName "QD" \
+--filterExpression "MQ < 40.0" --filterName "MQ" \
+--filterExpression "FS > 60.0" --filterName "FS" \
+--filterExpression "SOR > 4.0" --filterName "SOR" \
+--filterExpression "MQRankSum < -12.5" --filterName "MQRankSum" \
+--filterExpression "ReadPosRankSum < -8.0" --filterName "ReadPosRankSum" \
+--filterExpression "HaplotypeScore > 13.0" --filterName "HaplotypeScore" \
 --log_to_file $B_NAME.UG_VariantFiltration_snps.vcf.log
 
 echo "Extracting PASSing variants"

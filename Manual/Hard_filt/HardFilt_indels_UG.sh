@@ -12,6 +12,11 @@
 # all sites have all variables depending on zygosity.  Updated with SOR filters from:
 # https://www.broadinstitute.org/gatk/guide/article?id=3225
 
+# Modified to prevent missing values from PASSing variants by splitting each
+# filter so that they can individually fail rather than a single failing
+# subexpression in JEXL causing a pass.  See:
+# http://gatkforums.broadinstitute.org/gatk/discussion/2334/undefined-variable-variantfiltration
+
 set -o pipefail
 hostname
 date
@@ -41,8 +46,10 @@ echo "Applying filter to raw indel call set"
 --variant $TMPDIR/$B_NAME.vcf \
 -R $REF \
 --out $TMPDIR/$B_NAME.UG_filtered_indels.vcf \
---filterExpression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0 || SOR > 10.0" \
---filterName "GATK_BP_indel_filter" \
+--filterExpression "QD < 2.0" --filterName "QD"
+--filterExpression "ReadPosRankSum < -20.0" --filterName "ReadPosRankSum" \
+--filterExpression "FS > 200.0" --filterName "FS" \
+--filterExpression "SOR > 10.0" --filterName "SOR" \
 --log_to_file $B_NAME.UG_VariantFiltration_indels.vcf.log
 
 echo "Extracting PASSing variants"
