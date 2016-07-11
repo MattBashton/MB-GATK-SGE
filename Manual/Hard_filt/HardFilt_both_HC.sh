@@ -112,9 +112,9 @@ echo "6) Extracting PASSing indels"
 --log_to_file $B_NAME.SelectRecaledVariants.HC_filtered_indels.PASS.log
 
 
-echo "Copying back output $TMPDIR/$B_NAME.HC_filtered_*.PASS.vcf and $TMPDIR/$B_NAME.HC_filtered_*.PASS.vcf.idx to $PWD"
-/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.HC_filtered_*.PASS.vcf $PWD
-/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.HC_filtered_*.PASS.vcf.idx $PWD
+echo "Copying back output $TMPDIR/$B_NAME.HC_filtered_*vcf and $TMPDIR/$B_NAME.HC_filtered_*idx to $PWD"
+/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.HC_filtered_*vcf $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.HC_filtered_*idx $PWD
 
 echo "Deleting $TMPDIR/$B_NAME*"
 rm $TMPDIR/$B_NAME*
