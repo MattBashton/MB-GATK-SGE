@@ -64,6 +64,7 @@ $INTERVALS \
 --input_file:normal $TMPDIR/$B_NAME_N.bam \
 --input_file:tumor $TMPDIR/$B_NAME_T.bam \
 --out $TMPDIR/$B_NAME_N.vs.$B_NAME_T.vcf \
+--bamOutput $TMPDIR/$B_NAME_N.vs.$B_NAME_T.bam \
 --log_to_file $TMPDIR/$B_NAME_N.vs.$B_NAME_T.log
 
 echo "Copying $TMPDIR/$B_NAME_N.vs.$B_NAME_T.* to $PWD"

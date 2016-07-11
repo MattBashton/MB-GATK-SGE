@@ -54,11 +54,16 @@ $INTERVALS \
 -R $REF \
 --max_alternate_alleles 50 \
 -o $TMPDIR/$G_NAME.$SGE_TASK_ID.HC.g.vcf \
+--bamOutput $TMPDIR/$G_NAME.$SGE_TASK_ID.HC.bam \
 --log_to_file $G_NAME.$SGE_TASK_ID.HC.log
 
 echo "Copying output TMPDIR/$G_NAME.$SGE_TASK_ID.HC.g.vcf* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.$SGE_TASK_ID.HC.g.vcf $PWD
 /usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.$SGE_TASK_ID.HC.g.vcf.idx $PWD
+
+echo "Copying output TMPDIR/$G_NAME.$SGE_TASK_ID.HC.ba* to $PWD"
+/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.$SGE_TASK_ID.HC.bam $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.$SGE_TASK_ID.HC.bai $PWD
 
 echo "Deleting $TMPDIR/$B_NAME.*"
 rm $TMPDIR/$B_NAME.*

@@ -69,10 +69,14 @@ $INTERVALS \
 --input_file:normal $TMPDIR/$N_FILE.bam \
 --input_file:tumor $TMPDIR/$T_FILE.bam \
 --out $TMPDIR/$OUTPUT.vcf \
+--bamOutput $TMPDIR/$OUTPUT.bam \
 --log_to_file $TMPDIR/$OUTPUT.log
 
 echo "Copying $TMPDIR/$OUTPUT.* to $PWD"
-/usr/bin/time --verbose cp $TMPDIR/$OUTPUT.* $PWD
+/usr/bin/time --verbose cp $TMPDIR/$OUTPUT.vcf $PWD
+/usr/bin/time --verbose cp $TMPDIR/$OUTPUT.vcf.idx $PWD
+/usr/bin/time --verbose cp $TMPDIR/$OUTPUT.bam $PWD
+/usr/bin/time --verbose cp $TMPDIR/$OUTPUT.bai $PWD
 
 echo "Deleting $TMPDIR/$N_FILE.*"
 rm $TMPDIR/$N_FILE.*

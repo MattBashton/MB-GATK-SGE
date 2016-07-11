@@ -59,11 +59,16 @@ $INTERVALS \
 -R $REF \
 --max_alternate_alleles 50 \
 -o $TMPDIR/$SAMP_NAME.HC.g.vcf \
+--bamOutput $TMPDIR/$SAMP_NAME.HC.bam \
 --log_to_file $SAMP_NAME.HC.log
 
 echo "Copying output TMPDIR/$SAMP_NAME.HC.g.vcf* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$SAMP_NAME.HC.g.vcf $PWD
 /usr/bin/time --verbose cp -v $TMPDIR/$SAMP_NAME.HC.g.vcf.idx $PWD
+
+echo "Copying output TMPDIR/$SAMP_NAME.HC.ba* to $PWD"
+/usr/bin/time --verbose cp -v $TMPDIR/$SAMP_NAME.HC.bam $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$SAMP_NAME.HC.bai $PWD
 
 echo "Deleting $TMPDIR/$B_NAME.*"
 rm $TMPDIR/$B_NAME.*
