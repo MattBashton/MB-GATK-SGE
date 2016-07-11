@@ -28,8 +28,8 @@ function count_snps {
 
 echo -e "\n\n - SNP counts\n"
 
-cd Split_VCF
-for VCF in *snps.*.vcf
+cd Split_VCF_Hard_Filt
+for VCF in *_snps.*.vcf
 do
     count_snps $VCF
 done
@@ -41,7 +41,7 @@ function count_indels {
 }
 
 echo -e "\n\n - Indel counts\n"
-for VCF in *indels.*.vcf
+for VCF in *_indels.*.vcf
 do
   count_indels $VCF
 done
