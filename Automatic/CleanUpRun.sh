@@ -1,6 +1,6 @@
 B#!/bin/bash -e
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 
 # A script to clean up the output following successful completion of the
 # automated pipeline.

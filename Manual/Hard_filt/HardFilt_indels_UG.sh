@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs Select Variants to filter with pre set cut-offs, this script is for UG
 # indel data.  Note will get errors for undefined variables this is normal not
 # all sites have all variables depending on zygosity.  Updated with SOR filters from:

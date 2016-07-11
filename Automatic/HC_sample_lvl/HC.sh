@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs the HC against bam file passed in from command line.
 # New vectorised Pair-HMM engine using AVX disables parallelisation so -pe smp
 # set to 1.  5 days run time allocated, change if need be.
