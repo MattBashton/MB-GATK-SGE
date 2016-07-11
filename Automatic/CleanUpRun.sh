@@ -29,7 +29,7 @@ then
     cd ..
     echo " - Deleting duplicate marked bam"
     cd MarkDuplicates
-    rm *.bam
+    rm *.ba*
     cd ..
     echo " - Deleting realigned bam"
     cd 1stRealn
