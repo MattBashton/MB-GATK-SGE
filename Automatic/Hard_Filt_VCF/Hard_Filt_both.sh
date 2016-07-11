@@ -36,6 +36,7 @@ echo "Copying input $BASE_DIR/GenotypeGVCFs/$G_NAME.HC_genotyped.vcf* to $TMPDIR
 /usr/bin/time --verbose cp -v $BASE_DIR/GenotypeGVCFs/$G_NAME.HC_genotyped.vcf $TMPDIR
 /usr/bin/time --verbose cp -v $BASE_DIR/GenotypeGVCFs/$G_NAME.HC_genotyped.vcf.idx $TMPDIR
 
+
 echo "1) SNP extraction from VCF"
 /usr/bin/time --verbose $JAVA -Xmx4g -jar $GATK \
 -T SelectVariants \
