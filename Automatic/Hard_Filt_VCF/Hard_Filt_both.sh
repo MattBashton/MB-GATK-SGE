@@ -111,10 +111,10 @@ echo "6) Extracting PASSing indels"
 
 
 echo "Copying back output $TMPDIR/$G_NAME.Hard_filtered_*.vc* to $PWD"
-/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.Hard_filtered_snps.PASS.vcf $PWD
-/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.Hard_filtered_snps.PASS.vcf.idx $PWD
-/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.Hard_filtered_indels.PASS.vcf $PWD
-/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.Hard_filtered_indels.PASS.vcf.idx $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.Hard_filtered_snps.*vcf $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.Hard_filtered_snps.*idx $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.Hard_filtered_indels.*vcf $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$G_NAME.Hard_filtered_indels.*idx $PWD
 
 echo "Deleting $TMPDIR/$G_NAME*"
 rm $TMPDIR/$G_NAME*
