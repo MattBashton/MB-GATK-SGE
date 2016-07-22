@@ -169,7 +169,9 @@ These set of scripts originally started life during my time working at the [Bioi
 
 ![INSTINCT logo](https://raw.githubusercontent.com/MattBashton/MB-GATK-SGE/master/Logos/INSTINCT.png) 
 ![The Brain Tumour Charity logo](https://raw.githubusercontent.com/MattBashton/MB-GATK-SGE/master/Logos/BrainTumourCharity.png) 
-![Great Ormond Street Children’s Charity logo](https://github.com/MattBashton/MB-GATK-SGE/blob/master/Logos/GOSH.png)
+![Great Ormond Street Children’s Charity logo](https://raw.githubusercontent.com/MattBashton/MB-GATK-SGE/master/Logos/GOSH.gif) 
+![ Children with Cancer UK logo](https://raw.githubusercontent.com/MattBashton/MB-GATK-SGE/master/Logos/CWC.png) 
+
 
 ## What this is not ##
 This set of scripts, and comments in said scripts, are in no way a replacement for reading the excellent and extensive [GATK documentation](https://www.broadinstitute.org/gatk/guide/), understanding how it works, and choosing appropriate parameters for your experiment.  Choices I've made here reflect my usage case with exoms and my interpretation of the GATK documentation / past and present best practices workflow documentation, your usage case and opinions may differ.  Nor as yet is this a robust error tolerant pipeline, you will need to check things ran correctly (`Audit_run.sh` is provided for the automated pipeline).  This system is not "foolproof and incapable of error" you still need some bioinformatics skills.
