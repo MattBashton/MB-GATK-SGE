@@ -164,5 +164,10 @@ I had planed to re-implement this whole workflow in Queue, time permitting, but 
 
 For whole genome analysis speedups can be gained easily in the HaplotypeCaller stage by parallelising per chromosome this can be done without the need for Queue - implementation of this is under way.  However, if run-time is still an issue, Queue/Cromwell may have to be used to scatter gather various stages of analysis including realignment and the HaplotypeCaller.
 
+## Funding ##
+These set of scripts originally started life during my time working at the [Bioinformatics Support Unit (BSU)](http://bsu.ncl.ac.uk/) between 2012-2014.  During October 2014 - July 2016 this work further developed into an automated pipe-line and was funded as part of the INSTINCT network, co-funded by The Brain Tumour Charity, Great Ormond Street Children’s Charity, and Children with Cancer UK (grant 16/193).
+
+
+
 ## What this is not ##
 This set of scripts, and comments in said scripts, are in no way a replacement for reading the excellent and extensive [GATK documentation](https://www.broadinstitute.org/gatk/guide/), understanding how it works, and choosing appropriate parameters for your experiment.  Choices I've made here reflect my usage case with exoms and my interpretation of the GATK documentation / past and present best practices workflow documentation, your usage case and opinions may differ.  Nor as yet is this a robust error tolerant pipeline, you will need to check things ran correctly (`Audit_run.sh` is provided for the automated pipeline).  This system is not "foolproof and incapable of error" you still need some bioinformatics skills.
