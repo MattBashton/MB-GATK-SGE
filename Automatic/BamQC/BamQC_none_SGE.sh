@@ -18,6 +18,7 @@ BAMQC_GENOMES="/opt/databases/genomes/BamQC_files/genomes/"
 # at once.  Extra sample can be analysed in parallel per thread given, memory
 # usage is approx 250MB per thread.
 CORES="1"
+TMP="/localscratch/"
 
 INPUT=$@
 
@@ -26,7 +27,7 @@ echo " - INPUT = $INPUT"
 echo " - PWD = $PWD"
 
 echo "Running BamQC"
-/usr/bin/time --verbose $BAMQC -s "Homo sapiens" -t $CORES -a GRCh37 -g $BAMQC_GENOMES --noextract -o $PWD -d /tmp/ $INPUT
+/usr/bin/time --verbose $BAMQC -s "Homo sapiens" -t $CORES -a GRCh37 -g $BAMQC_GENOMES --noextract -o $PWD -d $TMP $INPUT
 
 date
 echo "END"
