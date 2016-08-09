@@ -16,7 +16,7 @@ date
 source ../GATKsettings.sh
 
 # Get right version of Java (FMS cluster specific)
-module unload apps/java/jre-1.8.0_25
+module unload apps/java/jre-1.8.0_92
 module add apps/java/jre-1.7.0_75
 
 # Get info for pair using task id from array job

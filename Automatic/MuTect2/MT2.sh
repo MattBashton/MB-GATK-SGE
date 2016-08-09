@@ -52,10 +52,12 @@ echo " - PADDING = $PADDING"
 echo " - OUTPUT = $OUTPUT"
 
 echo "Copying normal input $INPUT_DIR/$N_FILE.ba* to $TMPDIR/"
-/usr/bin/time --verbose cp -v $INPUT_DIR/$N_FILE.ba* $TMPDIR
+/usr/bin/time --verbose cp -v $INPUT_DIR/$N_FILE.bam $TMPDIR
+/usr/bin/time --verbose cp -v $INPUT_DIR/$N_FILE.bai $TMPDIR
 
 echo "Copying tumour input $INPUT_DIR/$T_FILE.ba* to $TMPDIR/"
-/usr/bin/time --verbose cp -v $INPUT_DIR/$T_FILE.ba* $TMPDIR
+/usr/bin/time --verbose cp -v $INPUT_DIR/$T_FILE.bam $TMPDIR
+/usr/bin/time --verbose cp -v $INPUT_DIR/$T_FILE.bai $TMPDIR
 
 echo "Running MuTect2 on normal:$N_FILE.bam vs tumor:$T_FILE.bam"
 /usr/bin/time --verbose $JAVA -Xmx10g -jar $GATK \
