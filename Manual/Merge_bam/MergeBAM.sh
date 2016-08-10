@@ -56,11 +56,12 @@ cd $TMPDIR
 -jar $PICARD MergeSamFiles \
 $BAM_LIST \
 OUTPUT=Dedup.Realigned.Merged.bam \
+TMP_DIR = $TMPDIR \
 MAX_RECORDS_IN_RAM=8000000 \
 USE_THREADING=true \
 SORT_ORDER=coordinate \
 CREATE_INDEX=true \
-VALIDATION_STRINGENCY=LENIENT
+VALIDATION_STRINGENCY=STRICT
 cd $DEST
 
 echo "Copying back merged BAM and index output to $DEST"

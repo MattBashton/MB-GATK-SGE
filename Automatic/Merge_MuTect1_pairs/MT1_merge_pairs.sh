@@ -64,11 +64,12 @@ cd $TMPDIR
 INPUT=$N_FILE.bam \
 INPUT=$T_FILE.bam \
 OUTPUT=$OUTPUT.dedup.realigned.merged.bam \
+TMP_DIR=$TMPDIR \
 MAX_RECORDS_IN_RAM=8000000 \
 USE_THREADING=true \
 SORT_ORDER=coordinate \
 CREATE_INDEX=true \
-VALIDATION_STRINGENCY=LENIENT
+VALIDATION_STRINGENCY=STRICT
 cd $DEST
 
 echo "Copying $TMPDIR/$OUTPUT.dedup.realigned.merged.* to $PWD"
