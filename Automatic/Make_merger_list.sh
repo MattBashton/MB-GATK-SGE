@@ -17,6 +17,6 @@ cut -d$'\t' -f 2 master_list.txt | grep -oP 'SM:\K\S+(?=\\tPL)' | uniq > sample_
 
 # Now make our list
 count=1
-cat sample_IDs.txt | while read -r line; do echo -ne "$count\t";  grep -P 'SM:\K'"$line"'(?=\\tPL)' master_list.txt | grep -oP '^\S+' | tr '\n' ' '; echo " " ; ((count++)); done > merger_list.txt
+cat sample_IDs.txt | while read -r line; do echo -ne "$count\t";  grep -P 'SM:\K'"$line"'(?=\\tPL)' master_list.txt | grep -oP '^\S+' | tr '\n' ',' | sed 's/,$//'; ((count++)); echo ""; done > merger_list.txt
 
 echo "Done"
