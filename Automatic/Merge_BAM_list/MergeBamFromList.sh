@@ -15,6 +15,10 @@
 # be run on the new merged set.  Note master_list.txt needs to be updated
 # accordingly where the first column should correspond to the $SGE_TASK_ID.
 
+# The script Make_merger_list.sh found in the base dir
+# can generate the input for this script using SM: field for the basis of 
+# merging.
+
 set -o pipefail
 hostname
 date
