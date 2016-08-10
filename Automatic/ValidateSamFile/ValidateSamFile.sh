@@ -2,7 +2,7 @@
 #$ -cwd -V
 #$ -pe smp 2
 #$ -l h_rt=24:00:00
-#$ -l h_vmem=10G
+#$ -l h_vmem=8G
 #$ -R y
 #$ -q all.q,bigmem.q
 
@@ -27,7 +27,7 @@ echo "Copying input file $INPUT_DIR/$G_NAME.$SGE_TASK_ID.ba* to $TMPDIR/"
 /usr/bin/time --verbose cp -v $INPUT_DIR/$G_NAME.$SGE_TASK_ID.bai $TMPDIR
 
 echo "Running Picard ValidateSamFile on $G_NAME.$SGE_TASK_ID.dedup.realigned.recalibrated.bam"
-/usr/bin/time --verbose $JAVA -Xmx6g -XX:ParallelGCThreads=2 \
+/usr/bin/time --verbose $JAVA -Xmx4g -XX:ParallelGCThreads=2 \
 -jar $PICARD ValidateSamFile \
 INPUT=$TMPDIR/$G_NAME.$SGE_TASK_ID.dedup.realigned.recalibrated.bam \
 OUTPUT=$TMPDIR/$G_NAME.$SGE_TASK_ID.ValidateSamFile.txt \
