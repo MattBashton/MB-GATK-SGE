@@ -50,7 +50,7 @@ do
     /usr/bin/time --verbose cp -v $BAM_DIR/$B_NAME.bai $TMPDIR
 done
 
-echo "Running Picard to merge BAM list"
+echo "Running Picard to merge BAM list: $BAM_LIST"
 cd $TMPDIR
 /usr/bin/time --verbose $JAVA -Xmx4g -XX:ParallelGCThreads=2 \
 -jar $PICARD MergeSamFiles \

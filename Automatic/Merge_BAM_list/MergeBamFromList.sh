@@ -76,7 +76,7 @@ do
     /usr/bin/time --verbose cp -v $INPUT_DIR/$IN_G_NAME.$x.bai $TMPDIR
 done
 
-echo "Running Picard MergeSamFiles on INPUT=$INPUT and saving to $OUTPUT_DIR/$OUTPUT.bam"
+echo "Running Picard MergeSamFiles on $INPUT and saving to $OUTPUT_DIR/$OUTPUT.bam"
 cd $TMPDIR
 /usr/bin/time --verbose $JAVA -Xmx4g -XX:ParallelGCThreads=2 \
 -jar $PICARD MergeSamFiles \
