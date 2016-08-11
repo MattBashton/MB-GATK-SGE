@@ -62,7 +62,7 @@ PICARD="/opt/software/bsu/bin/picard.jar"
 BWA="/opt/software/bsu/bin/bwa"
 # Since more than one version of muTect always place the one I'm using in same
 # dir as analysis
-MUTECT1="mutect-1.1.7.jar"
+MUTECT1="mutect-1.1.7.jar --disable_auto_index_creation_and_locking_when_reading_rods"
 FASTQC="/opt/software/bsu/bin/fastqc"
 VCFUTILS="/opt/software/bsu/bin/vcfutils.pl"
 VCFANNOTATE="/opt/software/bsu/bin/vcf-annotate"
