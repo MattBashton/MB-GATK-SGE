@@ -61,9 +61,9 @@ echo "Running Picard MergeSamFiles on normal:$N_FILE.bam and tumor:$T_FILE.bam"
 cd $TMPDIR
 /usr/bin/time --verbose $JAVA -Xmx4g -XX:ParallelGCThreads=2 \
 -jar $PICARD MergeSamFiles \
-INPUT=$N_FILE.bam \
-INPUT=$T_FILE.bam \
-OUTPUT=$OUTPUT.dedup.realigned.merged.bam \
+INPUT=$TMPDIR/$N_FILE.bam \
+INPUT=$TMPDIR/$T_FILE.bam \
+OUTPUT=$TMPDIR/$OUTPUT.dedup.realigned.merged.bam \
 TMP_DIR=$TMPDIR \
 MAX_RECORDS_IN_RAM=8000000 \
 USE_THREADING=true \

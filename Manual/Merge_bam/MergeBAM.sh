@@ -55,7 +55,7 @@ cd $TMPDIR
 /usr/bin/time --verbose $JAVA -Xmx4g -XX:ParallelGCThreads=2 \
 -jar $PICARD MergeSamFiles \
 $BAM_LIST \
-OUTPUT=Dedup.Realigned.Merged.bam \
+OUTPUT=$TMPDIR/Dedup.Realigned.Merged.bam \
 TMP_DIR = $TMPDIR \
 MAX_RECORDS_IN_RAM=8000000 \
 USE_THREADING=true \
