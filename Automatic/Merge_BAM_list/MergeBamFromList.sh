@@ -8,15 +8,17 @@
 
 # Matthew Bashton 2012-2016
 # Runs Picard MergeSamFiles in automated pipeline works on merger_list.txt
-# this is a tab delimited file, the first column is a comma separated list of
-# input run numbers such as 1,2 which expand and correspond to
-# $G_NAME.SGE_TASK_ID.bam and a second column which corresponds to the new
-# $SGE_TASK_ID or run ID of the merged Bam file such that an array job can
-# be run on the new merged set.  Note master_list.txt needs to be updated
-# accordingly where the first column should correspond to the $SGE_TASK_ID.
+# this is a tab delimited file, the first corresponds to the new run ID of the
+# merged Bam file such that an array jobs can be run on the new merged set.
+# The second column is a comma separated list of exisitng input run numbers
+# such as 1,2 to be merged, these expand and correspond to the
+# $G_NAME.SGE_TASK_ID.bam input files, numbers here tally
+# with the run ID of the oringal master_list.txt file.  Note master_list.txt
+# needs to be updated accordingly where the first column should correspond to
+# the new run is in the first column which will be the same as $SGE_TASK_ID.
 
 # The script Make_merger_list.sh found in the base dir
-# can generate the input for this script using SM: field for the basis of 
+# can generate the input for this script using SM: field for the basis of
 # merging.
 
 set -o pipefail
@@ -31,8 +33,8 @@ MERGE_LIST="../merger_list.txt"
 # Get info for pair using task id from array job
 LINE=`awk "NR==$SGE_TASK_ID" $MERGE_LIST`
 set $LINE
-TOMERGE=$1
-NEW_RUN_ID=$2
+TOMERGE=$2
+NEW_RUN_ID=$1
 DEST=$PWD
 
 # Input file path
