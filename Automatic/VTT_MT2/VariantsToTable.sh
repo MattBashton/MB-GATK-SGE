@@ -54,10 +54,10 @@ echo "Running VariantsToTable on $INPUT"
 -GF GT \
 -GF AD \
 -GF AF \
--o $TMPDIR/$INPUT.tab
+-o $TMPDIR/$INPUT.txt
 
-echo "Copying $TMPDIR/$INPUT.tab to $PWD"
-/usr/bin/time --verbose cp -v $TMPDIR/$INPUT.tab $PWD
+echo "Copying $TMPDIR/$INPUT.txt to $PWD"
+/usr/bin/time --verbose cp -v $TMPDIR/$INPUT.txt $PWD
 
 echo "Deleting $TMPDIR/$INPUT.*"
 rm $TMPDIR/$INPUT.*
