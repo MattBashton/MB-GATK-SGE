@@ -4,7 +4,7 @@
 # Runs GATK pipeline as a series of array jobs, for most stages each array job
 # will depend on its counterpart in the previous job array using -hold_jid_ad
 tput bold
-echo "Matt Basthon 2012-2015"
+echo "Matt Basthon 2012-2016"
 echo -e "Running GATK exome pipeline\n"
 tput sgr0
 
