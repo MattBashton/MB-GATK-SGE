@@ -62,7 +62,7 @@ export PERL5LIB
 
 ## Ensembl VEP cache location, note to improve performance this will be copied
 # to $TMPDIR on the start of each VEP job.
-GLOBAL_VEP_CACHE="/opt/databases/ensembl-tools/ensembl-tools-83/VEP"
+GLOBAL_VEP_CACHE="/opt/databases/ensembl-tools/ensembl-tools-86/VEP"
 
 ## Intervals
 # .bed file with the regions covered for exome sequencing, -L is included here

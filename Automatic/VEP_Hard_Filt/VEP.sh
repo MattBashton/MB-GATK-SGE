@@ -15,8 +15,8 @@
 # by streaming zcat of .gz files so rather suboptimal for cluster.
 
 module add apps/perl
-module add apps/samtools/1.3
-module add apps/VEP/v83
+module add apps/samtools/1.3.1
+module add apps/VEP/v86
 
 set -o pipefail
 hostname
@@ -39,7 +39,7 @@ echo "Copying input $VCF to $TMPDIR/"
 /usr/bin/time --verbose cp -v $VCF $TMPDIR
 
 echo "Creating VEP cache dirs on local scratch in $TMPDIR"
-# Note just using 83_GRCh37 this will need to change from release to release  / organism / reference
+# Note just using 86_GRCh37 this will need to change from release to release  / organism / reference
 mkdir $TMPDIR/vep_cache
 
 echo "Copying VEP cache: $GLOBAL_VEP_CACHE to $TMPDIR/vep_cache"
@@ -61,12 +61,9 @@ echo "Running VEP on $TMPDIR/$B_NAME.vcf"
 --port 3337 \
 --everything \
 --force_overwrite \
---pubmed \
 --maf_exac \
---variant_class \
---regulatory \
---fields Uploaded_variation,Location,Allele,Gene,Feature,Feature_type,Consequence,cDNA_position,CDS_position,Protein_position,Amino_acids,Codons,Existing_variation,IMPACT,VARIANT_CLASS,DISTANCE,STRAND,SYMBOL,SYMBOL_SOURCE,HGNC_ID,BIOTYPE,CANONICAL,TSL,CCDS,ENSP,SWISSPROT,TREMBL,UNIPARC,SIFT,PolyPhen,MOTIF_NAME,MOTIF_POS,HIGH_INF_POS,MOTIF_SCORE_CHANGE,CELL_TYPE,EXON,INTRON,DOMAINS,HGVSc,HGVSp,GMAF,AFR_MAF,AMR_MAF,ASN_MAF,EAS_MAF,EUR_MAF,SAS_MAF,AA_MAF,EA_MAF,ExAC_MAF,ExAC_Adj_MAF,ExAC_AFR_MAF,ExAC_AMR_MAF,ExAC_EAS_MAF,ExAC_FIN_MAF,ExAC_NFE_MAF,ExAC_OTH_MAF,ExAC_SAS_MAF,CLIN_SIG,SOMATIC,PHENO,GENE_PHENO,PUBMED,MOTIF_NAME,MOTIF_POS,HIGH_INF_POS,MOTIF_SCORE_CHANGE,PICK \
 --html \
+--tab \
 -o $TMPDIR/$B_NAME.txt \
 --dir $TMPDIR/vep_cache/ \
 --buffer_size 25000 \
