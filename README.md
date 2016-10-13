@@ -2,6 +2,10 @@
 
 ## Updates ##
 
+#####October 2016#####
+* Moved to Ensembl VEP v86 using new `--tab` output which separates some perviously merged fields.
+* Added various utility scripts `RemoveDuplicates.sh`, `SplitBamByRG.sh`, `MergeBamFromList.sh`, `CollectInsertSizeMetrics.sh`, `ValidateSamFile.sh`.
+
 #####June 2016#####
 
 * Moved to and tested with GATK 3.6 and Java 1.8 (JVM/SoGE required memory increase in some instances).
