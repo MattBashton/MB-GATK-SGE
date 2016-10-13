@@ -44,7 +44,7 @@ echo " - DEST = $DEST"
 echo "Copying input *.bam and *.bai to $TMPDIR"
 for x in $BAMS
 do
-    B_NAME=`basename $x .bam`
+    B_NAME=$(basename $x .bam)
     echo "Copying $BAM_DIR/$B_NAME.bam to $TMPDIR"
     /usr/bin/time --verbose cp -v $BAM_DIR/$B_NAME.bam $TMPDIR
     /usr/bin/time --verbose cp -v $BAM_DIR/$B_NAME.bai $TMPDIR

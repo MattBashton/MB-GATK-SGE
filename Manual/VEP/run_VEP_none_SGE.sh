@@ -12,7 +12,7 @@ echo "Creating output dir $2"
 mkdir -p $2
 
 # Get sample names
-list=(`ls -1 $1/*.vcf`)
+list=( $(ls -1 $1/*.vcf) )
 for i in ${list[@]}
 do
     echo "*** Working on $i  ***"

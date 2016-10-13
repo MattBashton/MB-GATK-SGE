@@ -26,7 +26,6 @@ for x in $VCFS
 do
     SAMP_NAME=$(basename $x)
     TMP=$(echo $SAMP_NAME | perl -ne '/^(\S+)$/; print "--variant $1"')
-    #TMP="`echo \"$SAMP_NAME\" | sed -e 's/^/ --variant &/g'`"
     VCF_LIST="$VCF_LIST $TMP"
 done
 
