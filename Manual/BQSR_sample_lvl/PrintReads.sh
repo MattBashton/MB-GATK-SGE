@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs PrintReads to apply BQSR needs an input .bam to recal and the
 # Recal_data.grp file.  Using -L optionally in $INTERVALS to remove off target
 # reads as we don't call variants on these later.
@@ -17,8 +17,8 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $1 .bam`
-D_NAME=`dirname $1`
+B_NAME=$(basename $1 .bam)
+D_NAME=$(dirname $1)
 B_PATH_NAME=$D_NAME/$B_NAME
 
 echo "** Variables **"

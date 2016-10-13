@@ -20,7 +20,7 @@ module unload apps/java/jre-1.8.0_92
 module add apps/java/jre-1.7.0_75
 
 # Get info for pair using task id from array job
-LINE=`awk "NR==$SGE_TASK_ID" $MUTECT_LIST`
+LINE=$(awk "NR==$SGE_TASK_ID" $MUTECT_LIST)
 set $LINE
 RUN_ID=$1
 NORMAL=$2

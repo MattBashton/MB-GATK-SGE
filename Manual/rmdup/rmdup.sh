@@ -5,7 +5,7 @@
 #$ -l h_vmem=6G
 #$ -R y
 
-# Matthew Bashton 2015
+# Matthew Bashton 2015-2016
 # Uses SAMtools to remove PCR duplicates from a BAM file, not part of GATK
 # pipeline but useful for external tools.
 
@@ -16,7 +16,7 @@ date
 source ../GATKsettings.sh
 
 BAM=$1
-B_NAME=`basename $BAM .bam`
+B_NAME=$(basename $BAM .bam)
 
 echo "** Variables **"
 echo " - PWD = $PWD"

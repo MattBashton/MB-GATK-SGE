@@ -25,7 +25,7 @@ source ../GATKsettings.sh
 MERGE_LIST="../merger_list.txt"
 
 # Get info for pair using task id from array job
-LINE=`awk "NR==$SGE_TASK_ID" $MERGE_LIST`
+LINE=$(awk "NR==$SGE_TASK_ID" $MERGE_LIST)
 set $LINE
 TOMERGE=$2
 NEW_RUN_ID=$1

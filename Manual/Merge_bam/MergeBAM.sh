@@ -26,12 +26,12 @@ BAM_LIST=""
 BAMS="$*"
 for x in $BAMS
 do
-    B_NAME=`basename $x`
-    TMP=`echo "$B_NAME" | perl -ne '/^(\S+)$/; print "INPUT=$1"'`
+    B_NAME=$(basename $x)
+    TMP=$(echo "$B_NAME" | perl -ne '/^(\S+)$/; print "INPUT=$1"')
     BAM_LIST="$BAM_LIST $TMP"
 done
 
-BAM_DIR=`dirname $1`
+BAM_DIR=$(dirname $1)
 DEST=$PWD
 
 echo "** Variables **"

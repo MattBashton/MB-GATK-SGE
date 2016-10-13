@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs Depth Of Coverage, needs an input .bam, file and the intervals targeted
 # 6hrs run time by default, adjust if need be.
 
@@ -16,7 +16,7 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $G_NAME.$SGE_TASK_ID.dedup.bam .bam`
+B_NAME=$(basename $G_NAME.$SGE_TASK_ID.dedup.bam .bam)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

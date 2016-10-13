@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs FastQC on the supplied (at command line $1) .fastq or .fastq.gz file.
 # Note parallelisation with FastQC is a waste of time as only works with
 # multiple input files, and these are submited as diff SoGE jobs.
@@ -18,15 +18,15 @@ date
 
 source ../GATKsettings.sh
 
-LINE=`awk "NR==$SGE_TASK_ID" $MASTER_LIST`
+LINE=$(awk "NR==$SGE_TASK_ID" $MASTER_LIST)
 set $LINE
 SAMP_ID=$1
 RG=$2
 FILE1=$3
 FILE2=$4
 
-B_NAME_F1=`basename $FILE1`
-B_NAME_F2=`basename $FILE2`
+B_NAME_F1=$(basename $FILE1)
+B_NAME_F2=$(basename $FILE2)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

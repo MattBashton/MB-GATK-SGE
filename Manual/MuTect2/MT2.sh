@@ -22,9 +22,9 @@ source ../GATKsettings.sh
 NORMAL=$1
 TUMOR=$2
 
-B_NAME_N=`basename "$NORMAL" .bam`
-B_NAME_T=`basename "$TUMOR" .bam`
-D_NAME=`dirname $1`
+B_NAME_N=$(basename "$NORMAL" .bam)
+B_NAME_T=$(basename "$TUMOR" .bam)
+D_NAME=$(dirname $1)
 
 B_PATH_NAME_N=$D_NAME/$B_NAME_N
 B_PATH_NAME_T=$D_NAME/$B_NAME_T

@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Splits out the germline variants from MuTect VCF output then selects KEEP
 # flagged variants from MuTect VCF output.  Needs input MuTect .vcf as $1
 # and sample name to extract (i.e. somatic sample) as $2.
@@ -17,8 +17,8 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $1 .vcf`
-D_NAME=`dirname $1`
+B_NAME=$(basename $1 .vcf)
+D_NAME=$(dirname $1)
 B_PATH_NAME=$D_NAME/$B_NAME
 SAMP_NAME=$2
 

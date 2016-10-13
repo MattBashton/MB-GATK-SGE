@@ -16,7 +16,7 @@ date
 
 source ../GATKsettings.sh
 VCF=$1
-B_NAME=`basename $1 .vcf`
+B_NAME=$(basename $1 .vcf)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
@@ -29,7 +29,7 @@ echo "Copying input $1 to $TMPDIR/"
 
 echo "Splitting $TMPDIR/$B_NAME.vcf by sample"
 # Get sample names
-list=(`$VCFUTILS listsam $TMPDIR/$B_NAME.vcf`)
+list=( $($VCFUTILS listsam $TMPDIR/$B_NAME.vcf) )
 
 # Loop over array of names
 for i in ${list[@]}

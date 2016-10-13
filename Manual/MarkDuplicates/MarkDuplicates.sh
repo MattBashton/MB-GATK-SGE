@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs MarkDuplicates, note that -XX:ParallelGCThreads=1 is needed to prevent
 # Picard using all the threads on a node.  Default runtime is 24hrs.
 
@@ -18,8 +18,8 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $1 .bam`
-D_NAME=`dirname $1`
+B_NAME=$(basename $1 .bam)
+D_NAME=$(dirname $1)
 B_PATH_NAME=$D_NAME/$B_NAME
 
 echo "** Variables **"

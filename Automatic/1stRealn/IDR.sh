@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs Indel Realigner, needs an input .bam file and intervals file for
 # realignment targets, outputs a new realigned .bam file.
 # 24hrs run time by default.
@@ -49,7 +49,7 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $G_NAME.$SGE_TASK_ID.dedup.bam .bam`
+B_NAME=$(basename $G_NAME.$SGE_TASK_ID.dedup.bam .bam)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

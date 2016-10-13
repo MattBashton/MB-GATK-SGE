@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs BWA MEM using options passed in at command-line.
 # Another script needs to call this one which has a list of all files, @RG lines and Sample IDs.
 # Job time being used too to help with getting a slot, 1hrs set - alter if need be.
@@ -22,8 +22,8 @@ RG=$2
 FILE1=$3
 FILE2=$4
 
-B_NAME_F1=`basename $FILE1`
-B_NAME_F2=`basename $FILE2`
+B_NAME_F1=$(basename $FILE1)
+B_NAME_F2=$(basename $FILE2)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs BWA MEM using options obtained from $MASTER_LIST
 # Job time being used too to help with getting a slot, 48hrs set - alter if need be.
 
@@ -16,15 +16,15 @@ date
 
 source ../GATKsettings.sh
 
-LINE=`awk "NR==$SGE_TASK_ID" $MASTER_LIST`
+LINE=$(awk "NR==$SGE_TASK_ID" $MASTER_LIST)
 set $LINE
 SAMP_ID=$1
 RG=$2
 FILE1=$3
 FILE2=$4
 
-B_NAME_F1=`basename $FILE1`
-B_NAME_F2=`basename $FILE2`
+B_NAME_F1=$(basename $FILE1)
+B_NAME_F2=$(basename $FILE2)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

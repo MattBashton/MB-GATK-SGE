@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs Select Variants on VCF to pull out sub sets with >= 0 VQSlod, >= 3 VQSlod
 # and PASS flagged variants from the VQSR stage.  VQSlod >= 0 and >= 3 should be
 # the better and even better set of variants from the recalibration stage, more
@@ -20,8 +20,8 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $1 .vcf`
-D_NAME=`dirname $1`
+B_NAME=$(basename $1 .vcf)
+D_NAME=$(dirname $1)
 B_PATH_NAME=$D_NAME/$B_NAME
 
 echo "** Variables **"

@@ -23,7 +23,7 @@ hostname
 date
 
 source ../GATKsettings.sh
-B_NAME=`basename $1 .vcf`
+B_NAME=$(basename $1 .vcf)
 
 echo "** Variables **"
 echo " - PWD=$PWD"

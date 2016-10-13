@@ -5,7 +5,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Uses PrintReads to extract samples from a multi sample bam file,
 # the second argument at the command-line should be the read group ID to extract
 # and the first is the merged bam file to use as input.
@@ -16,8 +16,8 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $2 .bam`
-D_NAME=`dirname $2`
+B_NAME=$(basename $2 .bam)
+D_NAME=$(dirname $2)
 B_PATH_NAME=$D_NAME/$B_NAME
 SAMP_NAME=$1
 

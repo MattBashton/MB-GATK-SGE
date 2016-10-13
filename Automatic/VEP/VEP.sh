@@ -26,8 +26,8 @@ source ../GATKsettings.sh
 
 # snps or indels passed in at command-line
 VAR_TYPE=$1
-VCF=`ls -1 $BASE_DIR/Split_VCF/*.VEP.vcf | grep $VAR_TYPE | awk "NR==$SGE_TASK_ID"`
-B_NAME=`basename $VCF .vcf`
+VCF=$(ls -1 $BASE_DIR/Split_VCF/*.VEP.vcf | grep $VAR_TYPE | awk "NR==$SGE_TASK_ID")
+B_NAME=$(basename $VCF .vcf)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

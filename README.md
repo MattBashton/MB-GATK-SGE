@@ -90,7 +90,7 @@ The following binaries and resources are required:
 * [Son of Grid Engine](https://arc.liv.ac.uk/trac/SGE)
 * [Burrows-Wheeler Aligner](http://bio-bwa.sourceforge.net/)
 * [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-* [BamQC](https://github.com/s-andrews/BamQC) 
+* [BamQC](https://github.com/s-andrews/BamQC)
 * [vcfutils.pl](https://github.com/lh3/samtools/blob/master/bcftools/vcfutils.pl)
 * [VCFtools](https://vcftools.github.io/index.html)
 * [Ensembl Variant Effect Predictor](http://www.ensembl.org/info/docs/tools/vep/script/vep_download.html)
@@ -154,10 +154,10 @@ Whilst this set of scripts has been tested on a cluster environment with a netwo
 
 ## Why did you not implement this in X or do Y *etc*? ###
 ### Why Bash? ###
-My aim with this series of scripts / pipeline was to create a light weight system with minimal dependancies that would be accessible to the more novice user, so I chose to use SGE directly as the scheduler of jobs since this is the most light weight and easiest win from my current scripting base.  I fully acknowledge that [Bpipe](https://code.google.com/p/bpipe/) would also have been a good choice here.  Since SGE job submission already happens in shell wrappers it made most sense to simply extend that system.  Ultimately the best system for GATK pipeline creation is the Broads own [Queue](https://www.broadinstitute.org/gatk/guide/topic?name=queue) however as a custom dialect of [Scala](https://en.wikipedia.org/wiki/Scala_%28programming_language%29) implementation is none trivial and is harder to grasp if you're not already somewhat familiar with Scala.
+My aim with this series of scripts / pipeline was to create a light-weight system with minimal dependancies that would be accessible to the more novice user, so I chose to use SGE directly as the scheduler of jobs since this is the most light-weight and easiest win from my current scripting base.  I fully acknowledge that [Bpipe](https://code.google.com/p/bpipe/) would also have been a good choice here.  Since SGE job submission already happens in shell wrappers it made most sense to simply extend that system.  Ultimately the best system for GATK pipeline creation is the Broads own [Queue](https://www.broadinstitute.org/gatk/guide/topic?name=queue) however as a custom dialect of [Scala](https://en.wikipedia.org/wiki/Scala_%28programming_language%29) implementation is none trivial and is harder to grasp if you're not already somewhat familiar with Scala.
 
 ### Style considerations ###
-Contrary to the belief held by certain coding pedants backticks are [not deprecated](http://unix.stackexchange.com/questions/126927/have-backticks-i-e-cmd-in-sh-shells-been-deprecated) and are part of the POSIX standard, personally since I was first exposed to shell scripting in the 90s I actually prefer backticks, their good enough for the markdown I'm using in this document so there good enough for use in my code, I don't nest backticks so don't have any issues with nesting.  I also think that backticks are cleaner visually than the dollar parens `$()` paradigm particularly if you're new to shell scripting.  For this reason I'm also employing the use of the external `basename` and `dirname` mainly for clarity in showing how I assign values to variables as the combination of `$()` and bash string manipulation operations are the perfect storm of Perl-like "explosion in a punctuation factory" code which is hard to read and my aim with these script was to make the system as accessible and transparent as possible.
+I'm employing the use of the external `basename` and `dirname` (both of which are part of the POSIX standard) mainly for clarity in showing how I assign values to variables as bash string manipulation operations are hard to read and my aim with these scripts was to make the system as accessible and transparent as possible.  I also stay away from parameter expansion when creating filenames nor do I think blatantly expanding all parameters with `${PARAMETER}` regardless if they are juxtapositioned to other text/parameters or not is a good idea either, it creates unnecessarily hard to read code, is no fun to type and leads to a lack of understanding of the actual utility of parameter expansion as you blindly use it everywhere without thought.
 
 ## Roadmap ##
 I had planed to re-implement this whole workflow in Queue, time permitting, but Queue will be officially depreciated with the forthcoming release of GATK 4, to make way for Cromwell+WDL, current Cromwell support for SGE is limited however, this will improve in future.
@@ -172,7 +172,7 @@ These set of scripts originally started life during my time working at the [Bioi
 
 ![INSTINCT logo](https://raw.githubusercontent.com/MattBashton/MB-GATK-SGE/master/Logos/INSTINCT.png)
 
-![The Brain Tumour Charity logo](https://raw.githubusercontent.com/MattBashton/MB-GATK-SGE/master/Logos/BrainTumourCharity.png) 
+![The Brain Tumour Charity logo](https://raw.githubusercontent.com/MattBashton/MB-GATK-SGE/master/Logos/BrainTumourCharity.png)
 
 ![Great Ormond Street Children’s Charity logo](https://raw.githubusercontent.com/MattBashton/MB-GATK-SGE/master/Logos/GOSH.gif)
 

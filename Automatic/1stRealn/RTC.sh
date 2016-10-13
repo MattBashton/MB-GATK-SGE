@@ -19,7 +19,7 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $G_NAME.$SGE_TASK_ID.dedup.bam .bam`
+B_NAME=$(basename $G_NAME.$SGE_TASK_ID.dedup.bam .bam)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

@@ -5,7 +5,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs GenotypeGVCFs which takes the sample level genomic VCF files and fuses
 # them into a normal VCF file which can then be used for recalibration.
 
@@ -24,13 +24,13 @@ VCF_LIST=""
 VCFS="$@"
 for x in $VCFS
 do
-    SAMP_NAME=`basename $x`
-    TMP=`echo $SAMP_NAME | perl -ne '/^(\S+)$/; print "--variant $1"'`
+    SAMP_NAME=$(basename $x)
+    TMP=$(echo $SAMP_NAME | perl -ne '/^(\S+)$/; print "--variant $1"')
     #TMP="`echo \"$SAMP_NAME\" | sed -e 's/^/ --variant &/g'`"
     VCF_LIST="$VCF_LIST $TMP"
 done
 
-VCF_DIR=`dirname $1`
+VCF_DIR=$(dirname $1)
 DEST=$PWD
 
 echo "** Variables **"

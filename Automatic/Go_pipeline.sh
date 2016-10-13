@@ -30,13 +30,13 @@ echo " - MUTECT_LIST = $MUTECT_LIST"
 echo " - PWD = $PWD"
 
 # Determine number of samples in master list
-N=`wc -l $MASTER_LIST | cut -d ' ' -f 1`
+N=$(wc -l $MASTER_LIST | cut -d ' ' -f 1)
 echo -e " - No of samples = $N\n"
 tput sgr0
 
 # Optional (uncomment for MuTect2)
 # Determine number of pairs in MuTect2 list
-# MU_N=`wc -l $MUTECT_LIST | cut -d ' ' -f 1`
+# MU_N=$(wc -l $MUTECT_LIST | cut -d ' ' -f 1)
 
 #### Preprocessing
 tput bold

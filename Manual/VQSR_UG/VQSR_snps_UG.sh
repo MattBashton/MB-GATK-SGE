@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 
 # Runs the Variant Recalibrator input is raw VCF from the UG and output is a
 # recal file which can be applied using Apply Recalibration.
@@ -28,11 +28,11 @@ date
 
 source ../GATKsettings.sh
 
-echo "Setting max open file descriptors"
-ulimit -n 60000
+#echo "Setting max open file descriptors"
+#ulimit -n 60000
 
-B_NAME=`basename $1 .vcf`
-D_NAME=`dirname $1`
+B_NAME=$(basename $1 .vcf)
+D_NAME=$(dirname $1)
 B_PATH_NAME=$D_NAME/$B_NAME
 
 echo "** Variables **"

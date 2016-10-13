@@ -18,8 +18,8 @@ date
 
 source ../GATKsettings.sh
 
-SAMP_ID=`awk "NR==$SGE_TASK_ID" ../master_list.txt | perl -ne '/SM:(\S+)\\\t/; print "$1\n"'`
-B_NAME=`basename $G_NAME.$SGE_TASK_ID.bam .bam`
+SAMP_ID=$(awk "NR==$SGE_TASK_ID" ../master_list.txt | perl -ne '/SM:(\S+)\\t/; print "$1\n"')
+B_NAME=$(basename $G_NAME.$SGE_TASK_ID.bam .bam)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
@@ -27,9 +27,9 @@ echo " - B_NAME = $B_NAME"
 echo " - SAMP_ID = $SAMP_ID"
 echo " - PWD = $PWD"
 
-echo "Copying input $BASE_DIR/Merge_BAM_list_hg19/$G_NAME.$SGE_TASK_ID.ba* to $TMPDIR"
-/usr/bin/time --verbose cp -v $BASE_DIR/Merge_BAM_list_hg19/$G_NAME.$SGE_TASK_ID.bam $TMPDIR
-/usr/bin/time --verbose cp -v $BASE_DIR/Merge_BAM_list_hg19/$G_NAME.$SGE_TASK_ID.bai $TMPDIR
+echo "Copying input $BASE_DIR/SamToSortedBam/$G_NAME.$SGE_TASK_ID.ba* to $TMPDIR"
+/usr/bin/time --verbose cp -v $BASE_DIR/SamToSortedBam/$G_NAME.$SGE_TASK_ID.bam $TMPDIR
+/usr/bin/time --verbose cp -v $BASE_DIR/SamToSortedBam/$G_NAME.$SGE_TASK_ID.bai $TMPDIR
 
 echo "Running MarkDuplicates for $B_NAME.bam will also generate .bai on the fly"
 /usr/bin/time --verbose $JAVA -Xmx16g -XX:ParallelGCThreads=1 -jar $PICARD MarkDuplicates \

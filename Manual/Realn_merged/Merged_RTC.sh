@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs Realigner Target Creator, needs an input .bam file, will generate the
 # intervals file for alignment for that region.  If you set $INTERVALS to ""
 # in ../GATKsettings.sh then -L string will be missing and all data will be
@@ -19,8 +19,8 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $1 .bam`
-D_NAME=`dirname $1`
+B_NAME=$(basename $1 .bam)
+D_NAME=$(dirname $1)
 B_PATH_NAME=$D_NAME/$B_NAME
 
 echo "** Variables **"

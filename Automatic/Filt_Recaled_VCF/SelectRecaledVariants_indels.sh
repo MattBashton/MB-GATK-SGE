@@ -20,7 +20,7 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $G_NAME.HC_genotyped.vrecal.indels.vcf .vcf`
+B_NAME=$(basename $G_NAME.HC_genotyped.vrecal.indels.vcf .vcf)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

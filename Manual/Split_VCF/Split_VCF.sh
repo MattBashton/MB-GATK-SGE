@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2015
+# Matthew Bashton 2015-2016
 # Runs vcfutils.pl to split a multi sample .vcf file in to all samples, one .vcf
 # file produced for each sample.
 
@@ -16,7 +16,7 @@ date
 
 source ../GATKsettings.sh
 VCF=$1
-B_NAME=`basename $1 .vcf`
+B_NAME=$(basename $1 .vcf)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

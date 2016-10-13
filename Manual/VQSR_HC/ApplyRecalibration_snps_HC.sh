@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs Apply Recalibration, this takes the .recal file and applies it to the raw
 # vcf produced by the HC, output is a recalibrated .vcf file.
 # Using TS of 99.0 for SNPs as per GATK doc #2805, note that #1259 uses 99.5
@@ -19,8 +19,8 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $1 .vcf`
-D_NAME=`dirname $1`
+B_NAME=$(basename $1 .vcf)
+D_NAME=$(dirname $1)
 B_PATH_NAME=$D_NAME/$B_NAME
 
 echo "** Variables **"

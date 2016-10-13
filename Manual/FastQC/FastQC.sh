@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs FastQC on the supplied (at command line $1) .fastq or .fastq.gz file.
 # Note parallelisation with FastQC is a waste of time as only works with
 # multiple input files, and these are submited as diff SoGE jobs.
@@ -18,7 +18,7 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $1`
+B_NAME=$(basename $1)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

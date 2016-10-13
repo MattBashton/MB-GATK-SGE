@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs Picard SortSam using input passed in at command-line.
 # 4hrs runtime by default.  -XX:ParallelGCThreads=2 prevents Picard using all threads.
 
@@ -16,7 +16,7 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $1 .sam`
+B_NAME=$(basename $1 .sam)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

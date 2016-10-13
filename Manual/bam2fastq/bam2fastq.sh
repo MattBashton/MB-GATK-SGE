@@ -7,7 +7,7 @@
 #$ -q all.q,bigmem.q
 
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Converts aligned BAM to gziped FASTQ using BAM file passed in at command-line.
 # Uses SAMtools to randomly order reads in aligned BAM file, to avoid mapping
 # bias as discussed here:
@@ -20,7 +20,7 @@ date
 source ../GATKsettings.sh
 
 BAM=$1
-B_NAME=`basename $BAM`
+B_NAME=$(basename $BAM)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

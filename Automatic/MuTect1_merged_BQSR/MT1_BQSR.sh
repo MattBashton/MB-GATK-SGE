@@ -24,7 +24,7 @@ date
 source ../GATKsettings.sh
 
 # Get info for pair using task id from array job
-LINE=`awk "NR==$SGE_TASK_ID" $MUTECT_LIST`
+LINE=$(awk "NR==$SGE_TASK_ID" $MUTECT_LIST)
 set $LINE
 RUN_ID=$1
 NORMAL=$2

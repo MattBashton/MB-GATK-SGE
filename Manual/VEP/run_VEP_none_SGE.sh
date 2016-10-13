@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 
-# Matthew Bashton 2015
+# Matthew Bashton 2015-2016
 # Runs VEP with a whole dir of vcf input from $1 given as ../dir/*.vcf $2 is output dir which is created
 [ $# -eq 0 ] && { echo -e "\nMatt Bashton 2015\n\n*** This script runs VEP on *.vcf in given dir ***\n\nError nothing to do!\n\nUsage: <input dir>  <output dir>\n\nThe output dir will be created, also don't use / on output dir names\n\n" ; exit 1; }
 
@@ -19,7 +19,7 @@ do
     # Not needed for b37
     #echo " - Converting $i to ensembl chr ids using sed"
     #sed -i.bak s/chr//g $i
-    SAMP_NAME=`basename $i .vcf`
+    SAMP_NAME=$(basename $i .vcf)
     echo " - Basename is $SAMP_NAME"
     echo " - Running VEP on $i"
 

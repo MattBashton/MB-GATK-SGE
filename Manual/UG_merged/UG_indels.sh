@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs the Unified Genotyper on a merged BAM as per GATK 2.x best practices
 # -dcov from global settings file.  5 days run time by default.
 
@@ -16,8 +16,8 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $1 .bam`
-D_NAME=`dirname $1`
+B_NAME=$(basename $1 .bam)
+D_NAME=$(dirname $1)
 B_PATH_NAME=$D_NAME/$B_NAME
 
 echo "** Variables **"
@@ -42,7 +42,7 @@ $INTERVALS \
 --interval_padding $PADDING \
 -I $TMPDIR/$B_NAME.bam \
 --dbsnp $DBSNP \
--R $REF\
+-R $REF \
 -stand_emit_conf 10 \
 -stand_call_conf 30 \
 --max_alternate_alleles 50 \

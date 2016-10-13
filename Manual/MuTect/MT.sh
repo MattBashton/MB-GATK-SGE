@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2015
+# Matthew Bashton 2012-2016
 # Runs MuTect using options passed in at command-line.
 # Needs the location of the tumor and normal file.
 # Another script needs to call this one which has a list of all pairs of files.
@@ -28,9 +28,9 @@ TUMOR=$2
 
 MUTECT="$PWD/$MUTECT"
 
-B_NAME_N=`basename "$NORMAL" .bam`
-B_NAME_T=`basename "$TUMOR" .bam`
-D_NAME=`dirname $1`
+B_NAME_N=$(basename "$NORMAL" .bam)
+B_NAME_T=$(basename "$TUMOR" .bam)
+D_NAME=$(dirname $1)
 
 B_PATH_NAME_N=$D_NAME/$B_NAME_N
 B_PATH_NAME_T=$D_NAME/$B_NAME_T

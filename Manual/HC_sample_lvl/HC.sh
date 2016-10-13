@@ -27,10 +27,10 @@ date
 
 source ../GATKsettings.sh
 
-B_NAME=`basename $1 .bam`
-D_NAME=`dirname $1`
+B_NAME=$(basename $1 .bam)
+D_NAME=$(dirname $1)
 B_PATH_NAME=$D_NAME/$B_NAME
-SAMP_NAME=`echo $B_NAME | cut -d'.' -f1`
+SAMP_NAME=$(echo $B_NAME | cut -d'.' -f1)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"

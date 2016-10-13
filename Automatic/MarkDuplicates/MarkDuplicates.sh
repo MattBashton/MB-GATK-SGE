@@ -18,8 +18,8 @@ date
 
 source ../GATKsettings.sh
 
-SAMP_ID=`awk "NR==$SGE_TASK_ID" ../master_list.txt | perl -ne '/SM:(\S+)\\\t/; print "$1\n"'`
-B_NAME=`basename $G_NAME.$SGE_TASK_ID.bam .bam`
+SAMP_ID=$(awk "NR==$SGE_TASK_ID" ../master_list.txt | perl -ne '/SM:(\S+)\\t/; print "$1\n"')
+B_NAME=$(basename $G_NAME.$SGE_TASK_ID.bam .bam)
 
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
