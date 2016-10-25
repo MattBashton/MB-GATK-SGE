@@ -2,7 +2,7 @@
 #$ -cwd -V
 #$ -pe smp 10
 #$ -l h_rt=24:00:00
-#$ -l h_vmem=80G
+#$ -l h_vmem=60G
 #$ -R y
 #$ -q all.q,bigmem.q
 
@@ -60,7 +60,7 @@ echo "Running VEP on $TMPDIR/$B_NAME.vcf"
 --tab \
 -o $TMPDIR/$B_NAME.txt \
 --dir $TMPDIR/vep_cache/ \
---buffer_size 25000 \
+--buffer_size 5000 \
 --fork 10 \
 --pick_allele
 
