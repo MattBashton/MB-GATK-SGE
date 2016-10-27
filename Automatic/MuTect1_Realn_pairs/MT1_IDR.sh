@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 #$ -cwd -V
 #$ -pe smp 1
-#$ -l h_vmem=24G
+#$ -l h_vmem=30G
 #$ -l h_rt=48:00:00
 #$ -R y
 #$ -q all.q,bigmem.q
@@ -77,7 +77,7 @@ echo "Copying normal input $INPUT_DIR/$OUTPUT.dedup.realigned.merged.ba* to $TMP
 /usr/bin/time --verbose cp -v $INPUT_DIR/$OUTPUT.dedup.realigned.merged.bai $TMPDIR
 
 echo "Running GATK"
-/usr/bin/time --verbose $JAVA -Xmx20g -jar $GATK \
+/usr/bin/time --verbose $JAVA -Xmx24g -jar $GATK \
 -T IndelRealigner \
 --maxReadsInMemory 10000000 \
 --maxReadsForRealignment 10000000 \
