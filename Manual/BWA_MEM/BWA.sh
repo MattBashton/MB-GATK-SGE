@@ -2,7 +2,7 @@
 #$ -cwd -V
 #$ -pe smp 5
 #$ -l h_rt=48:00:00
-#$ -l h_vmem=8G
+#$ -l h_vmem=10G
 #$ -R y
 #$ -q all.q,bigmem.q
 
