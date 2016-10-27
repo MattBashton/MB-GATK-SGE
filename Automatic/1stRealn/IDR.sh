@@ -2,7 +2,7 @@
 #$ -cwd -V
 #$ -pe smp 1
 #$ -l h_vmem=24G
-#$ -l h_rt=24:00:00
+#$ -l h_rt=48:00:00
 #$ -R y
 #$ -q all.q,bigmem.q
 
@@ -63,7 +63,7 @@ echo "Copying input $BASE_DIR/MarkDuplicates/$G_NAME.$SGE_TASK_ID.dedup.* to $TM
 /usr/bin/time --verbose cp -v $BASE_DIR/MarkDuplicates/$G_NAME.$SGE_TASK_ID.dedup.bai $TMPDIR
 
 echo "Running GATK"
-/usr/bin/time --verbose $JAVA -Xmx18g -jar $GATK \
+/usr/bin/time --verbose $JAVA -Xmx20g -jar $GATK \
 -T IndelRealigner \
 --maxReadsInMemory 10000000 \
 --maxReadsForRealignment 10000000 \

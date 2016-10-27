@@ -65,7 +65,7 @@ echo "Copying input $B_PATH_NAME.* to $TMPDIR"
 /usr/bin/time --verbose cp -v $B_PATH_NAME.bai $TMPDIR
 
 echo "Running GATK"
-/usr/bin/time --verbose $JAVA -Xmx18g -jar $GATK \
+/usr/bin/time --verbose $JAVA -Xmx20g -jar $GATK \
 -T IndelRealigner \
 --maxReadsInMemory 10000000 \
 --maxReadsForRealignment 10000000 \
