@@ -1,4 +1,4 @@
-B#!/bin/bash -e
+#!/bin/bash -e
 
 # Matthew Bashton 2012-2016
 
@@ -9,7 +9,7 @@ tput bold
 
 echo -e "\nThis script will delete all intermediate files, .sam, .bam, and will leave all"
 echo -e "g.vcf/.vcf and log files intact.  The de-duplicated, realigned and recalibrated"
-echo -e "HaplotypeCaller emitted .bam files for each sample will also be left intact.\n\n"
+echo -e "and HaplotypeCaller emitted .bam files for each sample will also be left intact.\n\n"
 
 read -p "Are you sure you want to delete intermediate output? " -n 1 -r
 echo  ""
@@ -35,11 +35,7 @@ then
     cd 1stRealn
     rm *.ba*
     cd ..
-    echo " - Deleting BQSR bam"
-    cd BQSR_sample_lvl
-    rm *.ba*
-    cd ..
     echo "All intermediate files deleted, de-duplicated, realigned and recalibrated"
-    echo "HC emited .bam is left in /HC_sample_lvl left intact along with .vcf/g.vcf"
-    echo "and log files."
+    echo "and HC emited .bam is left in /BQSR_sample_lvl and /HC_sample_lvl intact along"
+    echo "with .vcf/g.vcf and log files."
 fi
