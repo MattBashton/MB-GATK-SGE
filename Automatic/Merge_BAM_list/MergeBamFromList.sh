@@ -101,4 +101,4 @@ echo "Deleting $OUTPUT_DIR"
 rm -rf $OUTPUT_DIR
 
 date
-echo "END
+echo "END"
