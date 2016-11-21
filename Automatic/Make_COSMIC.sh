@@ -52,5 +52,8 @@ SEQUENCE_DICTIONARY=$BUNDLE_DIR/$REF_DICT
 rm CosmicCodingMuts.vcf
 rm CosmicNonCodingVariants.vcf
 
+# Need to remove the index file so GATK re makes it (otherwise throws error)
+rm COSMIC_b37_${COSMICVER}.vcf.idx
+
 date
 echo END
