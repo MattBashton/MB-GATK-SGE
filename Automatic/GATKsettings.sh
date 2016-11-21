@@ -112,12 +112,12 @@ OMNI="$BUNDLE_DIR/1000G_omni2.5.b37.vcf "
 HAPMAP="$BUNDLE_DIR/hapmap_3.3.b37.vcf"
 
 ## BamQC genomes location
-BAMQC_GENOMES="/opt/databases/genomes/BamQC_files/genomes/"
+BAMQC_GENOMES="cd /BamQC_files/genomes/"
 
 ## COSMIC location
 # Currently in same dir as the working/current since tend to change
 # on each run for up to date version
-COSMIC="$BASE_DIR/Cosmic_b37_v76.vcf"
+COSMIC="$BASE_DIR/Cosmic_b37_v79.vcf"
 
 ## Global dcov setting
 # The depth of coverage setting used in downsampling the number of reads per
