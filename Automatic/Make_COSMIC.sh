@@ -18,6 +18,7 @@ date
 # Since running on head node
 TMPDIR="/tmp"
 BUNDLE_DIR="/opt/databases/GATK_bundle/2.8/b37"
+REF_DICT="human_g1k_v37_decoy.dic"
 # Add in module for Java 1.8 (FMS cluster specific)
 module add apps/java/jre-1.8.0_92
 JAVA="/opt/software/java/jdk1.8.0_92/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
@@ -45,7 +46,7 @@ echo "Running Picard SortVcf on CosmicCodingMuts.vcf and CosmicNonCodingVariants
 INPUT=CosmicCodingMuts.vcf \
 INPUT=CosmicNonCodingVariants.vcf \
 OUTPUT=COSMIC_b37_${COSMICVER}.vcf \
-SEQUENCE_DICTIONARY=$BUNDLE_DIR/human_g1k_v37_decoy.dict
+SEQUENCE_DICTIONARY=$BUNDLE_DIR/$REF_DICT
 
 # Clean up intermediate files
 rm CosmicCodingMuts.vcf
