@@ -117,7 +117,7 @@ BAMQC_GENOMES="cd /BamQC_files/genomes/"
 ## COSMIC location
 # Currently in same dir as the working/current since tend to change
 # on each run for up to date version
-COSMIC="$BASE_DIR/Cosmic_b37_v79.vcf"
+COSMIC="$BASE_DIR/COSMIC_b37_v79.vcf"
 
 ## Global dcov setting
 # The depth of coverage setting used in downsampling the number of reads per
