@@ -37,8 +37,8 @@ echo "Creating VEP cache dirs on local scratch in $TMPDIR"
 mkdir $TMPDIR/vep_cache
 
 echo "Copying VEP cache: $GLOBAL_VEP_CACHE to $TMPDIR/vep_cache"
-/usr/bin/time --verbose cp -R -v $GLOBAL_VEP_CACHE/homo_sapiens $TMPDIR/vep_cache/
-/usr/bin/time --verbose cp -R -v $GLOBAL_VEP_CACHE/Plugins $TMPDIR/vep_cache/
+/usr/bin/time --verbose cp -R $GLOBAL_VEP_CACHE/homo_sapiens $TMPDIR/vep_cache/
+/usr/bin/time --verbose cp -R $GLOBAL_VEP_CACHE/Plugins $TMPDIR/vep_cache/
 
 echo "Setting VEP cache location to $TMPDIR/vep_cache"
 VEP_CACHEDIR="$TMPDIR/vep_cache"
