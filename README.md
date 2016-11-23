@@ -2,8 +2,12 @@
 
 ## Updates ##
 
+#####November 2016#####
+* `Split_VCF.sh` now employs GATK's SelectVariants rather than VCFtools and `vcfutils.pl`, this preserves the full HC annotation in the INFO field, the per-sample VCF passed to VEP is now has the final suffix `.PerSample.vcf`, the TYPE annotation is still filled in another VCF file with suffix `.TYPE.vcf` (not used by VEP).
+* `bcftools stats` and derived plots are now produced per-sample (as a PDF) by `Split_VCF.sh`
+
 #####October 2016#####
-* Moved to Ensembl VEP v86 using new `--tab` output which separates some perviously merged fields.
+* Moved to Ensembl VEP v86 using new `--tab` output which separates some perviously merged fields in the `.txt` file output. (Note full HTML output appears to be broken with this version/option)
 * Added various utility scripts `RemoveDuplicates.sh`, `SplitBamByRG.sh`, `MergeBamFromList.sh`, `CollectInsertSizeMetrics.sh`, `ValidateSamFile.sh`.
 
 #####June 2016#####
