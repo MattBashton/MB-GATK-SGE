@@ -37,7 +37,7 @@ echo " - INTERVALS = $INTERVALS"
 echo " - PADDING = $PADDING"
 echo " - INPUT = $INPUT"
 
-echo "Copying normal input $INPUT_DIR/$INPUT.merged.realigned.recalibrated.ba* to $TMPDIR/"
+echo "Copying merged input $INPUT_DIR/$INPUT.merged.realigned.recalibrated.ba* to $TMPDIR/"
 /usr/bin/time --verbose cp -v $INPUT_DIR/$INPUT.merged.realigned.recalibrated.bam $TMPDIR
 /usr/bin/time --verbose cp -v $INPUT_DIR/$INPUT.merged.realigned.recalibrated.bai $TMPDIR
 
@@ -48,8 +48,8 @@ echo "Running GATK PrintReads and outputing reads from normal sample: $NORMAL"
 --sample_name $NORMAL \
 -I $TMPDIR/$INPUT.merged.realigned.recalibrated.bam \
 -R $REF \
--o $TMPDIR/$NORMAL.bam \
---log_to_file $NORMAL.PrintReads.log
+-o $TMPDIR/Normal.$NORMAL.$INPUT.bam \
+--log_to_file Normal.$NORMAL.$INPUT.PrintReads.log
 
 echo "Running GATK PrintReads and outputing reads from tumour sample: $TUMOUR"
 /usr/bin/time --verbose $JAVA -Xmx6g -jar $GATK \
@@ -58,25 +58,25 @@ echo "Running GATK PrintReads and outputing reads from tumour sample: $TUMOUR"
 --sample_name $TUMOUR \
 -I $TMPDIR/$INPUT.merged.realigned.recalibrated.bam \
 -R $REF \
--o $TMPDIR/$TUMOUR.bam \
---log_to_file $TUMOUR.PrintReads.log
+-o $TMPDIR/Tumour.$TUMOUR.$INPUT.bam \
+--log_to_file Tumour.$TUMOUR.$INPUT.PrintReads.log
 
-echo "Copying $TMPDIR/$NORMAL.* to $PWD"
-/usr/bin/time --verbose cp -v $TMPDIR/$NORMAL.bam $PWD
-/usr/bin/time --verbose cp -v $TMPDIR/$NORMAL.bai $PWD
+echo "Copying $TMPDIR/Normal.$NORMAL.$INPUT.* to $PWD"
+/usr/bin/time --verbose cp -v $TMPDIR/Normal.$NORMAL.$INPUT.bam $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/Normal.$NORMAL.$INPUT.bai $PWD
 
-echo "Copying $TMPDIR/$TUMOUR.* to $PWD"
-/usr/bin/time --verbose cp -v $TMPDIR/$TUMOUR.bam $PWD
-/usr/bin/time --verbose cp -v $TMPDIR/$TUMOUR.bai $PWD
+echo "Copying $TMPDIR/Tumour.$TUMOUR.$INPUT.* to $PWD"
+/usr/bin/time --verbose cp -v $TMPDIR/Tumour.$TUMOUR.$INPUT.bam $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/Tumour.$TUMOUR.$INPUT.bai $PWD
 
 echo "Deleting $TMPDIR/$INPUT.*"
 rm $TMPDIR/$INPUT.*
 
-echo "Deleting $TMPDIR/$NORMAL.*"
-rm $TMPDIR/$NORMAL.*
+echo "Deleting $TMPDIR/Normal.*"
+rm $TMPDIR/Normal.*
 
-echo "Deleting $TMPDIR/$TUMOUR.*"
-rm $TMPDIR/$TUMOUR.*
+echo "Deleting $TMPDIR/Tumour.*"
+rm $TMPDIR/Tumour.*
 
 date
 echo "END"

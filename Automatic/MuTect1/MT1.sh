@@ -28,6 +28,7 @@ TUMOUR=$3
 
 # Make output name for this run
 OUTPUT=$NORMAL.vs.$TUMOUR
+INPUT=$NORMAL.vs.$TUMOUR
 
 #Input file path
 INPUT_DIR="../MuTect1_split_bam"
@@ -41,15 +42,15 @@ echo " - INTERVALS = $INTERVALS"
 echo " - PADDING = $PADDING"
 echo " - OUTPUT = $OUTPUT"
 
-echo "Copying normal input $INPUT_DIR/$NORMAL.ba* to $TMPDIR/"
-/usr/bin/time --verbose cp -v $INPUT_DIR/$NORMAL.bam $TMPDIR
-/usr/bin/time --verbose cp -v $INPUT_DIR/$NORMAL.bai $TMPDIR
+echo "Copying normal input $INPUT_DIR/Normal.$NORMAL.$INPUT.ba* to $TMPDIR/"
+/usr/bin/time --verbose cp -v $INPUT_DIR/Normal.$NORMAL.$INPUT.bam $TMPDIR
+/usr/bin/time --verbose cp -v $INPUT_DIR/Normal.$NORMAL.$INPUT.bai $TMPDIR
 
-echo "Copying tumour input $INPUT_DIR/$TUMOUR.ba* to $TMPDIR/"
-/usr/bin/time --verbose cp -v $INPUT_DIR/$TUMOUR.bam $TMPDIR
-/usr/bin/time --verbose cp -v $INPUT_DIR/$TUMOUR.bai $TMPDIR
+echo "Copying tumour input $INPUT_DIR/Tumour.$TUMOUR.$INPUT.ba* to $TMPDIR/"
+/usr/bin/time --verbose cp -v $INPUT_DIR/Tumour.$TUMOUR.$INPUT.bam $TMPDIR
+/usr/bin/time --verbose cp -v $INPUT_DIR/Tumour.$TUMOUR.$INPUT.bai $TMPDIR
 
-echo "Running MuTect 1 on normal:$NORMAL vs tumor:$TUMOUR"
+echo "Running MuTect 1 on normal:Normal.$NORMAL.$INPUT vs tumor:Tumour.$TUMOUR.$INPUT"
 /usr/bin/time --verbose $JAVA7 -Xmx16g -jar $MUTECT1 \
 -dcov $DCOV \
 --analysis_type MuTect \
@@ -58,8 +59,8 @@ $INTERVALS \
 --reference_sequence $REF \
 --cosmic $COSMIC \
 --dbsnp $DBSNP \
---input_file:normal $TMPDIR/$NORMAL.bam \
---input_file:tumor $TMPDIR/$TUMOUR.bam \
+--input_file:normal $TMPDIR/Normal.$NORMAL.$INPUT.bam \
+--input_file:tumor $TMPDIR/Tumour.$TUMOUR.$INPUT.bam \
 --out $TMPDIR/$OUTPUT.out \
 --coverage_file $TMPDIR/$OUTPUT.wig \
 -vcf $TMPDIR/$OUTPUT.vcf \
