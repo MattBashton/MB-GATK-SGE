@@ -11,7 +11,7 @@
 # Runs the Variant Recalibrator input is raw VCF from the HC and output is a
 # recal file which can be applied using Apply Recalibration.
 # Not using -an DP since this is a bad idea for exome + targeted panels.
-# maxGuassians 4 needed to get things working with targeted data, drop this for
+# maxGaussians 4 needed to get things working with targeted data, drop this for
 # exomes, unless small < 10 sample number or you have issues with too few bad
 # variants.  Also leaving out InbreedingCoeff some discussion of this being
 # problematic too on forums, needs at least 10 samples which are not related.
