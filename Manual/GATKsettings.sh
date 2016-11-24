@@ -37,7 +37,7 @@ JAVA7="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.
 #specific)
 module add compilers/gnu/4.9.3
 ## Latest version of R for plots (FMS cluster specific)
-module add apps/R/3.2.3
+module add apps/R/3.3.1
 
 ## Location of programs
 # Extra GATK setting below fixes issues with file locking on Luster FS
