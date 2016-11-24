@@ -7,7 +7,7 @@
 #$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2016
-# Runs the HC against bam file passed in from command line.
+# Runs the HC against bam file from $SGE_TASK_ID in automated pipeline.
 # New vectorised Pair-HMM engine using AVX disables parallelisation so -pe smp
 # set to 1.  5 days run time allocated, change if need be.
 #
