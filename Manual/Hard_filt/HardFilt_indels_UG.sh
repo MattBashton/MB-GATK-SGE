@@ -40,7 +40,7 @@ echo "Copying input $B_PATH_NAME.* to $TMPDIR"
 echo "UG called indels separately - skip indel extraction from VCF"
 
 echo "Applying filter to raw indel call set"
-/usr/bin/time --verbose $JAVA -Xmx4g $GATK \
+/usr/bin/time --verbose $JAVA -Xmx4g -jar $GATK \
 -T VariantFiltration \
 --downsampling_type NONE \
 --variant $TMPDIR/$B_NAME.vcf \
