@@ -59,7 +59,7 @@ echo "2) Applying filter to raw SNP call set"
 --filterExpression "QD < 2.0"  --filterName "QD" \
 --filterExpression "MQ < 40.0" --filterName "MQ" \
 --filterExpression "FS > 60.0" --filterName "FS" \
---filterExpression "SOR > 4.0" --filterName "SOR" \
+--filterExpression "SOR > 3.0" --filterName "SOR" \
 --filterExpression "MQRankSum < -12.5" --filterName "MQRankSum" \
 --filterExpression "ReadPosRankSum < -8.0" --filterName "ReadPosRankSum" \
 --log_to_file $B_NAME.HC_VariantFiltration_snps.vcf.log
