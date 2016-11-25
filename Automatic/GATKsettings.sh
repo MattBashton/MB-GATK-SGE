@@ -67,6 +67,8 @@ FASTQC="/opt/software/bsu/bin/fastqc"
 VCFUTILS="/opt/software/bsu/bin/vcfutils.pl"
 VCFANNOTATE="/opt/software/bsu/bin/vcf-annotate"
 VCFTOOLS="/opt/software/bsu/bin/vcftools"
+BCFTOOLS="/opt/software/bsu/bin/bcftools"
+PLOTVCFSTATS="/opt/software/bsu/bin/plot-vcfstats"
 SAMTOOLS="/opt/software/bsu/bin/samtools"
 BAMQC="/opt/software/bsu/bin/bamqc"
 
