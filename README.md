@@ -3,8 +3,10 @@
 ## Updates ##
 
 #####November 2016#####
+* `Gen_VCF_stats.sh` can be called (as a none SGE script) to calculate and plot VCF stats using `bcftools stats` on any dir which contains `.vcf` files PDFs and stats files will be left in that dir.
 * `Split_VCF.sh` now employs GATK's SelectVariants rather than VCFtools and `vcfutils.pl`, this preserves the full HC annotation in the INFO field, the per-sample VCF passed to VEP is now has the final suffix `.PerSample.vcf`, the TYPE annotation is still filled in another VCF file with suffix `.TYPE.vcf` (not used by VEP).
 * `bcftools stats` and derived plots are now produced per-sample (as a PDF) by `Split_VCF.sh`
+* Added support for variant calling per-sample with the classic HaplotypeCaller .vcf output `HC_classic/` and the UnifiedGenotyper `UG_sample_lvl` in the automated pipeline, accompanying Hard Filtering scripts also created, provides alternatives to the current `.gvcf` GenotypeGVCFs HaplotypeCaller pipeline.  Hard Filtering scripts also produce `bcftools stats` and derived plots.
 
 #####October 2016#####
 * Moved to Ensembl VEP v86 using new `--tab` output which separates some perviously merged fields in the `.txt` file output. (Note full HTML output appears to be broken with this version/option)
