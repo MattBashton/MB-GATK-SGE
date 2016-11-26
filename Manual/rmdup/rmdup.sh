@@ -7,7 +7,8 @@
 
 # Matthew Bashton 2015-2016
 # Uses SAMtools to remove PCR duplicates from a BAM file, not part of GATK
-# pipeline but useful for external tools.
+# pipeline but useful for external tools.  NOTE: samtools rmdup is considered by
+# samtools authors to be deprecated.
 
 set -o pipefail
 hostname
