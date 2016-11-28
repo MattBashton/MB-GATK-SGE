@@ -9,8 +9,8 @@
 # Matthew Bashton 2012-2016
 # Runs Picard MergeSamFiles in automated pipeline works on merger_list.txt
 # this is a tab delimited file, the second column is a comma separated list of
-# input run numbers such as 1,2 which expands and correspond the input file
-# names: $G_NAME.SGE_TASK_ID.bam and the first column which corresponds to the
+# input run numbers such as 1,2 which expands and corresponds to the input file
+# names: $G_NAME.SGE_TASK_ID.bam.  The first column corresponds to a new
 # new $SGE_TASK_ID or run ID of the merged Bam file such that an array job can
 # be run on the new merged set.  Note master_list.txt needs to be updated
 # accordingly where the first column should now correspond to the $NEW_RUN_ID
