@@ -16,6 +16,7 @@
 
 module add apps/perl
 module add apps/samtools/1.3.1
+module add apps/htslib/1.3.1 
 module add apps/VEP/v86
 
 set -o pipefail
