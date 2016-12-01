@@ -41,9 +41,11 @@ CREATE_INDEX=true \
 VALIDATION_STRINGENCY=STRICT \
 MAX_RECORDS_IN_RAM=4000000
 
-echo "Running SAMtools flagstat to gather alignment stats on $SAMP_ID in file $TMPDIR/$B_NAME.dedup.bam"
+echo "Running SAMtools flagstat, idxstat and stats to gather alignment stats on $SAMP_ID in file $TMPDIR/$B_NAME.dedup.bam"
 echo "$SAMP_ID" > $PWD/$B_NAME.dedup.flagstat.txt
 /usr/bin/time --verbose $SAMTOOLS flagstat $TMPDIR/$B_NAME.dedup.bam >>$PWD/$B_NAME.dedup.flagstat.txt
+/usr/bin/time --verbose $SAMTOOLS idxstats $TMPDIR/$B_NAME.dedup.bam >$PWD/$B_NAME.dedup.idxstat.txt
+/usr/bin/time --verbose $SAMTOOLS stats $TMPDIR/$B_NAME.dedup.bam >$PWD/$B_NAME.dedup.stats.txt
 
 echo "Copying $TMPDIR/$B_NAME.dedup.ba* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.dedup.bam $PWD
