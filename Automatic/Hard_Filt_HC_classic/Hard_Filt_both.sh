@@ -132,10 +132,13 @@ echo "Copying back output $TMPDIR/$SAMP_ID.HC.Hard_filtered_*.vc* to $PWD"
 # Stats and Plots
 echo "Calculating per sample stats with bcftools stats on SAMP_ID.HC.Hard_filtered_snps.PASS.vcf"
 /usr/bin/time --verbose $BCFTOOLS stats $TMPDIR/$SAMP_ID.HC.Hard_filtered_snps.PASS.vcf > $TMPDIR/$SAMP_ID.HC.Hard_filtered_snps.PASS.stats
+echo "Copying back bcftools stats output"
+/usr/bin/time --verbose cp -v $TMPDIR/$SAMP_ID.HC.Hard_filtered_snps.PASS.stats $PWD
 
 echo "Calculating per sample stats with bcftools stats on $SAMP_ID.HC.Hard_filtered_indels.PASS.vcf"
 /usr/bin/time --verbose $BCFTOOLS stats $TMPDIR/$SAMP_ID.HC.Hard_filtered_indels.PASS.vcf > $TMPDIR/$SAMP_ID.HC.Hard_filtered_indels.PASS.stats
-
+echo "Copying back bcftools stats output"
+/usr/bin/time --verbose cp -v $TMPDIR/$SAMP_ID.HC.Hard_filtered_indels.PASS.stats $PWD
 
 cd $TMPDIR
 echo "Plotting stats with plot-vcfstats using $TMPDIR/$SAMP_ID.HC.Hard_filtered_snps.PASS.stats input"

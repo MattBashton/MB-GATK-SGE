@@ -67,6 +67,8 @@ do
     # Copying output back to $PWD
     echo "Copying $B_NAME.$i.* to $PWD"
     /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.$i.* $PWD/
+    echo "Copying back bcftools stats output"
+    /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.$i.stats $PWD
 
     # Stats plot
     cd $TMPDIR

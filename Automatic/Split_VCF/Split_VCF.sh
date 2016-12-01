@@ -63,6 +63,8 @@ do
     cat $TMPDIR/$B_NAME.$i.PerSample.vcf | $VCFANNOTATE --fill-type > $TMPDIR/$B_NAME.$i.TYPE.vcf
     echo "Calculating per sample stats with bcftools stats on $B_NAME.$i.PerSample.vcf"
     /usr/bin/time --verbose $BCFTOOLS stats $TMPDIR/$B_NAME.$i.PerSample.vcf > $TMPDIR/$B_NAME.$i.stats
+    echo "Copying back bcftools stats output"
+    /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.$i.stats $PWD
 
     # Copying output back to $PWD
     echo "Copying $B_NAME.$i.* to $PWD"
