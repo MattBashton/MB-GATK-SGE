@@ -60,7 +60,7 @@ $INTERVALS \
 --bamOutput $TMPDIR/$SAMP_ID.HC.bam \
 -stand_call_conf 30 \
 -stand_emit_conf 30 \
---log_to_file $TMPDIR/$SAMP_ID.log
+--log_to_file $SAMP_ID.log
 
 echo "Copying output TMPDIR/$SAMP_ID.HC.vcf* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$SAMP_ID.HC.vcf $PWD
