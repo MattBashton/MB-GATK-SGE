@@ -10,7 +10,7 @@
 # Runs FastQC on the supplied (at command line $1) .fastq or .fastq.gz file.
 # Note parallelisation with FastQC is a waste of time as only works with
 # multiple input files, and these are submited as diff SoGE jobs.
-# Default run time is two hours, adjust if need be.
+# Default run time is twelve hours, adjust if need be.
 
 set -o pipefail
 hostname
