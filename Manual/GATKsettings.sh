@@ -41,7 +41,7 @@ module add apps/R/3.3.1
 
 ## Location of programs
 # Extra GATK setting below fixes issues with file locking on Luster FS
-GATK="/opt/software/bsu/bin/GenomeAnalysisTK-3.6.jar --disable_auto_index_creation_and_locking_when_reading_rods"
+GATK="/opt/software/bsu/bin/GenomeAnalysisTK-3.7.jar --disable_auto_index_creation_and_locking_when_reading_rods"
 # Newer versions of Picard has a unified .jar file
 PICARD="/opt/software/bsu/bin/picard.jar"
 BWA="/opt/software/bsu/bin/bwa"

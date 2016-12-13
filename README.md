@@ -1,6 +1,9 @@
 # GATK3.x / MuTect1&2 SGE based analysis pipeline #
 
 ## Updates ##
+#####December 2016#####
+* Switched to GATK 3.7
+* Using new `-newQual` option which should perform better for singleton variants in joint calling especially at high depth, default qual score for calling is now 10, emit threshold now removed.  May cause more raw variants to be called.  This change affect both HC and UG as well as GenotypeGVCFs.  
 
 #####November 2016#####
 * `Gen_VCF_stats.sh` can be called (as a none SGE script) to calculate and plot VCF stats using `bcftools stats` on any dir which contains `.vcf` files PDFs and stats files will be left in that dir.

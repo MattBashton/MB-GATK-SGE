@@ -20,6 +20,10 @@
 # in GATKsettings.sh $MAX_READS_IN_REGION - Note now disabled!
 # See GATKsettings.sh for notes on this.
 
+# Now using -newQual and default -stand_call_conf of 10, -stand_emit_conf is
+# now deprecated as per GATK 3.7 see:
+# https://software.broadinstitute.org/gatk/documentation/version-history
+
 set -o pipefail
 hostname
 date
@@ -55,11 +59,10 @@ $INTERVALS \
 -I $TMPDIR/$B_NAME.bam \
 --dbsnp $DBSNP \
 -R $REF \
+-newQual \
 --max_alternate_alleles 50 \
 -o $TMPDIR/$SAMP_ID.HC.vcf \
 --bamOutput $TMPDIR/$SAMP_ID.HC.bam \
--stand_call_conf 30 \
--stand_emit_conf 30 \
 --log_to_file $SAMP_ID.log
 
 echo "Copying output TMPDIR/$SAMP_ID.HC.vcf* to $PWD"

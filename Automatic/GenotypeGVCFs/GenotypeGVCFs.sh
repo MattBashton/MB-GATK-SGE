@@ -9,6 +9,10 @@
 # Runs GenotypeGVCFs which takes the sample level genomic VCF files and fuses
 # them into a normal VCF file which can then be used for recalibration.
 
+# Now using -newQual and default -stand_call_conf of 10, -stand_emit_conf is
+# now deprecated as per GATK 3.7 see:
+# http://gatkforums.broadinstitute.org/gatk/discussion/8692/version-highlights-for-gatk-version-3-7
+
 set -o pipefail
 hostname
 date
@@ -50,6 +54,7 @@ cd $TMPDIR
 -nt 5 \
 -R $REF \
 --dbsnp $DBSNP \
+-newQual \
 --max_alternate_alleles 50 \
 $VCF_LIST \
 -o $G_NAME.HC_genotyped.vcf \

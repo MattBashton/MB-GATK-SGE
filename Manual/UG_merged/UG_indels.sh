@@ -10,6 +10,10 @@
 # Runs the Unified Genotyper on a merged BAM as per GATK 2.x best practices
 # -dcov from global settings file.  5 days run time by default.
 
+# Now using -newQual and default -stand_call_conf of 10, -stand_emit_conf is
+# now deprecated as per GATK 3.7 see:
+# https://software.broadinstitute.org/gatk/documentation/version-history
+
 set -o pipefail
 hostname
 date
@@ -43,16 +47,15 @@ $INTERVALS \
 -I $TMPDIR/$B_NAME.bam \
 --dbsnp $DBSNP \
 -R $REF \
--stand_emit_conf 10 \
--stand_call_conf 30 \
+-newQual \
 --max_alternate_alleles 50 \
 --genotype_likelihoods_model INDEL \
--o $TMPDIR/$B_NAME.UG_indels_ecQ10_ccQ30.vcf \
---log_to_file $B_NAME.UG_indels_ecQ10_ccQ30.log
+-o $TMPDIR/$B_NAME.UG_indels_ccQ10.vcf \
+--log_to_file $B_NAME.UG_indels_ccQ10.log
 
 echo "Copying output TMPDIR/$B_NAME.vcf* to $PWD"
-/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.UG_indels_ecQ10_ccQ30.vcf $PWD
-/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.UG_indels_ecQ10_ccQ30.vcf.idx $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.UG_indels_ccQ10.vcf $PWD
+/usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.UG_indels_ccQ10.vcf.idx $PWD
 
 echo "Deleting $TMPDIR/$B_NAME.*"
 rm $TMPDIR/$B_NAME.*

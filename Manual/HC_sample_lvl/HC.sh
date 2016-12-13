@@ -21,6 +21,10 @@
 # --maxReadsInRegionPerSample defaults to 10000 for the active region changed
 # in GATKsettings.sh $MAX_READS_IN_REGION
 
+# Now using -newQual and default -stand_call_conf of 10, -stand_emit_conf is
+# now deprecated as per GATK 3.7 see:
+# https://software.broadinstitute.org/gatk/documentation/version-history
+
 set -o pipefail
 hostname
 date
@@ -57,6 +61,7 @@ $INTERVALS \
 -I $TMPDIR/$B_NAME.bam \
 --dbsnp $DBSNP \
 -R $REF \
+-newQual \
 --max_alternate_alleles 50 \
 -o $TMPDIR/$SAMP_NAME.HC.g.vcf \
 --bamOutput $TMPDIR/$SAMP_NAME.HC.bam \

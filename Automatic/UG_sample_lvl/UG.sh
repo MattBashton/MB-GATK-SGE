@@ -11,6 +11,10 @@
 # This script runs the UnifiedGenotyper in a per sample way
 # against a bam file from $SGE_TASK_ID in automated pipeline.
 
+# Now using -newQual and default -stand_call_conf of 10, -stand_emit_conf is
+# now deprecated as per GATK 3.7 see:
+# https://software.broadinstitute.org/gatk/documentation/version-history
+
 set -o pipefail
 hostname
 date
@@ -46,8 +50,7 @@ $INTERVALS \
 -I $TMPDIR/$B_NAME.bam \
 --dbsnp $DBSNP \
 -R $REF \
--stand_emit_conf 30 \
--stand_call_conf 30 \
+-newQual \
 --max_alternate_alleles 50 \
 --genotype_likelihoods_model SNP \
 -o $TMPDIR/$SAMP_ID.UG_snps.vcf \
