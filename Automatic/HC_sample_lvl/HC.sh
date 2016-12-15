@@ -73,4 +73,3 @@ rm $TMPDIR/$G_NAME.*
 
 date
 echo "END"
-ß
