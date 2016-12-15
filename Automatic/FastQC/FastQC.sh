@@ -45,8 +45,8 @@ echo "Copying input $FILE1 and $FILE2 to $TMPDIR/"
 /usr/bin/time --verbose cp -v $FILE1 $TMPDIR/
 /usr/bin/time --verbose cp -v $FILE2 $TMPDIR/
 
-echo "Running FastQC on $TMPDIR/$B_NAME_FILE1 and $TMPDIR/$B_NAME_FILE2"
-/usr/bin/time --verbose $FASTQC -t 2 $TMPDIR/$B_NAME_FILE1 $TMPDIR/$B_NAME_FILE2 --noextract -q -o $PWD -d $TMPDIR
+echo "Running FastQC on $TMPDIR/$B_NAME_F1 and $TMPDIR/$B_NAME_F2"
+/usr/bin/time --verbose $FASTQC -t 2 $TMPDIR/$B_NAME_F1 $TMPDIR/$B_NAME_F2 --noextract -q -o $PWD -d $TMPDIR
 
 echo "Deleting $TMPDIR/*.gz"
 rm $TMPDIR/*.gz
