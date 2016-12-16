@@ -65,9 +65,6 @@ echo "Copying output TMPDIR/${G_NAME}_${SGE_TASK_ID}_HC.ba* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/${G_NAME}_${SGE_TASK_ID}_HC.bam $PWD
 /usr/bin/time --verbose cp -v $TMPDIR/${G_NAME}_${SGE_TASK_ID}_HC.bai $PWD
 
-echo "Deleting $TMPDIR/$B_NAME.*"
-rm $TMPDIR/$B_NAME.*
-
 echo "Deleting $TMPDIR/$G_NAME.*"
 rm $TMPDIR/$G_NAME.*
 
