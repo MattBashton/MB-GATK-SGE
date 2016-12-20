@@ -4,6 +4,7 @@
 #####December 2016#####
 * Switched to GATK 3.7
 * Using new `-newQual` option which should perform better for singleton variants in joint calling especially at high depth, default qual score for calling is now 10, emit threshold now removed.  May cause more raw variants to be called.  This change applies to both `HC_classic` and `UG` as well as `GenotypeGVCFs`.  
+* Added `Split_VCF_RAW` and `VEP_RAW` optional jobs to take RAW unfiltered GenotypeGVCFs output split VCF per sample and annotate using Ensembl VEP.
 
 #####November 2016#####
 * `Gen_VCF_stats.sh` can be called (as a none SGE script) to calculate and plot VCF stats using `bcftools stats` on any dir which contains `.vcf` files PDFs and stats files will be left in that dir.
@@ -53,7 +54,6 @@ At the command-line [(assuming you have a working git installation)](https://git
 `git clone https://github.com/MattBashton/MB-GATK-SGE`
 
 You should then find a complete download of all scripts and documentation in the newly created `MB-GATK-SGE` directory present in your current working directory.
-
 
 ### Automated pipeline specific config and instructions ###
 The automated pipeline requires some extra settings namely `$G_NAME` which is a global name for an analysis run which needs to be set in the `GATKsettings.sh` file.  The automated pipeline is run using SGE array job dependancies such that should say the BWA stage for a sample complete the corresponding MarkDuplicates stage for said sample will launch in the next job array and so on.  The file `Go_pipline.sh` specifies the pipeline as a series of qsub commands.  Finally a file called `master_list.txt` needs to be present in the same dir as `GATKsettings.sh` / `Go_pipline.sh` this is a tab-delimited flat file, which encodes per-line numeric sample id (used for the run only in `.sam`, `.bam` and `.vcf` file names - suggest you increment this up from one), the `@RG` read group definition line for BWA to incorporate into SAM headers, and the locations of each pair of FASTQ files for BWA for that sample one after the other, these need to be referenced as `../FASTQ/<name_1>.fastq.gz` and `../FASTQ/<name_2>.fastq.gz` as these paths are being passed to BWA operating out of the `BWA_MEM/` dir, the two files needs to be separated by a tab character as do all the other fields.  The format of the file should look like this:
@@ -178,7 +178,7 @@ I had planed to re-implement this whole workflow in Queue, time permitting, but 
 For whole genome analysis speedups can be gained easily in the HaplotypeCaller stage by parallelising per chromosome this can be done without the need for Queue - implementation of this is under way.  However, if run-time is still an issue, Queue/Cromwell may have to be used to scatter gather various stages of analysis including realignment and the HaplotypeCaller.
 
 ## What this is not ##
-This set of scripts, and comments in said scripts, are in no way a replacement for reading the excellent and extensive [GATK documentation](https://www.broadinstitute.org/gatk/guide/), understanding how it works, and choosing appropriate parameters for your experiment.  Choices I've made here reflect my usage case with exoms and my interpretation of the GATK documentation / past and present best practices workflow documentation, your usage case and opinions may differ.  Nor as yet is this a robust error tolerant pipeline, you will need to check things ran correctly (`Audit_run.sh` is provided for the automated pipeline).  This system is not "foolproof and incapable of error" you still need some bioinformatics skills.
+This set of scripts, and comments in said scripts, are in no way a replacement for reading the excellent and extensive [GATK documentation](https://www.broadinstitute.org/gatk/guide/), understanding how it works, and choosing appropriate parameters for your experiment.  Choices I've made here reflect my usage case with exomes and my interpretation of the GATK documentation / past and present best practices workflow documentation, your usage case and opinions may differ.  Nor as yet is this a robust error tolerant pipeline, you will need to check things ran correctly (`Audit_run.sh` is provided for the automated pipeline).  This system is not "foolproof and incapable of error" you still need some bioinformatics skills.
 
 ## Funding ##
 These set of scripts originally started life during my time working at the [Bioinformatics Support Unit (BSU)](http://bsu.ncl.ac.uk/) between 2012-2014.  During October 2014 - July 2016 this work further developed into an automated pipe-line and was funded as part of the INSTINCT network, co-funded by The Brain Tumour Charity, Great Ormond Street Children’s Charity, and Children with Cancer UK (grant 16/193).

@@ -161,6 +161,12 @@ qsub -N $G_NAME.Split_VCF_indels -hold_jid $G_NAME.SelectRecaledVariants_indels 
 #qsub -N $G_NAME.Split_VCF_HF_snps -hold_jid $G_NAME.Hard_Filt -wd $PWD/Split_VCF_Hard_Filt Split_VCF_Hard_Filt/Split_VCF.sh $BASE_DIR/Hard_Filt_VCF/$G_NAME.Hard_filtered_snps.PASS.vcf
 #qsub -N $G_NAME.Split_VCF_HF_indels -hold_jid $G_NAME.Hard_Filt -wd $PWD/Split_VCF_Hard_Filt Split_VCF_Hard_Filt/Split_VCF.sh $BASE_DIR/Hard_Filt_VCF/$G_NAME.Hard_filtered_indels.PASS.vcf
 
+#### Optional splitting of raw VCF from GenotypeGVCFs stage
+#tput bold
+#echo " * 15RAW Split VCF jobs submitted"
+#tput sgr0
+#qsub -N $G_NAME.Split_VCF_RAW_snps -hold_jid $G_NAME.GenotypeGVCFs -wd $PWD/Split_VCF_RAW Split_VCF_RAW/Split_VCF.sh $BASE_DIR/GenotypeGVCFs/$G_NAME.HC_genotyped.vcf
+
 tput bold
 echo " * 16 Ensembl VEP jobs submitted"
 tput sgr0
@@ -179,6 +185,12 @@ qsub -t 1-$N -N $G_NAME.VEP_indels -hold_jid $G_NAME.Split_VCF_indels -wd $PWD/V
 #tput sgr0
 #qsub -t 1-$N -N $G_NAME.VEP_HF_snps -hold_jid $G_NAME.Split_VCF_HF_snps -wd $PWD/VEP_Hard_Filt $PWD/VEP_Hard_Filt/VEP.sh snps
 #qsub -t 1-$N -N $G_NAME.VEP_HF_indels -hold_jid $G_NAME.Split_VCF_HF_indels -wd $PWD/VEP_Hard_Filt $PWD/VEP_Hard_Filt/VEP.sh indels
+
+#### Optional annotate raw VCF from GenotypeGVCFs
+#tput bold
+#echo " * 16RAW Ensembl VEP jobs submitted"
+#tput sgr0
+#qsub -t 1-$N -N $G_NAME.VEP_RAW -hold_jid $G_NAME.Split_VCF_RAW_snps -wd $PWD/VEP_RAW $PWD/VEP_RAW/VEP.sh
 
 echo ""
 tput setaf 2
