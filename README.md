@@ -17,7 +17,6 @@
 * Added various utility scripts `RemoveDuplicates.sh`, `SplitBamByRG.sh`, `MergeBamFromList.sh`, `CollectInsertSizeMetrics.sh`, `ValidateSamFile.sh`.
 
 #####June 2016#####
-
 * Moved to and tested with GATK 3.6 and Java 1.8 (JVM/SoGE required memory increase in some instances).
 * Automated somatic calling with both MuTect1 and MuTect2.  MuTect1 has an additional joint indel realignment and BQSR stage.
 * By default VQSR will be retired up to 4 times if it fails using a different random seed, this may help with targeted panels (New GATK 3.6 feature).
@@ -27,11 +26,9 @@
 * Added option to run BamQC.
 
 #####May 2016#####
-
 * Moved to VEP version 83, ExAC allelic frequencies now reported in VEP output.
 
 #####March 2016#####
-
 * Automated somatic variant calling with MuTect2 and downstream annotation of variants with Ensembl VEP.
 
 ## Overview ##
