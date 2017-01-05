@@ -66,8 +66,7 @@ $INTERVALS \
 -I $TMPDIR/$B_NAME.bam \
 --dbsnp $DBSNP \
 -R $REF \
--stand_emit_conf 30 \
--stand_call_conf 30 \
+-newQual \
 --max_alternate_alleles 50 \
 --genotype_likelihoods_model INDEL \
 -o $TMPDIR/$SAMP_ID.UG_indels.vcf \
