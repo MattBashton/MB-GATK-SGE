@@ -1,6 +1,7 @@
 #!/bin/bash -eu
 #$ -cwd -V
 #$ -l h_vmem=16G
+#$ -l h_rt=48:00:00
 #$ -pe smp 5
 #$ -R y
 #$ -q all.q,bigmem.q
