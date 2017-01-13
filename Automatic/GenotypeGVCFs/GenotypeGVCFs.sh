@@ -2,7 +2,7 @@
 #$ -cwd -V
 #$ -l h_vmem=16G
 #$ -l h_rt=48:00:00
-#$ -pe smp 5
+#$ -pe smp 1
 #$ -R y
 #$ -q all.q,bigmem.q
 
@@ -52,7 +52,7 @@ echo "Running GenotypeGVCFs on gVCF list"
 cd $TMPDIR
 /usr/bin/time --verbose $JAVA -Xmx10g -jar $GATK \
 -T GenotypeGVCFs \
--nt 5 \
+-nt 1 \
 -R $REF \
 --dbsnp $DBSNP \
 -newQual \
