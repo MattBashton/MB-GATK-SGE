@@ -58,6 +58,7 @@ TUMOUR=$3
 
 # Make output name for this run
 OUTPUT=$NORMAL.vs.$TUMOUR
+INPUT=$NORMAL.vs.$TUMOUR
 
 #Input file path
 INPUT_DIR="../Merge_MuTect1_pairs"
@@ -85,7 +86,7 @@ echo "Running GATK"
 --maxReadsForConsensuses 1200 \
 -known $MILLS_1KG_GOLD \
 -known $PHASE1_INDELS \
--I $TMPDIR/$OUTPUT.dedup.realigned.merged.bam \
+-I $TMPDIR/$INPUT.dedup.realigned.merged.bam \
 -R $REF \
 -targetIntervals $OUTPUT.RTC.intervals \
 -o $TMPDIR/$OUTPUT.merged.realigned.bam \

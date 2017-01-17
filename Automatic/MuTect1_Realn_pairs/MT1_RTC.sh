@@ -28,6 +28,7 @@ TUMOUR=$3
 
 # Make output name for this run
 OUTPUT=$NORMAL.vs.$TUMOUR
+INPUT=$NORMAL.vs.$TUMOUR
 
 #Input file path
 INPUT_DIR="../Merge_MuTect1_pairs"
@@ -54,7 +55,7 @@ $INTERVALS \
 --interval_padding $PADDING \
 -known $MILLS_1KG_GOLD \
 -known $PHASE1_INDELS \
--I $TMPDIR/$OUTPUT.dedup.realigned.merged.bam \
+-I $TMPDIR/$INPUT.dedup.realigned.merged.bam \
 -R $REF \
 -o $TMPDIR/$OUTPUT.RTC.intervals \
 --log_to_file $OUTPUT.RTC.log

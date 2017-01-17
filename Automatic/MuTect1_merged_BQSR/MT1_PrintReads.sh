@@ -26,6 +26,7 @@ TUMOUR=$3
 
 # Make output name for this run
 OUTPUT=$NORMAL.vs.$TUMOUR
+INPUT=$NORMAL.vs.$TUMOUR
 
 #Input file path
 INPUT_DIR="../MuTect1_Realn_pairs"
@@ -50,7 +51,7 @@ echo "Running GATK"
 -nct 5 \
 $INTERVALS \
 --interval_padding $PADDING \
--I $TMPDIR/$OUTPUT.merged.realigned.bam \
+-I $TMPDIR/$INPUT.merged.realigned.bam \
 -R $REF \
 -BQSR $OUTPUT.Recal_data.grp \
 -o $TMPDIR/$OUTPUT.merged.realigned.recalibrated.bam \
