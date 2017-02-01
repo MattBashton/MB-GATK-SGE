@@ -34,7 +34,7 @@ do
     --html \
     --tab \
     -o $2/$SAMP_NAME.VEP.txt \
-    --buffer_size 25000 \
+    --buffer_size 5000 \
     --fork 10 \
     --pick_allele
 done
