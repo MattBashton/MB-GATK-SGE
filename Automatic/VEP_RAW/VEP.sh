@@ -7,7 +7,7 @@
 #$ -q all.q,bigmem.q
 
 # Matthew Bashton 2015-2016
-# Runs Ensembl VEP with input from $1 this needs modules for VEP since it has a
+# Runs Ensembl VEP, this needs modules for VEP since it has a
 # lot of dependancies which are not trivial to install.
 
 # Using local cache copied from that installed to luster FS via head node as
