@@ -1,15 +1,17 @@
 #!/bin/bash -eu
 
-# Matthew Bashton 2015-2016
+# Matthew Bashton 2015-2017
 # Runs VEP with a whole dir of vcf input from $1 given as ../dir/*.vcf $2 is output dir which is created
-[ $# -eq 0 ] && { echo -e "\nMatt Bashton 2015\n\n*** This script runs VEP on *.vcf in given dir ***\n\nError nothing to do!\n\nUsage: <input dir>  <output dir>\n\nThe output dir will be created, also don't use / on output dir names\n\n" ; exit 1; }
+[ $# -eq 0 ] && { echo -e "\nMatt Bashton 2015-2017\n\n*** This script runs VEP on *.vcf in given dir ***\n\nError nothing to do!\n\nUsage: <input dir>  <output dir>\n\nThe output dir will be created\n\n" ; exit 1; }
 
 set -o pipefail
 hostname
 date
 
-echo "Creating output dir $2"
-mkdir -p $2
+OUTPUT=${2%/}
+
+echo "Creating output dir $OUTPUT"
+mkdir -p $OUTPUT
 
 # Get sample names
 list=( $(ls -1 $1/*.vcf) )
@@ -33,7 +35,7 @@ do
     --maf_exac \
     --html \
     --tab \
-    -o $2/$SAMP_NAME.VEP.txt \
+    -o $OUTPUT/$SAMP_NAME.VEP.txt \
     --buffer_size 5000 \
     --fork 10 \
     --pick_allele
