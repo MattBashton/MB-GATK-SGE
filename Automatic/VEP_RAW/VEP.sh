@@ -15,9 +15,7 @@
 # by streaming zcat of .gz files so rather suboptimal for cluster.
 
 module add apps/perl
-module add apps/samtools/1.3.1
-module add apps/htslib/1.3.1
-module add apps/VEP/v86
+module add apps/VEP/v87
 
 set -o pipefail
 hostname
@@ -42,8 +40,8 @@ echo "Creating VEP cache dirs on local scratch in $TMPDIR"
 mkdir $TMPDIR/vep_cache
 
 echo "Copying VEP cache: $GLOBAL_VEP_CACHE to $TMPDIR/vep_cache"
-/usr/bin/time --verbose cp -R $GLOBAL_VEP_CACHE/homo_sapiens $TMPDIR/vep_cache/
-/usr/bin/time --verbose cp -R $GLOBAL_VEP_CACHE/Plugins $TMPDIR/vep_cache/
+/usr/bin/time --verbose cp -R --preserve=all $GLOBAL_VEP_CACHE/homo_sapiens $TMPDIR/vep_cache/
+/usr/bin/time --verbose cp -R --preserve=all $GLOBAL_VEP_CACHE/Plugins $TMPDIR/vep_cache/
 
 echo "Setting VEP cache location to $TMPDIR/vep_cache"
 VEP_CACHEDIR="$TMPDIR/vep_cache"
@@ -60,6 +58,11 @@ echo "Running VEP on $TMPDIR/$B_NAME.vcf"
 --port 3337 \
 --everything \
 --force_overwrite \
+--plugin ExAC,$TMPDIR/vep_cache/Plugins/ExAC.r0.3.1.sites.vep.vcf.gz \
+--plugin FATHMM_MKL,$TMPDIR/vep_cache/Plugins/fathmm-MKL_Current.tab.gz \
+--plugin LoFtool,$TMPDIR/vep_cache/Plugins/LoFtool_scores.txt \
+--plugin Carol \
+--plugin Blosum62 \
 --maf_exac \
 --html \
 --tab \

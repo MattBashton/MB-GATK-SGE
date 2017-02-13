@@ -1,6 +1,9 @@
 # GATK3.x / MuTect1&2 SGE based analysis pipeline #
 
 ## Updates ##
+#####February 2017#####
+* Updated Ensembl VEP to v87, now using ExAC, FATHHM MKL, LoFtool, Carol and Blosum62 plugins.  Some tabix flat files are required see associated `.pm` files in `Plugins/` dir in `.vep` cache dir for download instructions.
+
 #####December 2016#####
 * Switched to GATK 3.7
 * Using new `-newQual` option which should perform better for singleton variants in joint calling especially at high depth, default qual score for calling is now 10, emit threshold now removed.  May cause more raw variants to be called.  This change applies to both `HC_classic` and `UG` as well as `GenotypeGVCFs`.  
