@@ -1,25 +1,25 @@
 # GATK3.x / MuTect1&2 SGE based analysis pipeline #
 
 ## Updates ##
-####February 2017####
+###February 2017###
 * Updated Ensembl VEP to v87, now using ExAC, FATHHM MKL, LoFtool, Carol and Blosum62 plugins.  Some tabix flat files are required see associated `.pm` files in `Plugins/` dir in `.vep` cache dir for download instructions.
 
-####December 2016####
+###December 2016###
 * Switched to GATK 3.7
 * Using new `-newQual` option which should perform better for singleton variants in joint calling especially at high depth, default qual score for calling is now 10, emit threshold now removed.  May cause more raw variants to be called.  This change applies to both `HC_classic` and `UG` as well as `GenotypeGVCFs`.  
 * Added `Split_VCF_RAW` and `VEP_RAW` optional jobs to take raw unfiltered GenotypeGVCFs output split VCF per sample and annotate using Ensembl VEP.
 
-####November 2016####
+###November 2016###
 * `Gen_VCF_stats.sh` can be called (as a none SGE script) to calculate and plot VCF stats using `bcftools stats` on any dir which contains `.vcf` files PDFs and stats files will be left in that dir.
 * `Split_VCF.sh` now employs GATK's SelectVariants rather than VCFtools and `vcfutils.pl`, this preserves the full HC annotation in the INFO field, the per-sample VCF passed to VEP is now has the final suffix `.PerSample.vcf`, the TYPE annotation is still filled in another VCF file with suffix `.TYPE.vcf` (not used by VEP).
 * `bcftools stats` and derived plots are now produced per-sample (as a PDF) by `Split_VCF.sh`
 * Added support for variant calling per-sample with the classic HaplotypeCaller .vcf output `HC_classic/` and the UnifiedGenotyper `UG_sample_lvl` in the automated pipeline, accompanying Hard Filtering scripts also created, provides alternatives to the current `.gvcf` GenotypeGVCFs HaplotypeCaller pipeline.  Hard Filtering scripts also produce `bcftools stats` and derived plots.
 
-####October 2016####
+###October 2016###
 * Moved to Ensembl VEP v86 using new `--tab` output which separates some perviously merged fields in the `.txt` file output. (Note full HTML output appears to be broken with this version/option)
 * Added various utility scripts `RemoveDuplicates.sh`, `SplitBamByRG.sh`, `MergeBamFromList.sh`, `CollectInsertSizeMetrics.sh`, `ValidateSamFile.sh`.
 
-####June 2016####
+###June 2016###
 * Moved to and tested with GATK 3.6 and Java 1.8 (JVM/SoGE required memory increase in some instances).
 * Automated somatic calling with both MuTect1 and MuTect2.  MuTect1 has an additional joint indel realignment and BQSR stage.
 * By default VQSR will be retired up to 4 times if it fails using a different random seed, this may help with targeted panels (New GATK 3.6 feature).
@@ -28,10 +28,10 @@
 * Added optional Hard Filtration post GenotypeGVCFs, this is useful for targeted panels where conventional VQSR would fail.  Uncomment sections in `Go_pipeline.sh` to run.
 * Added option to run BamQC.
 
-####May 2016####
+###May 2016###
 * Moved to VEP version 83, ExAC allelic frequencies now reported in VEP output.
 
-####March 2016####
+###March 2016###
 * Automated somatic variant calling with MuTect2 and downstream annotation of variants with Ensembl VEP.
 
 ## Overview ##
