@@ -1,6 +1,10 @@
 # GATK3.x / MuTect1&2 SGE based analysis pipeline #
 
 ## Updates ##
+
+##### May 2017 #####
+* Ensembl VEP updated to v88, this has different command-line arguments to older v87 old scripts preserved with v87 suffix, new VEP v88 should be faster.  Also using new `--nearest symbol` and `--total_length` options.
+
 ##### February 2017 #####
 * Updated Ensembl VEP to v87, now using ExAC, FATHHM MKL, LoFtool, Carol and Blosum62 plugins.  Some tabix flat files are required see associated `.pm` files in `Plugins/` dir in `.vep` cache dir for download instructions.
 

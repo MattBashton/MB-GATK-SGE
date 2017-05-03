@@ -25,14 +25,15 @@ do
     echo " - Basename is $SAMP_NAME"
     echo " - Running VEP on $i"
 
-    /usr/bin/time --verbose vep \
+    /usr/bin/time --verbose variant_effect_predictor.pl \
     -i $i \
+    --no_progress \
     --cache \
     --port 3337 \
     --everything \
-    --nearest symbol \
-    --total_length \
     --force_overwrite \
+    --maf_exac \
+    --html \
     --tab \
     -o $OUTPUT/$SAMP_NAME.VEP.txt \
     --buffer_size 5000 \

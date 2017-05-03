@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-
+# Matthew Bashton 2015-2017
 # Runs Ensembl VEP with input from $1 this needs modules for VEP since it has a
 # lot of dependancies which are not trivial to install.
 
@@ -14,8 +14,9 @@
 # multiple jobs all writing to same files may cause issues, also cache works
 # by streaming zcat of .gz files so rather suboptimal for cluster.
 
-module add apps/perl
-module add apps/VEP/v87
+module add compilers/gnu/4.9.3
+module add apps/perl/5.22.3
+module add apps/VEP/v88
 
 set -o pipefail
 hostname
@@ -47,20 +48,19 @@ VEP_CACHEDIR="$TMPDIR/vep_cache"
 #sed -i.bak s/chr//g $TMPDIR/$B_NAME.vcf
 
 echo "Running VEP on $TMPDIR/$B_NAME.vcf"
-/usr/bin/time --verbose variant_effect_predictor.pl \
+/usr/bin/time --verbose vep \
 -i $TMPDIR/$B_NAME.vcf \
---no_progress \
 --cache \
 --port 3337 \
 --everything \
+--nearest symbol \
+--total_length \
 --force_overwrite \
 --plugin ExAC,$TMPDIR/vep_cache/Plugins/ExAC.r0.3.1.sites.vep.vcf.gz \
 --plugin FATHMM_MKL,$TMPDIR/vep_cache/Plugins/fathmm-MKL_Current.tab.gz \
 --plugin LoFtool,$TMPDIR/vep_cache/Plugins/LoFtool_scores.txt \
 --plugin Carol \
 --plugin Blosum62 \
---maf_exac \
---html \
 --tab \
 -o $TMPDIR/$B_NAME.txt \
 --dir $TMPDIR/vep_cache/ \
