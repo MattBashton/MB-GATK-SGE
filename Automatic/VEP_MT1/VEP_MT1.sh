@@ -2,7 +2,7 @@
 #$ -cwd -V
 #$ -pe smp 10
 #$ -l h_rt=24:00:00
-#$ -l h_vmem=60G
+#$ -l h_vmem=10G
 #$ -R y
 #$ -q all.q,bigmem.q
 
@@ -83,13 +83,9 @@ echo "Running VEP on $TMPDIR/$INPUT.vcf"
 echo "Copying back VEP *.txt output from $TMPDIR to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/*.txt $PWD
 
-echo "Copying back VEP *.html output from $TMPDIR to $PWD"
-/usr/bin/time --verbose cp -v $TMPDIR/*.html $PWD
-
 # Cleaning up
-echo "Removing *.txt *.html *.vcf from $TMPDIR"
+echo "Removing *.txt *.vcf from $TMPDIR"
 rm $TMPDIR/*.txt
-rm $TMPDIR/*.html
 rm $TMPDIR/*.vcf
 
 date
