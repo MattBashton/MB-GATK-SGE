@@ -2,7 +2,7 @@
 #$ -cwd -V
 #$ -pe smp 2
 #$ -l h_rt=48:00:00
-#$ -l h_vmem=20G
+#$ -l h_vmem=22G
 #$ -R y
 #$ -q all.q,bigmem.q
 
