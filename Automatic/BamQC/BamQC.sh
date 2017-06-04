@@ -12,8 +12,6 @@
 # multiple input files, and these are submited as diff SoGE jobs.
 # Default run time is two hours, adjust if need be.
 
-# Not currently working, no idea possible bug in BamQC fail to generate output!
-
 set -o pipefail
 hostname
 date
