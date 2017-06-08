@@ -32,7 +32,7 @@ echo "Copying input $BAM to $TMPDIR/"
 /usr/bin/time --verbose cp -v $BAM $TMPDIR
 
 echo "Running SAMtools on $TMPDIR/$B_NAME saving output as a gziped FASTQ file"
-/usr/bin/time --verbose $SAMTOOLS bamshuf -uOn 128 $TMPDIR/$B_NAME $TMPDIR/tmp | $SAMTOOLS bam2fq - | gzip > $TMPDIR/$B_NAME.fastq.gz
+/usr/bin/time --verbose $SAMTOOLS bamshuf -uOn 128 $TMPDIR/$B_NAME $TMPDIR/tmp | $SAMTOOLS bam2fq - | pigz > $TMPDIR/$B_NAME.fastq.gz
 
 echo "Copying $TMPDIR/*.fastq.gz to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/*.fastq.gz $PWD
