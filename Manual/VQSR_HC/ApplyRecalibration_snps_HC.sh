@@ -13,6 +13,10 @@
 # https://www.broadinstitute.org/gatk/guide/article?id=2805
 # https://www.broadinstitute.org/gatk/guide/article?id=1259
 
+# As of GATK 3.6 4 attempts are now made to build a model
+
+# Target Ti/Tv ratio is set at 3.2 for exomes, the deault for genomes is 2.15.
+
 set -o pipefail
 hostname
 date
@@ -43,6 +47,7 @@ echo "Running GATK"
 -tranchesFile $B_NAME.VR_HC_snps.tranches \
 -o $TMPDIR/$B_NAME.vrecal.snps.vcf \
 -mode SNP \
+--target_titv 3.2 \
 --ts_filter_level 99.0 \
 --log_to_file $B_NAME.AR_HC_snps.log
 

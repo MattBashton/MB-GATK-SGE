@@ -23,6 +23,8 @@
 
 # As of GATK 3.6 4 attempts are now made to build a model
 
+# Target Ti/Tv ratio is set at 3.2 for exomes, the deault for genomes is 2.15.
+
 set -o pipefail
 hostname
 date
@@ -60,6 +62,7 @@ echo "Running GATK"
 -an MQRankSum \
 -an ReadPosRankSum \
 -mode SNP \
+--target_titv 3.2 \
 -tranche 100.0 -tranche 99.9 -tranche 99.0 -tranche 90.0 \
 --max_attempts 4 \
 --log_to_file $B_NAME.VR_HC_snps.log

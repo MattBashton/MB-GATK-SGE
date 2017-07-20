@@ -6,12 +6,16 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-
 # Matthew Bashton 2012-2016
 # Runs Apply Recalibration, this takes the .recal file and applies it to the raw
 # vcf produced by the HC, output is a recalibrated .vcf file.
-# Using TS of 99.5 for SNPs as per GATK doc #1259
+# Using TS of 99.0 for SNPs as per GATK doc #2805, note that #1259 uses 99.5
+# https://www.broadinstitute.org/gatk/guide/article?id=2805
 # https://www.broadinstitute.org/gatk/guide/article?id=1259
+
+# As of GATK 3.6 4 attempts are now made to build a model
+
+# Target Ti/Tv ratio is set at 3.2 for exomes, the deault for genomes is 2.15.
 
 set -o pipefail
 hostname
@@ -43,7 +47,9 @@ echo "Running GATK"
 -tranchesFile $B_NAME.VR_UG_snps.tranches \
 -o $TMPDIR/$B_NAME.vrecal.snps.vcf \
 -mode SNP \
---ts_filter_level 99.5 \
+--target_titv 3.2 \
+--ts_filter_level 99.0 \
+--max_attempts 4 \
 --log_to_file $B_NAME.AR_UG_snps.log
 
 echo "Copying back output $TMPDIR/$B_NAME.recalibrated.snps.vcf* to $PWD"
