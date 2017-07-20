@@ -25,10 +25,10 @@ umask 077
 # provided by SoGE for each run
 
 # Add in module for Java 1.8 (FMS cluster specific)
-module add apps/java/jre-1.8.0_92
+module add apps/java/jdk-1.8.0_131
 
 #JAVA="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
-JAVA="/opt/software/java/jdk1.8.0_92/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
+JAVA="/opt/software/java/jdk1.8.0_131/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
 # MuTect1 needs Java 7
 JAVA7="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
 
