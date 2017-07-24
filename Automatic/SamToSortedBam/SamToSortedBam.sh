@@ -2,13 +2,13 @@
 #$ -cwd -V
 #$ -pe smp 2
 #$ -l h_rt=24:00:00
-#$ -l h_vmem=24G
+#$ -l h_vmem=20G
 #$ -R y
 #$ -q all.q,bigmem.q
 
 # Matthew Bashton 2012-2015
 # Runs Picard SortSam using input passed in at command-line.
-# 4hrs runtime by default.  -XX:ParallelGCThreads=2 prevents Picard using all threads.
+# 24hrs runtime by default.  -XX:ParallelGCThreads=2 prevents Picard using all threads.
 
 set -o pipefail
 hostname
@@ -27,7 +27,7 @@ echo "Copying input $BASE_DIR/BWA_MEM/$B_NAME.sam to $TMPDIR"
 /usr/bin/time --verbose cp -v $BASE_DIR/BWA_MEM/$B_NAME.sam $TMPDIR
 
 echo "Running SortSam for $B_NAME.sam saving sorted indexed BAM as $B_NAME.bam"
-/usr/bin/time --verbose $JAVA -Xmx16g -XX:ParallelGCThreads=2 \
+/usr/bin/time --verbose $JAVA -Xmx14g -XX:ParallelGCThreads=2 \
 -jar $PICARD SortSam \
 INPUT=$TMPDIR/$B_NAME.sam \
 TMP_DIR=$TMPDIR \
