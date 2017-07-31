@@ -37,11 +37,11 @@ JAVA7="/opt/software/java/jdk1.7.0_75/jre/bin/java -XX:-UseLargePages -Djava.io.
 #specific)
 module add compilers/gnu/4.9.3
 ## Latest version of R for plots (FMS cluster specific)
-module add apps/R/3.3.1
+module add apps/R/3.4.0
 
 ## Location of programs
 # Extra GATK setting below fixes issues with file locking on Luster FS
-GATK="/opt/software/bsu/bin/GenomeAnalysisTK-3.7.jar --disable_auto_index_creation_and_locking_when_reading_rods"
+GATK="/opt/software/bsu/bin/GenomeAnalysisTK-3.8.jar --disable_auto_index_creation_and_locking_when_reading_rods"
 # Newer versions of Picard has a unified .jar file
 PICARD="/opt/software/bsu/bin/picard.jar"
 BWA="/opt/software/bsu/bin/bwa"
