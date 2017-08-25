@@ -2,6 +2,10 @@
 
 ## Updates ##
 
+##### August 2017 ####
+* Switched to GATK 3.8
+* Updated Enseml VEP to v90, now using built in gnomAD exome annotation and `-custom` gnomAD genome annotation.
+
 ##### May 2017 #####
 * Ensembl VEP updated to v88, this has different command-line arguments to older v87 old scripts preserved with v87 suffix, new VEP v88 should be faster.  Also using new `--nearest symbol` and `--total_length` options.
 

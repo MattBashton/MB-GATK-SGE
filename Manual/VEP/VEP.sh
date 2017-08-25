@@ -16,7 +16,7 @@
 
 module add compilers/gnu/4.9.3
 module add apps/perl/5.22.3
-module add apps/VEP/v88
+module add apps/VEP/v90
 
 set -o pipefail
 hostname
@@ -56,7 +56,7 @@ echo "Running VEP on $TMPDIR/$B_NAME.vcf"
 --nearest symbol \
 --total_length \
 --force_overwrite \
---plugin ExAC,$TMPDIR/vep_cache/Plugins/ExAC.r0.3.1.sites.vep.vcf.gz \
+-custom $TMPDIR/vep_cache/Plugins/gnomad.genomes.r2.0.1.sites.GRCh38.noVEP.vcf.gz,gnomADg,vcf,exact,0,AF_AFR,AF_AMR,AF_ASJ,AF_EAS,AF_FIN,AF_NFE,AF_OTH \
 --plugin FATHMM_MKL,$TMPDIR/vep_cache/Plugins/fathmm-MKL_Current.tab.gz \
 --plugin LoFtool,$TMPDIR/vep_cache/Plugins/LoFtool_scores.txt \
 --plugin Carol \
