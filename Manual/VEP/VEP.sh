@@ -56,7 +56,6 @@ echo "Running VEP on $TMPDIR/$B_NAME.vcf"
 --nearest symbol \
 --total_length \
 --force_overwrite \
--custom $TMPDIR/vep_cache/Plugins/gnomad.genomes.r2.0.1.sites.GRCh38.noVEP.vcf.gz,gnomADg,vcf,exact,0,AF,AF_AFT,AF_AMR,AF_ASJ,AF_EAS,AF_FIN,AF_NEF,AF_OTH,AF_Male,AF_Female \
 --plugin FATHMM_MKL,$TMPDIR/vep_cache/Plugins/fathmm-MKL_Current.tab.gz \
 --plugin LoFtool,$TMPDIR/vep_cache/Plugins/LoFtool_scores.txt \
 --plugin Carol \
