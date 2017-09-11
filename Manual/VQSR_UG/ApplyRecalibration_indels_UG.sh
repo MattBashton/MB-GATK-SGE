@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 #$ -cwd -V
-#$ -pe smp 2
+#$ -pe smp 1
 #$ -l h_vmem=12G
 #$ -l h_rt=12:00:00
 #$ -R y
@@ -35,7 +35,7 @@ echo "Copying input $B_PATH_NAME.* to $TMPDIR"
 echo "Running GATK"
 /usr/bin/time --verbose $JAVA -Xmx8g -jar $GATK \
 -T ApplyRecalibration \
--nt 2 \
+-nt 1 \
 -input $TMPDIR/$B_NAME.vcf \
 -R $REF \
 -recalFile $B_NAME.VR_UG_indels.recal \

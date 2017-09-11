@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 #$ -cwd -V
-#$ -pe smp 2
+#$ -pe smp 1
 #$ -l h_vmem=14G
 #$ -l h_rt=12:00:00
 #$ -R y
