@@ -9,16 +9,16 @@ hostname
 date
 
 # Java 1.8 on FMS cluster
-module add apps/java/jre-1.8.0_92
+module add apps/java/jdk-1.8.0_131
 # BamQC perl script (calls java)
 BAMQC="/opt/software/bsu/bin/bamqc"
 # BamQC genome download
-BAMQC_GENOMES="/opt/databases/genomes/BamQC_files/genomes/"
+BAMQC_GENOMES="/opt/databases/genomes/BamQC_files"
 # Number of threads to run analysis on, means x many samples can be processed
 # at once.  Extra sample can be analysed in parallel per thread given, memory
 # usage is approx 250MB per thread.
 CORES="1"
-TMP="/localscratch/"
+TMP="/localscratch"
 
 INPUT=$@
 
