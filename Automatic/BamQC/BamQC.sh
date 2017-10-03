@@ -31,7 +31,7 @@ echo "Copying input $BASE_DIR/MarkDuplicates/$B_NAME.dedup.ba* to $TMPDIR/"
 /usr/bin/time --verbose cp -v $BASE_DIR/MarkDuplicates/$B_NAME.dedup.bai $TMPDIR/
 
 echo "Running BamQC on $TMPDIR/$B_NAME.bam"
-/usr/bin/time --verbose $BAMQC -s "Homo sapiens" -t 1 -a GRCh37 -g $BAMQC_GENOMES --noextract -o $PWD -d $TMPDIR $TMPDIR/$B_NAME.dedup.realigned.recalibrated.bam
+/usr/bin/time --verbose $BAMQC -s "Homo sapiens" -t 1 -a GRCh37 -g $BAMQC_GENOMES --noextract -o $PWD -d $TMPDIR $TMPDIR/$B_NAME.dedup.bam
 
 echo "Deleting $TMPDIR/*.ba*"
 rm $TMPDIR/*.ba*
