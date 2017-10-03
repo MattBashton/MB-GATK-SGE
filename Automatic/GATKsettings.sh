@@ -114,7 +114,7 @@ OMNI="$BUNDLE_DIR/1000G_omni2.5.b37.vcf "
 HAPMAP="$BUNDLE_DIR/hapmap_3.3.b37.vcf"
 
 ## BamQC genomes location
-BAMQC_GENOMES="/opt/databases/genomes/BamQC_files/genomes/"
+BAMQC_GENOMES="/opt/databases/BamQC_files/"
 
 ## COSMIC location
 # Currently in same dir as the working/current since tend to change
