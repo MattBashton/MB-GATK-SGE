@@ -52,7 +52,6 @@ echo "Running GenotypeGVCFs on gVCF list"
 cd $TMPDIR
 /usr/bin/time --verbose $JAVA -Xmx10g -jar $GATK \
 -T GenotypeGVCFs \
--nt 1 \
 -R $REF \
 --dbsnp $DBSNP \
 -newQual \

@@ -44,7 +44,6 @@ echo "Copying merged input $INPUT_DIR/$INPUT.merged.realigned.recalibrated.ba* t
 echo "Running GATK PrintReads and outputing reads from normal sample: $NORMAL"
 /usr/bin/time --verbose $JAVA -Xmx6g -jar $GATK \
 -T PrintReads \
--nct 1 \
 --sample_name $NORMAL \
 -I $TMPDIR/$INPUT.merged.realigned.recalibrated.bam \
 -R $REF \
@@ -54,7 +53,6 @@ echo "Running GATK PrintReads and outputing reads from normal sample: $NORMAL"
 echo "Running GATK PrintReads and outputing reads from tumour sample: $TUMOUR"
 /usr/bin/time --verbose $JAVA -Xmx6g -jar $GATK \
 -T PrintReads \
--nct 1 \
 --sample_name $TUMOUR \
 -I $TMPDIR/$INPUT.merged.realigned.recalibrated.bam \
 -R $REF \

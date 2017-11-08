@@ -54,7 +54,6 @@ echo "Running GATK"
 -T HaplotypeCaller \
 #--maxReadsInRegionPerSample $MAX_READS_IN_REGION \
 --pcr_indel_model $PCR \
--nct 1 \
 --emitRefConfidence GVCF \
 $INTERVALS \
 --interval_padding $PADDING \

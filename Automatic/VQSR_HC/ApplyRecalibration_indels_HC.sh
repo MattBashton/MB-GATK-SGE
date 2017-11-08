@@ -33,7 +33,6 @@ echo "Copying input $BASE_DIR/GenotypeGVCFs/$G_NAME.HC_genotyped.vcf* to $TMPDIR
 echo "Running GATK"
 /usr/bin/time --verbose $JAVA -Xmx8g -jar $GATK \
 -T ApplyRecalibration \
--nt 1 \
 -input $TMPDIR/$B_NAME.vcf \
 -R $REF \
 -recalFile $B_NAME.VR_HC_indels.recal \

@@ -53,7 +53,6 @@ echo "Running GATK"
 /usr/bin/time --verbose $JAVA -Xmx18g -jar $GATK \
 -T HaplotypeCaller \
 --pcr_indel_model $PCR \
--nct 1 \
 $INTERVALS \
 --interval_padding $PADDING \
 -I $TMPDIR/$B_NAME.bam \

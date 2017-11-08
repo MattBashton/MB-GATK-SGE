@@ -55,7 +55,6 @@ echo "Copying input $FILE2 to $TMPDIR/"
 echo "Running MuTect2 on normal:$B_NAME_N.bam vs tumor:$B_NAME_T.bam"
 /usr/bin/time --verbose $JAVA -Xmx16g -jar $GATK \
 -T MuTect2 \
--nct 1 \
 $INTERVALS \
 --interval_padding $PADDING \
 -R $REF \

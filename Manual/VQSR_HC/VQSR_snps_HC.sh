@@ -46,7 +46,6 @@ echo "Copying input $B_PATH_NAME.* to $TMPDIR"
 echo "Running GATK"
 /usr/bin/time --verbose $JAVA -Xmx10g -jar $GATK \
 -T VariantRecalibrator \
--nt 1 \
 -input $TMPDIR/$B_NAME.vcf \
 -R $REF \
 -recalFile $B_NAME.VR_HC_snps.recal \
