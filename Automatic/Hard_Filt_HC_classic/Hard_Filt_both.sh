@@ -143,18 +143,18 @@ echo "Copying back bcftools stats output"
 cd $TMPDIR
 echo "Plotting stats with plot-vcfstats using $TMPDIR/$SAMP_ID.HC.Hard_filtered_snps.PASS.stats input"
 /usr/bin/time --verbose $PLOTVCFSTATS -s -t "$SAMP_ID.snps" -p $SAMP_ID.snps $TMPDIR/$SAMP_ID.HC.Hard_filtered_snps.PASS.stats
-echo "Copying back ${SAMP_ID}.snps-summary.pdf to $DEST"
-/usr/bin/time --verbose cp -v ${SAMP_ID}.snps-summary.pdf $DEST
+echo "Copying back $DEST/${SAMP_ID}.snps/summary.pdf to $DEST/$DEST/${SAMP_ID}.snps_summary.pdf"
+/usr/bin/time --verbose cp -v "$SAMP_ID.snps/summary.pdf" $DEST/${SAMP_ID}.snps_summary.pdf
 
 echo "Plotting stats with plot-vcfstats using $TMPDIR/$SAMP_ID.HC.Hard_filtered_indels.PASS.stats input"
 /usr/bin/time --verbose $PLOTVCFSTATS -s -t "$SAMP_ID.indels" -p $SAMP_ID.indels $TMPDIR/$SAMP_ID.HC.Hard_filtered_indels.PASS.stats
-echo "Copying back ${SAMP_ID}.indels-summary.pdf to $DEST"
-/usr/bin/time --verbose cp -v ${SAMP_ID}.indels-summary.pdf $DEST
+echo "Copying back $DEST/${SAMP_ID}.indels/summary.pdf to $DEST/${SAMP_ID}.indels_summary.pdf"
+/usr/bin/time --verbose cp -v "$SAMP_ID.indels/summary.pdf" $DEST/${SAMP_ID}.indels_summary.pdf
 cd $DEST
 
 
 echo "Deleting $TMPDIR/$SAMP_ID.*"
-rm $TMPDIR/$SAMP_ID.*
+rm -rf $TMPDIR/$SAMP_ID.*
 
 date
 echo "END"
