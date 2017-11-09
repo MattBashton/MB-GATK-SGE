@@ -6,7 +6,7 @@
 #$ -R y
 #$ -q all.q,bigmem.q
 
-# Matthew Bashton 2012-2016
+# Matthew Bashton 2012-2017
 # Runs the HC against a bam file from $SGE_TASK_ID in automated pipeline.
 # This uses the classic mode of HC operation outputting standard VCF files.
 # New vectorised Pair-HMM engine using AVX disables parallelisation so -pe smp

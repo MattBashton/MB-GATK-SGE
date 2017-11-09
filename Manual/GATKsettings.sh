@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-# Matthew Bashton 2012-2016
+# Matthew Bashton 2012-2017
 
 # A script of common GATK settings file, this file gets sourced by the various
 # scripts in the subdirs up a level from this base dir.  This allows for

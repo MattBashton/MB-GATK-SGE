@@ -1,5 +1,5 @@
 #!/bin/bash -e
-# Matthew Bashton 2012-2016
+# Matthew Bashton 2012-2017
 
 # Runs GATK pipeline as a series of array jobs, for most stages each array job
 # will depend on its counterpart in the previous job array using -hold_jid_ad
