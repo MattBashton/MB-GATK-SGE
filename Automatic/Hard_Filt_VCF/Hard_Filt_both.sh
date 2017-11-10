@@ -44,7 +44,7 @@ echo "1) SNP extraction from VCF"
 --variant $TMPDIR/$B_NAME.vcf \
 -R $REF \
 --out $TMPDIR/$G_NAME.Hard_snps.vcf \
--selectType SNP \
+-selectType SNP -selectType MNP \
 --log_to_file $G_NAME.Hard_SelectVariants_snps.log
 
 
@@ -82,7 +82,7 @@ echo "4) Indel extraction from VCF"
 --variant $TMPDIR/$B_NAME.vcf \
 -R $REF \
 --out $TMPDIR/$G_NAME.Hard_indels.vcf \
--selectType INDEL \
+-selectType INDEL -selectType MIXED -selectType SYMBOLIC \
 --log_to_file $G_NAME.Hard_SelectVariants_indels.log
 
 

@@ -31,6 +31,7 @@ B_NAME=$(basename $VCF .vcf)
 echo "** Variables **"
 echo " - BASE_DIR = $BASE_DIR"
 echo " - VCF = $VCF"
+echo " - VAR_TYPE = $VAR_TYPE"
 echo " - B_NAME = $B_NAME"
 echo " - PWD = $PWD"
 
