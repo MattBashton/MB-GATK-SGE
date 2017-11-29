@@ -13,7 +13,7 @@ echo "Making merger_list.txt using identical SM: field values as basis for merge
 tput sgr0
 
 # Extract sample IDs
-cut -d$'\t' -f 2 master_list.txt | grep -oP 'SM:\K\S+(?=\\tPL)' | uniq > sample_IDs.txt
+cut -d$'\t' -f 2 master_list.txt | grep -oP 'SM:\K\S+(?=\\tPL)' | awk '!x[$0]++' > sample_IDs.txt
 
 # Now make our list
 count=1
