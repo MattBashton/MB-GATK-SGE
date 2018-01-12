@@ -18,7 +18,7 @@ date
 # Since running on head node
 TMPDIR="/tmp"
 BUNDLE_DIR="/opt/databases/GATK_bundle/2.8/b37"
-REF_DICT="human_g1k_v37_decoy.dic"
+REF_DICT="human_g1k_v37_decoy.dict"
 # Add in module for Java 1.8 (FMS cluster specific)
 module add apps/java/jre-1.8.0_92
 JAVA="/opt/software/java/jdk1.8.0_92/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
