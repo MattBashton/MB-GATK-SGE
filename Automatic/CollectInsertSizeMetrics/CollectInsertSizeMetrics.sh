@@ -37,7 +37,7 @@ OUTPUT=$TMPDIR/$B_NAME.CollectInsertSizeMetrics.txt \
 HISTOGRAM_FILE=$TMPDIR/$B_NAME.CollectInsertSizeMetrics.pdf \
 TMP_DIR=$TMPDIR \
 VALIDATION_STRINGENCY=STRICT \
-MAX_RECORDS_IN_RAM=4000000
+MAX_RECORDS_IN_RAM=3000000
 
 echo "Copying $TMPDIR/$B_NAME.CollectInsertSizeMetrics.* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.CollectInsertSizeMetrics.* $PWD

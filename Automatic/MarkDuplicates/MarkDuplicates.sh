@@ -39,7 +39,7 @@ TMP_DIR=$TMPDIR \
 METRICS_FILE=$B_NAME.MD.metrics.txt \
 CREATE_INDEX=true \
 VALIDATION_STRINGENCY=STRICT \
-MAX_RECORDS_IN_RAM=4000000
+MAX_RECORDS_IN_RAM=3000000
 
 echo "Running SAMtools flagstat, idxstat and stats to gather alignment stats on $SAMP_ID in file $TMPDIR/$B_NAME.dedup.bam"
 echo "$SAMP_ID" > $PWD/$B_NAME.dedup.flagstat.txt

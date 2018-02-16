@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 #$ -cwd -V
 #$ -l h_vmem=6G
-#$ -pe smp 2
+#$ -pe smp 1
 #$ -l h_rt=24:00:00
 #$ -R y
 #$ -q all.q,bigmem.q
@@ -52,12 +52,12 @@ done
 
 echo "Running Picard to merge BAM list: $BAM_LIST"
 cd $TMPDIR
-/usr/bin/time --verbose $JAVA -Xmx4g -XX:ParallelGCThreads=2 \
+/usr/bin/time --verbose $JAVA -Xmx4g -XX:ParallelGCThreads=1 \
 -jar $PICARD MergeSamFiles \
 $BAM_LIST \
 OUTPUT=$TMPDIR/Dedup.Realigned.Merged.bam \
 TMP_DIR = $TMPDIR \
-MAX_RECORDS_IN_RAM=8000000 \
+MAX_RECORDS_IN_RAM=3000000 \
 USE_THREADING=true \
 SORT_ORDER=coordinate \
 CREATE_INDEX=true \

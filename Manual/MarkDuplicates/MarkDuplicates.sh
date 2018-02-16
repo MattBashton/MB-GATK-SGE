@@ -40,7 +40,7 @@ TMP_DIR=$TMPDIR \
 METRICS_FILE=$B_NAME.MD.metrics.txt \
 CREATE_INDEX=true \
 VALIDATION_STRINGENCY=STRICT \
-MAX_RECORDS_IN_RAM=4000000
+MAX_RECORDS_IN_RAM=3000000
 
 echo "Copying $TMPDIR/$B_NAME.dedup.ba* to $PWD"
 /usr/bin/time --verbose cp -v $TMPDIR/$B_NAME.dedup.bam $PWD

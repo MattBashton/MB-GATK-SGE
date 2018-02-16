@@ -33,7 +33,7 @@ INPUT=$TMPDIR/$G_NAME.$SGE_TASK_ID.dedup.realigned.recalibrated.bam \
 OUTPUT=$TMPDIR/$G_NAME.$SGE_TASK_ID.ValidateSamFile.txt \
 TMP_DIR=$TMPDIR \
 MODE=SUMMARY \
-MAX_RECORDS_IN_RAM=8000000 \
+MAX_RECORDS_IN_RAM=3000000 \
 MAX_OUTPUT='null'
 
 echo "Copying $TMPDIR/$G_NAME.$SGE_TASK_ID.ValidateSamFile.txt to $PWD"
