@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # Matthew Bashton 2012-2016
 
