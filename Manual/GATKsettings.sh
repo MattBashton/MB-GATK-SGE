@@ -99,7 +99,7 @@ HAPMAP="$BUNDLE_DIR/hapmap_3.3.b37.vcf"
 ## COSMIC location
 # Currently in same dir as the working/current since tend to change
 # on each run for up to date version
-COSMIC="$BASE_DIR/Cosmic_b37_v76.vcf"
+COSMIC="$BASE_DIR/Cosmic_b37_v87.vcf"
 
 ## Global dcov setting
 # The depth of coverage setting used in downsampling the number of reads per
