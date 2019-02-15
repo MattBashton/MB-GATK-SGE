@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 
-# Matthew Bashton 2019
+# Matthew Bashton 2016-2019
 # Makes COSMIC b37 file for use with MuTect1 / MuTect2 sorts COSMIC to same order as
 # Referance.  Username and Password for COSMIC required:
 
