@@ -2,6 +2,9 @@
 
 ## Updates ##
 
+##### February 2019 ####
+* Fixed `Make_COSMIC.sh` to work with new COSMIC curl based download system.
+
 ##### August 2017 ####
 * Switched to GATK 3.8
 * Updated Enseml VEP to v90, now using built in gnomAD exome annotation.
