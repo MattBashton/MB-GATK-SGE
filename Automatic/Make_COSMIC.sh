@@ -1,15 +1,17 @@
 #!/bin/bash -eu
 
-# Matthew Bashton 2016
+# Matthew Bashton 2019
 # Makes COSMIC b37 file for use with MuTect1 / MuTect2 sorts COSMIC to same order as
 # Referance.  Username and Password for COSMIC required:
 
 # Register for account here: https://cancer.sanger.ac.uk/cosmic/register
-SSHPASS=""
-SSHUSER=""
-SSHHOST="sftp-cancer.sanger.ac.uk"
+PASS=""
+USER=""
+HOST="https://cancer.sanger.ac.uk/"
+
 # The version of COSMIC to download
-COSMICVER="v79"
+COSMICVER="v87"
+ASSEMBLY="GRCh37"
 
 set -o pipefail
 hostname
@@ -23,18 +25,20 @@ REF_DICT="human_g1k_v37_decoy.dict"
 module add apps/java/jre-1.8.0_92
 JAVA="/opt/software/java/jdk1.8.0_92/bin/java -XX:-UseLargePages -Djava.io.tmpdir=$TMPDIR"
 PICARD="/opt/software/bsu/bin/picard.jar"
+AUTH=$(echo "${USER}:${PASS}" | base64)
 
-echo "Downloading VCF from Sanger Cancer SFTP server"
-export SSHPASS
-sshpass -e sftp -oBatchMode=no -b - $SSHUSER@$SSHHOST << !
-   cd cosmic
-   cd grch37
-   cd cosmic
-   cd $COSMICVER
-   cd VCF
-   mget *.gz
-   bye
-!
+echo "Downloading VCF files from Sanger cancer server: ${HOST} genome assembly version: ${ASSEMBLY}"
+# Get dowload links
+CODING_URL="${HOST}cosmic/file_download/${ASSEMBLY}/cosmic/${COSMICVER}/VCF/CosmicCodingMuts.vcf.gz"
+NONE_CODING_URL="${HOST}cosmic/file_download/${ASSEMBLY}/cosmic/${COSMICVER}/VCF/CosmicNonCodingVariants.vcf.gz"
+CODING_LINK=$(curl -sH "Authorization: Basic ${AUTH}" "${CODING_URL}")
+NONE_CODING_LINK=$(curl -sH "Authorization: Basic ${AUTH}" "${NONE_CODING_URL}")
+# Reprocess vile JSON
+CODING_FIXED_LINK=$(echo "${CODING_LINK}" | grep -oP 'https:\S+(?=")')
+NONE_CODING_FIXED_LINK=$(echo "${CODING_LINK}" | grep -oP 'https:\S+(?=")')
+# Curl the file using authed time limited link
+curl --progress-bar -o CosmicCodingMuts.vcf.gz "${CODING_FIXED_LINK}"
+curl --progress-bar -o CosmicNonCodingVariants.vcf.gz "${NONE_CODING_FIXED_LINK}"
 
 echo "Uncompressing VCF"
 pigz -d *.gz
