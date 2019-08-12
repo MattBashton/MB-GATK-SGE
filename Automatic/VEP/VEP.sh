@@ -85,8 +85,7 @@ rm $TMPDIR/*.vcf
 date
 
 # Used by Audit_run.sh for calculating run length of whole analysis
-ENDTIME=$(dat
-e '+%s')
+ENDTIME=$(date '+%s')
 echo "Timestamp $ENDTIME"
 
 echo "END"
