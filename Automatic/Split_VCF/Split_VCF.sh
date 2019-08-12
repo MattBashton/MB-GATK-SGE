@@ -74,8 +74,8 @@ do
     cd $TMPDIR
     echo "Plotting stats with plot-vcfstats using $B_NAME.$i.stats input"
     /usr/bin/time --verbose $PLOTVCFSTATS -s -t "$i" -p $B_NAME.$i $B_NAME.$i.stats
-    echo "Copying back $B_NAME.${i}-summary.pdf to $DEST"
-    /usr/bin/time --verbose cp -v $B_NAME.${i}-summary.pdf $DEST
+    echo "Copying back $B_NAME.${i}/summary.pdf to $DEST/$B_NAME.${i}_summary.pdf"
+    /usr/bin/time --verbose cp -v $B_NAME.${i}/summary.pdf $DEST/$B_NAME.${i}_summary.pdf
     cd $DEST
 
     # old
