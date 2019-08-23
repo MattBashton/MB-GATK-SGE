@@ -5,6 +5,8 @@
 
 echo -e "\n### GATK run Stats ###\n"
 
+source GATKsettings.sh
+
 date
 
 echo -e "\n\n - SAMtools flagstat info:\n"
@@ -23,7 +25,7 @@ cd ..
 function count_snps {
     local FILE=$1
     echo $FILE | cut -d'.' -f 4 | tr -d '\n'
-    cat $FILE | vcf-annotate --fill-type | grep -oP "TYPE=\w+" | sort | uniq -c | awk 'BEGIN {printf " SNPs: "}; FNR == 1 {print $1}'
+    cat $FILE | $VCFANNOTATE --fill-type | grep -oP "TYPE=\w+" | sort | uniq -c | awk 'BEGIN {printf " SNPs: "}; FNR == 1 {print $1}'
 }
 
 echo -e "\n\n - SNP counts\n"
@@ -37,7 +39,7 @@ done
 function count_indels {
     local FILE=$1
     echo $FILE | cut -d'.' -f 4 | tr -d '\n'
-    cat $FILE | vcf-annotate --fill-type | grep -oP "TYPE=\w+" | sort | uniq -c | awk 'FNR == 1 {printf " Del: "$1"  "}; FNR == 2 {printf "Ins: "$1"\n"}'
+    cat $FILE | $VCFANNOTATE --fill-type | grep -oP "TYPE=\w+" | sort | uniq -c | awk 'FNR == 1 {printf " Del: "$1"  "}; FNR == 2 {printf "Ins: "$1"\n"}'
 }
 
 echo -e "\n\n - Indel counts\n"
